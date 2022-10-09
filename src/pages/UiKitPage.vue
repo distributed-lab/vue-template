@@ -47,7 +47,7 @@ const throwBusInfo = () => {
       <app-button
         :icon-right="$icons.gift"
         :text="'router, border-rounded, icon'"
-        :route="{ name: $routes.forms }"
+        :route="{ name: $routes.uiKit }"
       />
       <app-button
         modification="border-circle"
