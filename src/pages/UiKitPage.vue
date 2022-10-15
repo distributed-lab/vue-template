@@ -220,15 +220,20 @@ const throwBusInfo = () => {
         v-model="form.inputValue"
         :label="'label'"
         :placeholder="$t('ui-kit-page.some-placeholder')"
-        :icon-name="$icons.dotsVertical"
-      />
+      >
+        <template #nodeRight>
+          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
+        </template>
+      </input-field>
       <input-field
         v-model="form.inputValue"
-        schemes="icon-left"
         :label="'label'"
         :placeholder="$t('ui-kit-page.some-placeholder')"
-        :icon-name="$icons.dotsVertical"
-      />
+      >
+        <template #nodeLeft>
+          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
+        </template>
+      </input-field>
       <input-field
         v-model="form.inputValue"
         type="password"
@@ -240,7 +245,14 @@ const throwBusInfo = () => {
         :label="$t('ui-kit-page.some-label')"
         :error-message="$t('ui-kit-page.some-error-message')"
         :placeholder="$t('ui-kit-page.some-placeholder')"
-      />
+      >
+        <template #nodeLeft>
+          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
+        </template>
+        <template #nodeRight>
+          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
+        </template>
+      </input-field>
       <input-field
         v-model="form.inputValue"
         :label="$t('ui-kit-page.some-label')"
@@ -275,7 +287,7 @@ const throwBusInfo = () => {
         <template #head="{ collapse }">
           <app-button
             class="ui-kit-page__collapse-btn"
-            schemes="flat"
+            scheme="flat"
             :text="$t('ui-kit-page.collapse-btn')"
             @click="collapse.toggle"
           >
@@ -587,5 +599,10 @@ const throwBusInfo = () => {
     width: toRem(24);
     height: toRem(24);
   }
+}
+
+.ui-kit-page__input-icon {
+  max-width: toRem(24);
+  max-height: toRem(24);
 }
 </style>

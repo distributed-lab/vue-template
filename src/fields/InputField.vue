@@ -1,9 +1,106 @@
+<script lang="ts" setup>
+import { Icon } from '@/common'
+
+import { BN } from '@/utils/math.util'
+import { computed, getCurrentInstance, ref, useAttrs, useSlots } from 'vue'
+
+type INPUT_TYPES = 'text' | 'number' | 'password'
+
+const props = withDefaults(
+  defineProps<{
+    modelValue: string | number
+    label?: string
+    placeholder?: string
+    type?: INPUT_TYPES
+    errorMessage?: string
+  }>(),
+  {
+    type: 'text',
+    label: '',
+    placeholder: ' ',
+    errorMessage: '',
+  },
+)
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: number | string): void
+}>()
+
+const attrs = useAttrs()
+
+const slots = useSlots()
+
+const uid = getCurrentInstance()?.uid
+
+const isPasswordShown = ref(false)
+
+const isNumberType = computed(() => props.type === 'number')
+const isPasswordType = computed(() => props.type === 'password')
+
+const min = computed((): string => (attrs?.min as string) || '')
+const max = computed((): string => (attrs?.max as string) || '')
+
+const isDisabled = computed(() =>
+  ['', 'disabled', true].includes(attrs.disabled as string | boolean),
+)
+
+const isReadonly = computed(() =>
+  ['', 'readonly', true].includes(attrs.readonly as string | boolean),
+)
+
+const listeners = computed(() => ({
+  input: (event: Event) => {
+    const eventTarget = event.target as HTMLInputElement
+    if (isNumberType.value) {
+      eventTarget.value = normalizeRange(eventTarget.value)
+    }
+    if (props.modelValue === eventTarget.value) return
+
+    emit('update:modelValue', eventTarget.value)
+  },
+}))
+
+const inputClasses = computed(() =>
+  [
+    ...(slots.nodeLeft ? ['input-field--node-left'] : []),
+    ...(slots.nodeRight || isPasswordType.value
+      ? ['input-field--node-right']
+      : []),
+    ...(isDisabled.value ? ['input-field--disabled'] : []),
+    ...(isReadonly.value ? ['input-field--readonly'] : []),
+    ...(props.errorMessage ? ['input-field--error'] : []),
+  ].join(' '),
+)
+
+const normalizeRange = (value: string | number): string => {
+  let result = value
+
+  if (min.value && new BN(value).compare(min.value) < 0) {
+    result = min.value
+  } else if (max.value && new BN(value).compare(max.value) > 0) {
+    result = max.value
+  }
+
+  return result as string
+}
+
+const setHeightCSSVar = (element: HTMLElement) => {
+  element.style.setProperty(
+    '--field-error-msg-height',
+    `${element.scrollHeight}px`,
+  )
+}
+</script>
+
 <template>
   <div class="input-field" :class="inputClasses">
     <label v-if="label" :for="`input-field--${uid}`" class="input-field__label">
       {{ label }}
     </label>
     <div class="input-field__input-wrp">
+      <div v-if="$slots.nodeLeft" class="input-field__node-left-wrp">
+        <slot name="nodeLeft" />
+      </div>
       <input
         class="input-field__input"
         :id="`input-field--${uid}`"
@@ -17,18 +114,21 @@
         :max="max"
         :disabled="isDisabled || isReadonly"
       />
-      <div v-if="isPasswordType || iconName" class="input-field__icon-wrp">
+      <div
+        v-if="$slots.nodeRight || isPasswordType"
+        class="input-field__node-right-wrp"
+      >
         <button
-          type="button"
           v-if="isPasswordType"
+          type="button"
           @click="isPasswordShown = !isPasswordShown"
         >
           <icon
-            class="input-field__icon"
+            class="input-field__password-icon"
             :name="isPasswordShown ? $icons.eye : $icons.eyeOff"
           />
         </button>
-        <icon v-else class="input-field__icon" :name="iconName" />
+        <slot v-else name="nodeRight" />
       </div>
     </div>
     <transition
@@ -42,129 +142,6 @@
     </transition>
   </div>
 </template>
-
-<script lang="ts">
-import { Icon } from '@/common'
-
-import { BN } from '@/utils/math.util'
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  PropType,
-  ref,
-} from 'vue'
-import { ICON_NAMES } from '@/enums'
-
-enum INPUT_TYPES {
-  text = 'text',
-  password = 'password',
-  number = 'number',
-}
-
-enum EVENTS {
-  updateModelValue = 'update:model-value',
-}
-
-enum SCHEMES {
-  iconLeft = 'icon-left',
-}
-
-export default defineComponent({
-  name: 'input-field',
-  components: { Icon },
-  props: {
-    modelValue: { type: [String, Number], default: '' },
-    label: { type: String, default: '' },
-    placeholder: { type: String, default: ' ' },
-    type: {
-      type: String as PropType<INPUT_TYPES>,
-      default: INPUT_TYPES.text,
-    },
-    schemes: { type: String as PropType<SCHEMES>, default: '' },
-    errorMessage: { type: String, default: '' },
-    iconName: { type: String as PropType<ICON_NAMES>, default: '' },
-  },
-  emits: Object.values(EVENTS),
-  setup(props, { emit, attrs }) {
-    const uid = getCurrentInstance()?.uid
-    const isPasswordShown = ref(false)
-
-    const isNumberType = computed(() => props.type === INPUT_TYPES.number)
-    const isPasswordType = computed(() => props.type === INPUT_TYPES.password)
-
-    const min = computed((): string => (attrs?.min as string) || '')
-    const max = computed((): string => (attrs?.max as string) || '')
-
-    const isDisabled = computed(() =>
-      ['', 'disabled', true].includes(attrs.disabled as string | boolean),
-    )
-
-    const isReadonly = computed(() =>
-      ['', 'readonly', true].includes(attrs.readonly as string | boolean),
-    )
-
-    const listeners = computed(() => ({
-      input: (event: Event) => {
-        const eventTarget = event.target as HTMLInputElement
-        if (isNumberType.value) {
-          eventTarget.value = normalizeRange(eventTarget.value)
-        }
-        if (props.modelValue === eventTarget.value) return
-
-        emit(EVENTS.updateModelValue, eventTarget.value)
-      },
-    }))
-
-    const inputClasses = computed(() => {
-      const _schemes = props.schemes
-      const classList = [
-        ...(_schemes ? [_schemes.split(' ')] : []),
-        ...(isDisabled.value ? ['disabled'] : []),
-        ...(isReadonly.value ? ['readonly'] : []),
-        ...(props.errorMessage ? ['error'] : []),
-        ...(props.iconName || isPasswordType ? ['iconed'] : []),
-      ]
-
-      return classList.map(el => `input-field--${el}`).join(' ')
-    })
-
-    const normalizeRange = (value: string | number): string => {
-      let result = value
-
-      if (min.value && new BN(value).compare(min.value) < 0) {
-        result = min.value
-      } else if (max.value && new BN(value).compare(max.value) > 0) {
-        result = max.value
-      }
-
-      return result as string
-    }
-
-    const setHeightCSSVar = (element: HTMLElement) => {
-      element.style.setProperty(
-        '--field-error-msg-height',
-        `${element.scrollHeight}px`,
-      )
-    }
-
-    return {
-      uid,
-      isPasswordShown,
-
-      listeners,
-      isDisabled,
-      isReadonly,
-      min,
-      max,
-      inputClasses,
-      isPasswordType,
-
-      setHeightCSSVar,
-    }
-  },
-})
-</script>
 
 <style lang="scss" scoped>
 .input-field {
@@ -246,13 +223,12 @@ export default defineComponent({
     border-color: var(--field-error);
   }
 
-  .input-field--iconed & {
-    padding-right: calc(var(--field-padding-right) * 3);
+  .input-field--node-left & {
+    padding-left: calc(var(--field-padding-left) * 3);
   }
 
-  .input-field--icon-left & {
-    padding-right: var(--field-padding-right);
-    padding-left: calc(var(--field-padding-right) * 3);
+  .input-field--node-right & {
+    padding-right: calc(var(--field-padding-right) * 3);
   }
 
   &:not([disabled]):focus {
@@ -266,21 +242,27 @@ export default defineComponent({
   }
 }
 
-.input-field__icon-wrp {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.input-field__node-left-wrp {
+  overflow: hidden;
   position: absolute;
   top: 50%;
-  right: calc(var(--field-padding-right) * 3 / 2);
-  transform: translate(50%, -50%);
+  left: var(--field-padding-left);
+  transform: translateY(-50%);
+  color: inherit;
+  max-height: 100%;
+}
 
-  .input-field--icon-left & {
-    right: 0;
-    left: calc(var(--field-padding-right) * 3 / 2);
-    transform: translate(-50%, -50%);
-    width: max-content;
-  }
+.input-field__node-right-wrp {
+  position: absolute;
+  top: 50%;
+  right: var(--field-padding-right);
+  transform: translateY(-50%);
+  color: inherit;
+}
+
+.input-field__password-icon {
+  max-width: toRem(24);
+  max-height: toRem(24);
 }
 
 .input-field__icon {
