@@ -13,11 +13,13 @@ import LoginForm from '@/forms/LoginForm.vue'
 
 import { reactive, ref } from 'vue'
 import { Bus } from '@/helpers'
+import SelectField from '@/fields/SelectField.vue'
 
 const isModalShown = ref<boolean>(false)
 const form = reactive({
   chbValue: false,
   inputValue: '',
+  selectValue: '',
 })
 
 const handleClick = () => {
@@ -211,6 +213,76 @@ const throwBusInfo = () => {
       />
     </section>
     <section class="ui-kit-page__inputs">
+      <select-field
+        v-model="form.selectValue"
+        :label="'Label'"
+        :placeholder="'select placeholder'"
+        :value-options="['1', '2', '3', '4', '5', '6', '7']"
+        :error-message="form.selectValue === '7' ? 'error for number 7' : ''"
+      />
+      <select-field
+        v-model="form.selectValue"
+        :label="'Custom select'"
+        :placeholder="'select placeholder'"
+      >
+        <template #default="{ selectField }">
+          <app-button
+            v-for="(items, idx) in [
+              { label: 'Value 1', value: '1' },
+              { label: 'Value 2', value: '2' },
+              { label: 'Value 3', value: '3' },
+            ]"
+            :key="idx"
+            :text="items.label"
+            :style="{ width: '100%', hoverOpacity: '0.5' }"
+            scheme="default"
+            :icon-left="$icons.printer"
+            @click="selectField.select(items.value)"
+          />
+        </template>
+      </select-field>
+      <select-field
+        v-model="form.selectValue"
+        :label="'Custom select'"
+        :placeholder="'select placeholder'"
+      >
+        <template #head>
+          <div
+            :style="{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+            }"
+          >
+            <icon
+              :name="$icons.globe"
+              :style="{ width: '18px', height: '18px' }"
+            />
+            {{
+              [
+                { label: 'Value 1', value: '1' },
+                { label: 'Value 2', value: '2' },
+                { label: 'Value 3', value: '3' },
+              ].find(item => item.value === form.selectValue)?.label
+            }}
+          </div>
+        </template>
+        <template #default="{ selectField }">
+          <app-button
+            v-for="(items, idx) in [
+              { label: 'Value 1', value: '1' },
+              { label: 'Value 2', value: '2' },
+              { label: 'Value 3', value: '3' },
+            ]"
+            :key="idx"
+            :text="items.label"
+            :style="{ width: '100%', hoverOpacity: '0.5' }"
+            scheme="default"
+            :icon-left="$icons.printer"
+            @click="selectField.select(items.value)"
+          />
+        </template>
+      </select-field>
       <input-field
         v-model="form.inputValue"
         :label="'label'"

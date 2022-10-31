@@ -40,6 +40,7 @@ $media-breakpoints: (
   -webkit-text-fill-color: var(--field-text-font-size);
   color: var(--field-text-font-size);
   transition: color var(--field-transition-duration) ease;
+  font-weight: 400;
 }
 
 @mixin field-label {
