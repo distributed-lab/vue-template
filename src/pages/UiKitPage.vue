@@ -231,6 +231,10 @@ const throwBusInfo = () => {
               { label: 'Value 1', value: '1' },
               { label: 'Value 2', value: '2' },
               { label: 'Value 3', value: '3' },
+              { label: 'Value 4', value: '4' },
+              { label: 'Value 5', value: '5' },
+              { label: 'Value 6', value: '6' },
+              { label: 'Value 7', value: '7' },
             ]"
             :key="idx"
             :text="items.label"
@@ -263,6 +267,10 @@ const throwBusInfo = () => {
                 { label: 'Value 1', value: '1' },
                 { label: 'Value 2', value: '2' },
                 { label: 'Value 3', value: '3' },
+                { label: 'Value 4', value: '4' },
+                { label: 'Value 5', value: '5' },
+                { label: 'Value 6', value: '6' },
+                { label: 'Value 7', value: '7' },
               ].find(item => item.value === form.selectValue)?.label
             }}
           </div>
@@ -273,6 +281,10 @@ const throwBusInfo = () => {
               { label: 'Value 1', value: '1' },
               { label: 'Value 2', value: '2' },
               { label: 'Value 3', value: '3' },
+              { label: 'Value 4', value: '4' },
+              { label: 'Value 5', value: '5' },
+              { label: 'Value 6', value: '6' },
+              { label: 'Value 7', value: '7' },
             ]"
             :key="idx"
             :text="items.label"

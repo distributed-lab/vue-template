@@ -295,13 +295,13 @@ $z-local-index: 1;
   from {
     opacity: 0;
     transform: translateY(20%);
-    height: 0;
+    max-height: 0;
   }
 
   to {
     opacity: 1;
     transform: translateY(0);
-    height: 500%;
+    max-height: 500%;
   }
 }
 
