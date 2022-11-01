@@ -8,18 +8,18 @@ import {
   Icon,
   Collapse,
 } from '@/common'
-import { CheckboxField, InputField } from '@/fields'
+import { CheckboxField, InputField, SelectField, TextareaField } from '@/fields'
 import LoginForm from '@/forms/LoginForm.vue'
 
 import { reactive, ref } from 'vue'
 import { Bus } from '@/helpers'
-import SelectField from '@/fields/SelectField.vue'
 
 const isModalShown = ref<boolean>(false)
 const form = reactive({
   chbValue: false,
   inputValue: '',
   selectValue: '',
+  textareaValue: '',
 })
 
 const handleClick = () => {
@@ -358,6 +358,11 @@ const throwBusInfo = () => {
         v-model="form.chbValue"
         :label="$t('ui-kit-page.some-label')"
         disabled
+      />
+      <textarea-field
+        v-model="form.textareaValue"
+        :label="'textarea'"
+        :placeholder="'textarea'"
       />
     </section>
     <section class="ui-kit-page__form">
