@@ -13,7 +13,7 @@ import { AppLogo } from '@/common'
   display: flex;
   align-items: center;
   padding: toRem(24) var(--app-padding-right) toRem(24) var(--app-padding-left);
-  background: var(--app-bg);
+  background: var(--background-primary-main);
   border-bottom: var(--border-primary-main);
 
   @include respond-to(tablet) {
