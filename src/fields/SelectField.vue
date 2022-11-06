@@ -66,7 +66,7 @@ const selectFieldClasses = computed(() => ({
   'select-field--open': isDropdownOpen.value,
   'select-field--disabled': isDisabled.value,
   'select-field--readonly': isReadonly.value,
-  ...(isLabelActive.value ? { 'select-field--label-active': true } : {}),
+  'select-field--label-active': isLabelActive.value,
   [`select-field--${props.scheme}`]: true,
 }))
 
@@ -155,7 +155,10 @@ watch(
             :name="$icons.chevronDown"
           />
         </button>
-        <span v-if="scheme === 'secondary'" />
+        <span
+          class="select-field__focus-indicator"
+          v-if="scheme === 'secondary'"
+        />
         <label
           v-if="label"
           class="select-field__label"
@@ -303,7 +306,7 @@ $z-local-index: 2;
 
   transition-property: all;
 
-  & + span {
+  & + .select-field__focus-indicator {
     pointer-events: none;
     position: absolute;
     top: 0;
@@ -360,7 +363,7 @@ $z-local-index: 2;
   }
 
   .select-field--open.select-field--secondary & {
-    & + span {
+    & + .select-field__focus-indicator {
       &:after {
         width: 100%;
       }

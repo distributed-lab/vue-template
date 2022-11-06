@@ -127,7 +127,10 @@ const setHeightCSSVar = (element: HTMLElement) => {
         :max="max"
         :disabled="isDisabled || isReadonly"
       />
-      <span v-if="scheme === 'secondary'" />
+      <span
+        class="input-field__focus-indicator"
+        v-if="scheme === 'secondary'"
+      />
       <label
         v-if="label"
         :for="`input-field--${uid}`"
@@ -276,7 +279,7 @@ const setHeightCSSVar = (element: HTMLElement) => {
 
   @include field-text;
 
-  & + span {
+  & + .input-field__focus-indicator {
     pointer-events: none;
     position: absolute;
     top: 0;
@@ -359,7 +362,7 @@ const setHeightCSSVar = (element: HTMLElement) => {
 
   &:not(:placeholder-shown) {
     .input-field--secondary & {
-      & + span:after {
+      & + .input-field__focus-indicator:after {
         width: 100%;
       }
     }
@@ -386,7 +389,7 @@ const setHeightCSSVar = (element: HTMLElement) => {
     }
 
     .input-field--secondary & {
-      & + span:after {
+      & + .input-field__focus-indicator:after {
         width: 100%;
       }
     }

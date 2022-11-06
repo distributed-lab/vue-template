@@ -76,7 +76,10 @@ const setHeightCSSVar = (element: HTMLElement) => {
         :tabindex="isDisabled || isReadonly ? -1 : $attrs.tabindex"
         :disabled="isDisabled || isReadonly"
       />
-      <span v-if="scheme === 'secondary'" />
+      <span
+        class="textarea-field__focus-indicator"
+        v-if="scheme === 'secondary'"
+      />
       <label
         v-if="label"
         :for="`textarea-field--${uid}`"
@@ -193,7 +196,7 @@ const setHeightCSSVar = (element: HTMLElement) => {
 
   @include field-text;
 
-  & + span {
+  & + .textarea-field__focus-indicator {
     pointer-events: none;
     position: absolute;
     top: 0;
@@ -256,7 +259,7 @@ const setHeightCSSVar = (element: HTMLElement) => {
 
   &:not(:placeholder-shown) {
     .textarea-field--secondary & {
-      & + span:after {
+      & + .textarea-field__focus-indicator:after {
         width: 100%;
       }
     }
@@ -283,7 +286,7 @@ const setHeightCSSVar = (element: HTMLElement) => {
     }
 
     .textarea-field--secondary & {
-      & + span:after {
+      & + .textarea-field__focus-indicator:after {
         width: 100%;
       }
     }
