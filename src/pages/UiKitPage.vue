@@ -371,8 +371,31 @@ const throwBusInfo = () => {
       />
       <textarea-field
         v-model="form.textareaValue"
+        scheme="secondary"
         :label="'textarea'"
         :placeholder="'textarea'"
+      />
+      <textarea-field
+        v-model="form.textareaValue"
+        scheme="secondary"
+        :label="'textarea'"
+        :placeholder="'textarea'"
+        :error-message="form.textareaValue"
+      />
+      <textarea-field
+        v-model="form.textareaValue"
+        scheme="secondary"
+        :label="'textarea'"
+        :placeholder="'textarea'"
+        :error-message="form.textareaValue ? 'form.textareaValue' : ''"
+      />
+      <textarea-field
+        v-model="form.textareaValue"
+        scheme="secondary"
+        :label="'textarea'"
+        :placeholder="'textarea'"
+        :error-message="form.textareaValue"
+        disabled
       />
     </section>
     <section class="ui-kit-page__inputs">

@@ -123,7 +123,7 @@ watch(
           class="select-field__select-head"
           @click="toggleDropdown"
         >
-          <template v-if="$slots.head">
+          <template v-if="$slots.head && !!modelValue">
             <slot
               name="head"
               :select-field="{
@@ -155,6 +155,7 @@ watch(
             :name="$icons.chevronDown"
           />
         </button>
+        <span v-if="scheme === 'secondary'" />
         <label
           v-if="label"
           class="select-field__label"
@@ -209,7 +210,7 @@ watch(
 </template>
 
 <style lang="scss" scoped>
-$z-local-index: 1;
+$z-local-index: 2;
 
 .select-field {
   display: flex;
@@ -226,14 +227,6 @@ $z-local-index: 1;
 }
 
 .select-field__label {
-  $select-field-secondary-label-bg: linear-gradient(
-    to bottom,
-    var(--field-bg-primary) 0%,
-    var(--field-bg-primary) 50%,
-    var(--background-secondary-main) 50%,
-    var(--background-secondary-main) 100%
-  );
-
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -253,29 +246,28 @@ $z-local-index: 1;
 
   transition-property: all;
 
+  .select-field--secondary & {
+    background: none;
+    padding: 0;
+  }
+
+  .select-field--error & {
+    color: var(--field-error);
+  }
+
   .select-field--label-active & {
     top: 0;
-    color: var(--field-text);
-    border-color: var(--field-border-hover);
     font-size: toRem(12);
     line-height: 1.3;
     font-weight: 700;
   }
 
-  .select-field--secondary & {
-    background: var(--background-secondary-main);
+  .select-field--open & {
+    color: var(--primary-main);
   }
 
-  .select-field--error & {
-    color: var(--field-error);
-
-    .select-field--secondary & {
-      background: $select-field-secondary-label-bg;
-    }
-  }
-
-  .select-field--secondary.select-field--label-active & {
-    background: $select-field-secondary-label-bg;
+  .select-field--label-active.select-field--secondary & {
+    transform: translateY(50%);
   }
 }
 
@@ -295,7 +287,6 @@ $z-local-index: 1;
   background: var(--field-bg-primary);
   padding: var(--field-padding);
   padding-right: calc(var(--field-padding-right) + #{toRem(24)});
-  transition-property: box-shadow;
   text-align: left;
   width: 100%;
   height: 100%;
@@ -308,22 +299,80 @@ $z-local-index: 1;
     $field-text-height + var(--field-padding-top) + var(--field-padding-bottom)
   );
 
-  @include field-border;
-
   @include field-text;
 
-  .select-field--error & {
-    border-color: var(--field-error);
+  transition-property: all;
+
+  & + span {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: toRem(-2);
+      left: 50%;
+      transform: translateX(-50%);
+      height: toRem(2);
+      width: 0;
+      background: var(--primary-main);
+      transition: width calc(var(--field-transition-duration) + 0.3s);
+
+      .select-field--error & {
+        background: var(--field-error);
+      }
+    }
+  }
+
+  .select-field--primary & {
+    @include field-border;
   }
 
   .select-field--secondary & {
+    position: relative;
     background: var(--background-secondary-main);
+    box-shadow: inset 0 0 0 toRem(50) var(--field-bg-secondary),
+      0 toRem(2) 0 0 var(--field-border);
+    padding: calc(var(--field-padding-top) + #{toRem(12)})
+      var(--field-padding-right) var(--field-padding-bottom)
+      var(--field-padding-left);
+  }
+
+  .select-field--error.select-field--primary & {
+    box-shadow: inset 0 0 0 toRem(50) var(--field-bg-primary),
+      0 0 0 toRem(1) var(--field-error);
+    border-color: var(--field-error);
+  }
+
+  .select-field--error.select-field--secondary & {
+    box-shadow: inset 0 0 0 toRem(50) var(--field-bg-secondary),
+      0 toRem(2) 0 0 var(--field-error);
+  }
+
+  .select-field--open.select-field--primary & {
+    box-shadow: inset 0 0 0 toRem(50) var(--field-bg-primary),
+      0 0 0 toRem(2) var(--primary-main);
+    border-color: var(--primary-main);
+  }
+
+  .select-field--open.select-field--secondary & {
+    & + span {
+      &:after {
+        width: 100%;
+      }
+    }
   }
 }
 
 .select-field__placeholder {
   font: inherit;
   opacity: 0.25;
+
+  @include field-placeholder;
 }
 
 .select-field__select-head-indicator {
@@ -347,14 +396,15 @@ $z-local-index: 1;
   flex-direction: column;
   position: absolute;
   overflow: hidden auto;
-  top: 0;
+  top: 105%;
   right: 0;
   width: 100%;
   max-height: 500%;
   z-index: $z-local-index;
-  background: var(--field-bg-primary);
-
-  @include field-border;
+  background: var(--field-bg-secondary);
+  box-shadow: 0 toRem(1) toRem(2) rgba(0, 0, 0, 0.3),
+    0 toRem(2) toRem(6) toRem(2) rgba(0, 0, 0, 0.15);
+  border-radius: toRem(4);
 }
 
 .select-field__select-dropdown-enter-active {
@@ -382,10 +432,11 @@ $z-local-index: 1;
 .select-field__select-dropdown-item {
   text-align: left;
   width: 100%;
-  padding: var(--field-padding);
+  padding: toRem(8) var(--field-padding-right) toRem(8)
+    var(--field-padding-left);
 
   &:hover {
-    background: rgba(var(--primary-main-rgb), 0.05);
+    background: rgba(var(--primary-dark-rgb), 0.15);
   }
 
   &--active {

@@ -127,6 +127,7 @@ const setHeightCSSVar = (element: HTMLElement) => {
         :max="max"
         :disabled="isDisabled || isReadonly"
       />
+      <span v-if="scheme === 'secondary'" />
       <label
         v-if="label"
         :for="`input-field--${uid}`"
@@ -206,7 +207,7 @@ const setHeightCSSVar = (element: HTMLElement) => {
     left: calc(var(--field-padding-left) * 3);
   }
 
-  .input-field__input:not(:placeholder-shown) + & {
+  .input-field__input:not(:placeholder-shown) ~ & {
     top: 0;
     color: var(--field-text);
     border-color: var(--field-border-hover);
@@ -216,15 +217,7 @@ const setHeightCSSVar = (element: HTMLElement) => {
     }
   }
 
-  .input-field--error:not(:focus):not(:placeholder-shown) & {
-    color: var(--field-error);
-  }
-
-  .input-field--secondary.input-field--error & {
-    color: var(--field-error);
-  }
-  /* stylelint-disable-next-line */
-  .input-field__input:not(:focus):placeholder-shown + & {
+  .input-field__input:not(:focus):placeholder-shown ~ & {
     top: 50%;
     color: var(--field-label);
     font-size: toRem(16);
@@ -236,6 +229,10 @@ const setHeightCSSVar = (element: HTMLElement) => {
     }
   }
 
+  .input-field--error .input-field__input:not(:focus):placeholder-shown ~ & {
+    color: var(--field-error);
+  }
+
   /* stylelint-disable-next-line */
   .input-field__input:not([disabled]):focus ~ & {
     color: var(--field-label-focus);
@@ -243,10 +240,11 @@ const setHeightCSSVar = (element: HTMLElement) => {
 
     .input-field--secondary & {
       transform: translateY(25%);
+      color: var(--primary-main);
     }
   }
 
-  .input-field__input:not(:focus):placeholder-shown:-webkit-autofill + & {
+  .input-field__input:not(:focus):placeholder-shown:-webkit-autofill ~ & {
     top: 50%;
     color: var(--field-label);
     font-size: toRem(16);
@@ -278,6 +276,31 @@ const setHeightCSSVar = (element: HTMLElement) => {
 
   @include field-text;
 
+  & + span {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: toRem(-2);
+      left: 50%;
+      transform: translateX(-50%);
+      height: toRem(2);
+      width: 0;
+      background: var(--primary-main);
+      transition: width calc(var(--field-transition-duration) + 0.3s);
+
+      .input-field--error & {
+        background: var(--field-error);
+      }
+    }
+  }
+
   .input-field--primary & {
     @include field-border;
   }
@@ -285,8 +308,8 @@ const setHeightCSSVar = (element: HTMLElement) => {
   .input-field--secondary & {
     position: relative;
     background: var(--field-bg-secondary);
-    box-shadow: inset 0 0 0 toRem(50) var(--field-bg-secondary);
-    border-bottom: toRem(1) solid var(--field-border);
+    box-shadow: inset 0 0 0 toRem(50) var(--field-bg-secondary),
+      0 toRem(2) 0 0 var(--field-border);
     padding: calc(var(--field-padding-top) + #{toRem(12)})
       var(--field-padding-right) var(--field-padding-bottom)
       var(--field-padding-left);
@@ -334,15 +357,24 @@ const setHeightCSSVar = (element: HTMLElement) => {
     padding-right: calc(var(--field-padding-right) * 3);
   }
 
-  .input-field--error & {
+  &:not(:placeholder-shown) {
+    .input-field--secondary & {
+      & + span:after {
+        width: 100%;
+      }
+    }
+  }
+
+  .input-field--error.input-field--primary & {
     border-color: var(--field-error);
     box-shadow: inset 0 0 0 toRem(50) var(--field-bg-primary),
       0 0 0 toRem(1) var(--field-error);
   }
 
-  .input-field--secondary.input-field--error & {
-    box-shadow: inset 0 0 0 toRem(50) var(--field-bg-secondary);
-    border-bottom: toRem(1) solid var(--field-error);
+  .input-field--error.input-field--secondary & {
+    border-color: var(--field-error);
+    box-shadow: inset 0 0 0 toRem(50) var(--field-bg-secondary),
+      0 toRem(2) 0 0 var(--field-error);
   }
 
   &:not([disabled]):focus {
@@ -354,7 +386,9 @@ const setHeightCSSVar = (element: HTMLElement) => {
     }
 
     .input-field--secondary & {
-      box-shadow: inset 0 0 0 toRem(50) var(--field-bg-secondary);
+      & + span:after {
+        width: 100%;
+      }
     }
   }
 
