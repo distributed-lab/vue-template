@@ -173,6 +173,8 @@ const setHeightCSSVar = (element: HTMLElement) => {
 </template>
 
 <style lang="scss" scoped>
+$z-index-side-nodes: 1;
+
 .input-field {
   display: flex;
   flex-direction: column;
@@ -410,10 +412,7 @@ const setHeightCSSVar = (element: HTMLElement) => {
   transform: translateY(-50%);
   color: inherit;
   max-height: 100%;
-
-  // one line small hack
-  // stylelint-disable-next-line
-  z-index: 1;
+  z-index: $z-index-side-nodes;
 }
 
 .input-field__node-right-wrp {
@@ -422,10 +421,7 @@ const setHeightCSSVar = (element: HTMLElement) => {
   right: var(--field-padding-right);
   transform: translateY(-50%);
   color: inherit;
-
-  // one line small hack
-  // stylelint-disable-next-line
-  z-index: 1;
+  z-index: $z-index-side-nodes;
 }
 
 .input-field__password-icon {

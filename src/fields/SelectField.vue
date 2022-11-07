@@ -405,8 +405,8 @@ $z-local-index: 2;
   max-height: 500%;
   z-index: $z-local-index;
   background: var(--field-bg-secondary);
-  box-shadow: 0 toRem(1) toRem(2) rgba(0, 0, 0, 0.3),
-    0 toRem(2) toRem(6) toRem(2) rgba(0, 0, 0, 0.15);
+  box-shadow: 0 toRem(1) toRem(2) rgba(var(--black-rgb), 0.3),
+    0 toRem(2) toRem(6) toRem(2) rgba(var(--black-rgb), 0.15);
   border-radius: toRem(4);
 }
 
