@@ -1,13 +1,16 @@
 <script lang="ts" setup>
 import { Icon } from '@/common'
 
-import { BN } from '@/utils/math.util'
+import { BN } from '@/utils'
 import { computed, getCurrentInstance, ref, useAttrs, useSlots } from 'vue'
 
 type INPUT_TYPES = 'text' | 'number' | 'password'
 
+type SCHEMES = 'primary' | 'secondary'
+
 const props = withDefaults(
   defineProps<{
+    scheme?: SCHEMES
     modelValue: string | number
     label?: string
     placeholder?: string
@@ -15,6 +18,7 @@ const props = withDefaults(
     errorMessage?: string
   }>(),
   {
+    scheme: 'primary',
     type: 'text',
     label: '',
     placeholder: ' ',
@@ -52,7 +56,7 @@ const listeners = computed(() => ({
   input: (event: Event) => {
     const eventTarget = event.target as HTMLInputElement
     if (isNumberType.value) {
-      eventTarget.value = normalizeRange(eventTarget.value)
+      eventTarget.value = normalizeRange(normalizeNumber(eventTarget.value))
     }
     if (props.modelValue === eventTarget.value) return
 
@@ -63,14 +67,26 @@ const listeners = computed(() => ({
 const inputClasses = computed(() =>
   [
     ...(slots.nodeLeft ? ['input-field--node-left'] : []),
-    ...(slots.nodeRight || isPasswordType.value
+    ...(slots.nodeRight || isPasswordType.value || props.errorMessage
       ? ['input-field--node-right']
       : []),
     ...(isDisabled.value ? ['input-field--disabled'] : []),
     ...(isReadonly.value ? ['input-field--readonly'] : []),
     ...(props.errorMessage ? ['input-field--error'] : []),
+    `input-field--${props.scheme}`,
   ].join(' '),
 )
+
+const inputType = computed(() => {
+  if (isPasswordType.value) {
+    return isPasswordShown.value ? 'text' : 'password'
+  }
+  return 'text'
+})
+
+const normalizeNumber = (value: string) => {
+  return isNaN(Number(value)) ? props.modelValue : value
+}
 
 const normalizeRange = (value: string | number): string => {
   let result = value
@@ -94,9 +110,6 @@ const setHeightCSSVar = (element: HTMLElement) => {
 
 <template>
   <div class="input-field" :class="inputClasses">
-    <label v-if="label" :for="`input-field--${uid}`" class="input-field__label">
-      {{ label }}
-    </label>
     <div class="input-field__input-wrp">
       <div v-if="$slots.nodeLeft" class="input-field__node-left-wrp">
         <slot name="nodeLeft" />
@@ -107,15 +120,26 @@ const setHeightCSSVar = (element: HTMLElement) => {
         v-bind="$attrs"
         v-on="listeners"
         :value="modelValue"
-        :placeholder="placeholder"
+        :placeholder="!label ? placeholder : ' '"
         :tabindex="isDisabled || isReadonly ? -1 : $attrs.tabindex"
-        :type="isPasswordType && isPasswordShown ? 'text' : type"
+        :type="inputType"
         :min="min"
         :max="max"
         :disabled="isDisabled || isReadonly"
       />
+      <span
+        class="input-field__focus-indicator"
+        v-if="scheme === 'secondary'"
+      />
+      <label
+        v-if="label"
+        :for="`input-field--${uid}`"
+        class="input-field__label"
+      >
+        {{ label }}
+      </label>
       <div
-        v-if="$slots.nodeRight || isPasswordType"
+        v-if="$slots.nodeRight || isPasswordType || props.errorMessage"
         class="input-field__node-right-wrp"
       >
         <button
@@ -128,6 +152,11 @@ const setHeightCSSVar = (element: HTMLElement) => {
             :name="isPasswordShown ? $icons.eye : $icons.eyeOff"
           />
         </button>
+        <icon
+          v-else-if="props.errorMessage"
+          class="input-field__error-icon"
+          :name="$icons.exclamation"
+        />
         <slot v-else name="nodeRight" />
       </div>
     </div>
@@ -144,6 +173,8 @@ const setHeightCSSVar = (element: HTMLElement) => {
 </template>
 
 <style lang="scss" scoped>
+$z-index-side-nodes: 1;
+
 .input-field {
   display: flex;
   flex-direction: column;
@@ -158,14 +189,81 @@ const setHeightCSSVar = (element: HTMLElement) => {
 }
 
 .input-field__label {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  pointer-events: none;
+  position: absolute;
+  padding: toRem(4);
+  top: 0;
+  left: var(--field-padding-left);
+  font-size: toRem(12);
+  line-height: 1.3;
+  font-weight: 700;
+  background: var(--field-bg-primary);
+  transform: translateY(-50%);
 
   @include field-label;
 
-  .input-field--error & {
+  transition-property: all;
+
+  .input-field--secondary & {
+    padding: 0;
+  }
+
+  .input-field--secondary.input-field--node-left & {
+    left: calc(var(--field-padding-left) * 3);
+  }
+
+  .input-field__input:not(:placeholder-shown) ~ & {
+    top: 0;
+    color: var(--field-text);
+    border-color: var(--field-border-hover);
+
+    .input-field--secondary & {
+      transform: translateY(25%);
+    }
+  }
+
+  .input-field__input:not(:focus):placeholder-shown ~ & {
+    top: 50%;
+    color: var(--field-label);
+    font-size: toRem(16);
+    font-weight: 400;
+    line-height: 1.3;
+
+    .input-field--node-left & {
+      left: calc(var(--field-padding-left) * 3);
+    }
+  }
+
+  .input-field--error .input-field__input:not(:focus):placeholder-shown ~ & {
     color: var(--field-error);
+  }
+
+  /* stylelint-disable-next-line */
+  .input-field__input:not([disabled]):focus ~ & {
+    color: var(--field-label-focus);
+    font-weight: 700;
+
+    .input-field--secondary & {
+      transform: translateY(25%);
+      color: var(--primary-main);
+    }
+  }
+
+  .input-field__input:not(:focus):placeholder-shown:-webkit-autofill ~ & {
+    top: 50%;
+    color: var(--field-label);
+    font-size: toRem(16);
+    font-weight: 400;
+    line-height: 1.3;
+
+    .input-field--node-left & {
+      left: calc(var(--field-padding-left) * 3);
+    }
+  }
+
+  /* stylelint-disable-next-line */
+  .input-field--secondary & {
+    background: var(--field-bg-secondary);
   }
 }
 
@@ -177,11 +275,52 @@ const setHeightCSSVar = (element: HTMLElement) => {
 
 .input-field__input {
   padding: var(--field-padding);
-  transition-property: box-shadow;
+  background: var(--field-bg-primary);
+  box-shadow: inset 0 0 0 toRem(50) var(--field-bg-primary);
+  border: none;
 
   @include field-text;
 
-  @include field-border;
+  & + .input-field__focus-indicator {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: toRem(-2);
+      left: 50%;
+      transform: translateX(-50%);
+      height: toRem(2);
+      width: 0;
+      background: var(--primary-main);
+      transition: width calc(var(--field-transition-duration) + 0.3s);
+
+      .input-field--error & {
+        background: var(--field-error);
+      }
+    }
+  }
+
+  .input-field--primary & {
+    @include field-border;
+  }
+
+  .input-field--secondary & {
+    position: relative;
+    background: var(--field-bg-secondary);
+    box-shadow: inset 0 0 0 toRem(50) var(--field-bg-secondary),
+      0 toRem(2) 0 0 var(--field-border);
+    padding: calc(var(--field-padding-top) + #{toRem(12)})
+      var(--field-padding-right) var(--field-padding-bottom)
+      var(--field-padding-left);
+  }
+
+  transition-property: all;
 
   &::-webkit-input-placeholder {
     @include field-placeholder;
@@ -203,10 +342,6 @@ const setHeightCSSVar = (element: HTMLElement) => {
     @include field-placeholder;
   }
 
-  &:not(:read-only) {
-    box-shadow: inset 0 0 0 toRem(50) var(--field-bg);
-  }
-
   // Hide number arrows
   &[type='number'] {
     -moz-appearance: textfield;
@@ -219,10 +354,6 @@ const setHeightCSSVar = (element: HTMLElement) => {
     }
   }
 
-  .input-field--error & {
-    border-color: var(--field-error);
-  }
-
   .input-field--node-left & {
     padding-left: calc(var(--field-padding-left) * 3);
   }
@@ -231,14 +362,45 @@ const setHeightCSSVar = (element: HTMLElement) => {
     padding-right: calc(var(--field-padding-right) * 3);
   }
 
+  &:not(:placeholder-shown) {
+    .input-field--secondary & {
+      & + .input-field__focus-indicator:after {
+        width: 100%;
+      }
+    }
+  }
+
+  .input-field--error.input-field--primary & {
+    border-color: var(--field-error);
+    box-shadow: inset 0 0 0 toRem(50) var(--field-bg-primary),
+      0 0 0 toRem(1) var(--field-error);
+  }
+
+  .input-field--error.input-field--secondary & {
+    border-color: var(--field-error);
+    box-shadow: inset 0 0 0 toRem(50) var(--field-bg-secondary),
+      0 toRem(2) 0 0 var(--field-error);
+  }
+
   &:not([disabled]):focus {
-    box-sizing: border-box;
-    box-shadow: 0 0 0 toRem(1.5) var(--field-border-focus);
-    border-color: var(--field-border-focus);
+    .input-field--primary & {
+      box-sizing: border-box;
+      box-shadow: inset 0 0 0 toRem(50) var(--field-bg-primary),
+        0 0 0 toRem(1) var(--field-border-focus);
+      border-color: var(--field-border-focus);
+    }
+
+    .input-field--secondary & {
+      & + .input-field__focus-indicator:after {
+        width: 100%;
+      }
+    }
   }
 
   &:not([disabled]):not(:focus):hover {
-    border-color: var(--field-border-hover);
+    .input-field--primary & {
+      border-color: var(--field-border-hover);
+    }
   }
 }
 
@@ -250,6 +412,7 @@ const setHeightCSSVar = (element: HTMLElement) => {
   transform: translateY(-50%);
   color: inherit;
   max-height: 100%;
+  z-index: $z-index-side-nodes;
 }
 
 .input-field__node-right-wrp {
@@ -258,11 +421,18 @@ const setHeightCSSVar = (element: HTMLElement) => {
   right: var(--field-padding-right);
   transform: translateY(-50%);
   color: inherit;
+  z-index: $z-index-side-nodes;
 }
 
 .input-field__password-icon {
   max-width: toRem(24);
   max-height: toRem(24);
+}
+
+.input-field__error-icon {
+  max-width: toRem(24);
+  max-height: toRem(24);
+  color: var(--field-error);
 }
 
 .input-field__icon {

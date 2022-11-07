@@ -113,7 +113,7 @@ export default defineComponent({
   align-items: center;
   width: 100%;
   height: 100%;
-  color: var(--field-bg);
+  color: var(--field-bg-primary);
 
   .checkbox-field--checked & {
     background-color: var(--primary-main);

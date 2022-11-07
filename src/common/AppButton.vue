@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Icon } from '@/common'
 
-import { computed, useAttrs } from 'vue'
+import { computed, useAttrs, useSlots } from 'vue'
 import { LocationAsRelativeRaw } from 'vue-router'
 import { ICON_NAMES } from '@/enums'
 
@@ -46,6 +46,7 @@ const props = withDefaults(
 )
 
 const attrs = useAttrs()
+const slots = useSlots()
 
 const isDisabled = computed((): boolean =>
   ['', 'disabled', true].includes(attrs.disabled as string | boolean),
@@ -59,6 +60,9 @@ const buttonClasses = computed(() =>
     `app-button--${props.color}`,
     `app-button--${props.size}`,
     ...(isDisabled.value ? ['app-button--disabled'] : []),
+    ...((props.iconLeft || props.iconRight) && !props.text && !slots.default
+      ? ['app-button--icon-only']
+      : []),
   ].join(' '),
 )
 </script>
@@ -259,26 +263,43 @@ const buttonClasses = computed(() =>
   }
 
   &--border-rounded {
-    border-radius: toRem(10);
+    border-radius: toRem(4);
   }
 
   &--large {
-    padding: toRem(24) toRem(50);
-    grid-gap: toRem(16);
+    padding: toRem(18) toRem(36);
+    grid-gap: toRem(10);
+    font-size: toRem(14);
+    line-height: 1.45;
+    font-weight: 500;
+
+    &.app-button--icon-only {
+      padding: toRem(18);
+    }
   }
 
   &--medium {
-    padding: toRem(16) toRem(30);
-    font-size: toRem(16);
-    line-height: 1.4;
-    font-weight: 600;
-    grid-gap: toRem(12);
-    letter-spacing: 0;
+    padding: toRem(12) toRem(24);
+    font-size: toRem(12);
+    line-height: 1.3;
+    font-weight: 500;
+    grid-gap: toRem(10);
+
+    &.app-button--icon-only {
+      padding: toRem(12);
+    }
   }
 
   &--small {
-    padding: toRem(8) toRem(15);
-    grid-gap: toRem(8);
+    padding: toRem(8) toRem(16);
+    font-size: toRem(12);
+    line-height: 1.45;
+    font-weight: 500;
+    grid-gap: toRem(10);
+
+    &.app-button--icon-only {
+      padding: toRem(8);
+    }
   }
 }
 

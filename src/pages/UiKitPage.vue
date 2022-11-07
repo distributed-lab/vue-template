@@ -215,6 +215,192 @@ const throwBusInfo = () => {
     <section class="ui-kit-page__inputs">
       <select-field
         v-model="form.selectValue"
+        scheme="secondary"
+        :label="'Label'"
+        :placeholder="'select placeholder'"
+        :value-options="['1', '2', '3', '4', '5', '6', '7']"
+        :error-message="form.selectValue === '7' ? 'error for number 7' : ''"
+      />
+      <select-field
+        v-model="form.selectValue"
+        scheme="secondary"
+        :label="'Custom select'"
+        :placeholder="'select placeholder'"
+      >
+        <template #default="{ selectField }">
+          <app-button
+            v-for="(items, idx) in [
+              { label: 'Value 1', value: '1' },
+              { label: 'Value 2', value: '2' },
+              { label: 'Value 3', value: '3' },
+              { label: 'Value 4', value: '4' },
+              { label: 'Value 5', value: '5' },
+              { label: 'Value 6', value: '6' },
+              { label: 'Value 7', value: '7' },
+            ]"
+            :key="idx"
+            :text="items.label"
+            :style="{ width: '100%', hoverOpacity: '0.5' }"
+            scheme="default"
+            :icon-left="$icons.printer"
+            @click="selectField.select(items.value)"
+          />
+        </template>
+      </select-field>
+      <select-field
+        v-model="form.selectValue"
+        scheme="secondary"
+        :label="'Custom select'"
+        :placeholder="'select placeholder'"
+      >
+        <template #head>
+          <div
+            :style="{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+            }"
+          >
+            <icon
+              :name="$icons.globe"
+              :style="{ width: '18px', height: '18px' }"
+            />
+            {{
+              [
+                { label: 'Value 1', value: '1' },
+                { label: 'Value 2', value: '2' },
+                { label: 'Value 3', value: '3' },
+                { label: 'Value 4', value: '4' },
+                { label: 'Value 5', value: '5' },
+                { label: 'Value 6', value: '6' },
+                { label: 'Value 7', value: '7' },
+              ].find(item => item.value === form.selectValue)?.label
+            }}
+          </div>
+        </template>
+        <template #default="{ selectField }">
+          <app-button
+            v-for="(items, idx) in [
+              { label: 'Value 1', value: '1' },
+              { label: 'Value 2', value: '2' },
+              { label: 'Value 3', value: '3' },
+              { label: 'Value 4', value: '4' },
+              { label: 'Value 5', value: '5' },
+              { label: 'Value 6', value: '6' },
+              { label: 'Value 7', value: '7' },
+            ]"
+            :key="idx"
+            :text="items.label"
+            :style="{ width: '100%', hoverOpacity: '0.5' }"
+            scheme="default"
+            :icon-left="$icons.printer"
+            @click="selectField.select(items.value)"
+          />
+        </template>
+      </select-field>
+      <input-field
+        v-model="form.inputValue"
+        scheme="secondary"
+        :label="'label'"
+        :placeholder="$t('ui-kit-page.some-placeholder')"
+      />
+      <input-field
+        v-model="form.inputValue"
+        scheme="secondary"
+        :label="'label'"
+        :placeholder="$t('ui-kit-page.some-placeholder')"
+      >
+        <template #nodeRight>
+          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
+        </template>
+      </input-field>
+      <input-field
+        v-model="form.inputValue"
+        scheme="secondary"
+        :label="'label'"
+        :placeholder="$t('ui-kit-page.some-placeholder')"
+      >
+        <template #nodeLeft>
+          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
+        </template>
+      </input-field>
+      <input-field
+        v-model="form.inputValue"
+        scheme="secondary"
+        type="password"
+        :label="'label'"
+        :placeholder="$t('ui-kit-page.some-placeholder')"
+      />
+      <input-field
+        v-model="form.inputValue"
+        scheme="secondary"
+        :label="$t('ui-kit-page.some-label')"
+        :error-message="$t('ui-kit-page.some-error-message')"
+        :placeholder="$t('ui-kit-page.some-placeholder')"
+      >
+        <template #nodeLeft>
+          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
+        </template>
+        <template #nodeRight>
+          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
+        </template>
+      </input-field>
+      <input-field
+        v-model="form.inputValue"
+        scheme="secondary"
+        :label="$t('ui-kit-page.some-label')"
+        :placeholder="$t('ui-kit-page.some-placeholder')"
+        disabled
+      />
+      <input-field
+        v-model="form.inputValue"
+        scheme="secondary"
+        :label="$t('ui-kit-page.some-label')"
+        :error-message="$t('ui-kit-page.some-error-message')"
+        :placeholder="$t('ui-kit-page.some-placeholder')"
+        disabled
+      />
+      <checkbox-field
+        v-model="form.chbValue"
+        :label="$t('ui-kit-page.some-label')"
+      />
+      <checkbox-field
+        v-model="form.chbValue"
+        :label="$t('ui-kit-page.some-label')"
+        disabled
+      />
+      <textarea-field
+        v-model="form.textareaValue"
+        scheme="secondary"
+        :label="'textarea'"
+        :placeholder="'textarea'"
+      />
+      <textarea-field
+        v-model="form.textareaValue"
+        scheme="secondary"
+        :label="'textarea'"
+        :placeholder="'textarea'"
+        :error-message="form.textareaValue"
+      />
+      <textarea-field
+        v-model="form.textareaValue"
+        scheme="secondary"
+        :label="'textarea'"
+        :placeholder="'textarea'"
+        :error-message="form.textareaValue ? 'form.textareaValue' : ''"
+      />
+      <textarea-field
+        v-model="form.textareaValue"
+        scheme="secondary"
+        :label="'textarea'"
+        :placeholder="'textarea'"
+        :error-message="form.textareaValue"
+        disabled
+      />
+    </section>
+    <section class="ui-kit-page__inputs">
+      <select-field
+        v-model="form.selectValue"
         :label="'Label'"
         :placeholder="'select placeholder'"
         :value-options="['1', '2', '3', '4', '5', '6', '7']"

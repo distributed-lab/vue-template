@@ -1,14 +1,18 @@
 <script lang="ts" setup>
 import { computed, getCurrentInstance, useAttrs } from 'vue'
 
+type SCHEMES = 'primary' | 'secondary'
+
 const props = withDefaults(
   defineProps<{
+    scheme?: SCHEMES
     modelValue: string | number
     label?: string
     placeholder?: string
     errorMessage?: string
   }>(),
   {
+    scheme: 'primary',
     label: '',
     placeholder: ' ',
     errorMessage: '',
@@ -47,6 +51,7 @@ const textareaClasses = computed(() =>
     ...(isDisabled.value ? ['textarea-field--disabled'] : []),
     ...(isReadonly.value ? ['textarea-field--readonly'] : []),
     ...(props.errorMessage ? ['textarea-field--error'] : []),
+    `textarea-field--${props.scheme}`,
   ].join(' '),
 )
 
@@ -60,13 +65,6 @@ const setHeightCSSVar = (element: HTMLElement) => {
 
 <template>
   <div :class="textareaClasses">
-    <label
-      v-if="label"
-      :for="`textarea-field--${uid}`"
-      class="textarea-field__label"
-    >
-      {{ label }}
-    </label>
     <div class="textarea-field__textarea-wrp">
       <textarea
         class="textarea-field__textarea"
@@ -74,10 +72,21 @@ const setHeightCSSVar = (element: HTMLElement) => {
         v-bind="$attrs"
         v-on="listeners"
         :value="modelValue"
-        :placeholder="placeholder"
+        :placeholder="!label ? placeholder : ' '"
         :tabindex="isDisabled || isReadonly ? -1 : $attrs.tabindex"
         :disabled="isDisabled || isReadonly"
       />
+      <span
+        class="textarea-field__focus-indicator"
+        v-if="scheme === 'secondary'"
+      />
+      <label
+        v-if="label"
+        :for="`textarea-field--${uid}`"
+        class="textarea-field__label"
+      >
+        {{ label }}
+      </label>
     </div>
     <transition
       name="textarea-field__err-msg-transition"
@@ -106,14 +115,69 @@ const setHeightCSSVar = (element: HTMLElement) => {
 }
 
 .textarea-field__label {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  pointer-events: none;
+  position: absolute;
+  padding: toRem(4);
+  top: 0;
+  left: var(--field-padding-left);
+  font-size: toRem(12);
+  line-height: 1.3;
+  font-weight: 700;
+  transform: translateY(-50%);
+  background: var(--field-bg-primary);
 
   @include field-label;
 
-  .textarea-field--error & {
+  transition-property: all;
+
+  .textarea-field--secondary & {
+    padding: 0;
+    background: transparent;
+  }
+
+  .textarea-field__textarea:not(:placeholder-shown) ~ & {
+    top: 0;
+    color: var(--field-text);
+    border-color: var(--field-border-hover);
+
+    .textarea-field--secondary & {
+      transform: translateY(25%);
+    }
+  }
+
+  .textarea-field--error:not(:focus):not(:placeholder-shown) & {
     color: var(--field-error);
+  }
+  /* stylelint-disable-next-line */
+  .textarea-field__textarea:not(:focus):placeholder-shown ~ & {
+    top: calc(
+      var(--field-padding-top) + var(--field-text-font-size) + #{toRem(8)}
+    );
+    color: var(--field-label);
+    font-size: toRem(16);
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  /* stylelint-disable-next-line */
+  .textarea-field__textarea:not([disabled]):focus ~ & {
+    color: var(--field-label-focus);
+    font-weight: 700;
+
+    .textarea-field--secondary & {
+      transform: translateY(25%);
+      color: var(--primary-main);
+    }
+  }
+
+  .textarea-field__textarea:not(:focus):placeholder-shown:-webkit-autofill ~ & {
+    top: calc(
+      var(--field-padding-top) + var(--field-text-font-size) - #{toRem(1)}
+    );
+    color: var(--field-label);
+    font-size: toRem(16);
+    font-weight: 400;
+    line-height: 1.3;
   }
 }
 
@@ -125,13 +189,53 @@ const setHeightCSSVar = (element: HTMLElement) => {
 
 .textarea-field__textarea {
   padding: var(--field-padding);
-  transition-property: box-shadow;
   resize: none;
   min-height: toRem(130);
+  box-shadow: inset 0 0 0 toRem(500) var(--field-bg-primary);
+  border: none;
 
   @include field-text;
 
-  @include field-border;
+  & + .textarea-field__focus-indicator {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: toRem(-2);
+      left: 50%;
+      transform: translateX(-50%);
+      height: toRem(2);
+      width: 0;
+      background: var(--primary-main);
+      transition: width calc(var(--field-transition-duration) + 0.3s);
+
+      .textarea-field--error & {
+        background: var(--field-error);
+      }
+    }
+  }
+
+  .textarea-field--primary & {
+    @include field-border;
+  }
+
+  .textarea-field--secondary & {
+    position: relative;
+    background: var(--field-bg-secondary);
+    box-shadow: inset 0 0 0 toRem(500) var(--field-bg-secondary),
+      0 toRem(2) 0 0 var(--field-border);
+    padding: calc(var(--field-padding-top) + #{toRem(12)})
+      var(--field-padding-right) var(--field-padding-bottom)
+      var(--field-padding-left);
+  }
+
+  transition-property: all;
 
   &::-webkit-input-placeholder {
     @include field-placeholder;
@@ -153,34 +257,45 @@ const setHeightCSSVar = (element: HTMLElement) => {
     @include field-placeholder;
   }
 
-  &:not(:read-only) {
-    box-shadow: inset 0 0 0 toRem(50) var(--field-bg);
-  }
-
-  // Hide number arrows
-  &[type='number'] {
-    -moz-appearance: textfield;
-
-    /* Chrome, Safari, Edge, Opera */
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+  &:not(:placeholder-shown) {
+    .textarea-field--secondary & {
+      & + .textarea-field__focus-indicator:after {
+        width: 100%;
+      }
     }
   }
 
-  .textarea-field--error & {
+  .textarea-field--error.textarea-field--primary & {
     border-color: var(--field-error);
+    box-shadow: inset 0 0 0 toRem(50) var(--field-bg-primary),
+      0 0 0 toRem(1) var(--field-error);
+  }
+
+  .textarea-field--error.textarea-field--secondary & {
+    border-color: var(--field-error);
+    box-shadow: inset 0 0 0 toRem(50) var(--field-bg-secondary),
+      0 toRem(2) 0 0 var(--field-error);
   }
 
   &:not([disabled]):focus {
-    box-sizing: border-box;
-    box-shadow: 0 0 0 toRem(1.5) var(--field-border-focus);
-    border-color: var(--field-border-focus);
+    .textarea-field--primary & {
+      box-sizing: border-box;
+      box-shadow: inset 0 0 0 toRem(500) var(--field-bg-primary),
+        0 0 0 toRem(1) var(--field-border-focus);
+      border-color: var(--field-border-focus);
+    }
+
+    .textarea-field--secondary & {
+      & + .textarea-field__focus-indicator:after {
+        width: 100%;
+      }
+    }
   }
 
   &:not([disabled]):not(:focus):hover {
-    border-color: var(--field-border-hover);
+    .textarea-field--primary & {
+      border-color: var(--field-border-hover);
+    }
   }
 }
 
