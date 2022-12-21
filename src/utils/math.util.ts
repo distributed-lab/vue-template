@@ -97,13 +97,17 @@ export class BN {
 
   format(format?: BnFormatCfg): string {
     try {
-      const groupSeparatorFormat: { [key: string]: string | number } = {}
       const {
         decimals = BigNumber.config({}).DECIMAL_PLACES as number,
         rounding = BigNumber.config({}).ROUNDING_MODE as BN_ROUNDING,
         noGroupSeparator,
         ...fmt
       } = format || {}
+      const groupSeparatorFormat: { [key: string]: string | number } = {
+        ...(fmt.groupSeparator
+          ? { groupSeparator: fmt.groupSeparator as string }
+          : {}),
+      }
       if (noGroupSeparator) {
         groupSeparatorFormat.groupSeparator = ''
       }

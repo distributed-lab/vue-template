@@ -1,4 +1,6 @@
 import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
 
 export class DateUtil {
   static get ISOFormat() {
@@ -11,6 +13,10 @@ export class DateUtil {
 
   static toTimestamp(date: dayjs.ConfigType, format?: dayjs.OptionType) {
     return this._instance(date, format).unix()
+  }
+
+  static fromTimestampSec(timestamp: number) {
+    return dayjs.unix(timestamp)
   }
 
   static _instance(date?: dayjs.ConfigType, format?: dayjs.OptionType) {
@@ -30,5 +36,13 @@ export class DateUtil {
     targetDate: dayjs.ConfigType,
   ): number {
     return this._instance(checkingDate).diff(this._instance(targetDate))
+  }
+
+  static format(date: dayjs.ConfigType, format: string) {
+    return this._instance(date).format(format)
+  }
+
+  static formatFromNow(date: dayjs.ConfigType) {
+    return dayjs(date).fromNow()
   }
 }

@@ -1,48 +1,3 @@
-<script lang="ts" setup>
-import {
-  AppButton,
-  Modal,
-  ErrorMessage,
-  NoDataMessage,
-  Loader,
-  Icon,
-  Collapse,
-} from '@/common'
-import { CheckboxField, InputField, SelectField, TextareaField } from '@/fields'
-import LoginForm from '@/forms/LoginForm.vue'
-
-import { reactive, ref } from 'vue'
-import { Bus } from '@/helpers'
-
-const isModalShown = ref<boolean>(false)
-const form = reactive({
-  chbValue: false,
-  inputValue: '',
-  selectValue: '',
-  textareaValue: '',
-})
-
-const handleClick = () => {
-  alert('some string')
-}
-
-const throwBusSuccess = () => {
-  Bus.success('Success')
-}
-
-const throwBusError = () => {
-  Bus.error('Error')
-}
-
-const throwBusWarning = () => {
-  Bus.warning('Warning')
-}
-
-const throwBusInfo = () => {
-  Bus.info('Info')
-}
-</script>
-
 <template>
   <div class="ui-kit-page">
     <section class="ui-kit-page__buttons">
@@ -558,20 +513,31 @@ const throwBusInfo = () => {
       <error-message :message="$t('ui-kit-page.loading-error-msg')" />
       <no-data-message :message="$t('ui-kit-page.no-data-msg')" />
       <loader />
-      <collapse class="ui-kit-page__collapse">
-        <template #head="{ collapse }">
+      <accordion class="ui-kit-page__collapse">
+        <template #head="{ accordion }">
           <app-button
-            class="ui-kit-page__collapse-btn"
+            class="ui-kit-page__accordion-btn"
             scheme="flat"
-            :text="$t('ui-kit-page.collapse-btn')"
-            @click="collapse.toggle"
+            :text="$t('ui-kit-page.accordion-btn')"
+            @click="accordion.toggle"
           >
           </app-button>
         </template>
-        <div class="ui-kit-page__collapse-body">
+        <div class="ui-kit-page__accordion-body">
           {{ $t('ui-kit-page.collapse-text') }}
         </div>
-      </collapse>
+      </accordion>
+      <div class="ui-kit-page__collapse-wrp">
+        <app-button
+          text="Toggle collapse"
+          @click="() => (isCollapseShown = !isCollapseShown)"
+        />
+        <collapse :is-shown="isCollapseShown">
+          <div class="ui-kit-page__collapse-body">
+            {{ $t('ui-kit-page.collapse-text') }}
+          </div>
+        </collapse>
+      </div>
       <app-button
         :text="$t('ui-kit-page.modal-btn')"
         @click="isModalShown = true"
@@ -824,6 +790,54 @@ const throwBusInfo = () => {
   </div>
 </template>
 
+<script lang="ts" setup>
+import {
+  AppButton,
+  Modal,
+  ErrorMessage,
+  NoDataMessage,
+  Loader,
+  Icon,
+  Accordion,
+  Collapse,
+} from '@/common'
+import { CheckboxField, InputField, SelectField, TextareaField } from '@/fields'
+import LoginForm from '@/forms/LoginForm.vue'
+
+import { reactive, ref } from 'vue'
+import { Bus } from '@/helpers'
+
+const isModalShown = ref(false)
+const isCollapseShown = ref(false)
+
+const form = reactive({
+  chbValue: false,
+  inputValue: '',
+  selectValue: '',
+  textareaValue: '',
+})
+
+const handleClick = () => {
+  alert('some string')
+}
+
+const throwBusSuccess = () => {
+  Bus.success('Success')
+}
+
+const throwBusError = () => {
+  Bus.error('Error')
+}
+
+const throwBusWarning = () => {
+  Bus.warning('Warning')
+}
+
+const throwBusInfo = () => {
+  Bus.info('Info')
+}
+</script>
+
 <style lang="scss" scoped>
 .ui-kit-page {
   display: grid;
@@ -856,11 +870,23 @@ const throwBusInfo = () => {
   width: 100%;
 }
 
-.ui-kit-page__collapse-btn {
+.ui-kit-page__accordion-btn {
+  width: 100%;
+}
+
+.ui-kit-page__accordion-body {
+  font-size: toRem(24);
+}
+
+.ui-kit-page__collapse-wrp {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(16);
   width: 100%;
 }
 
 .ui-kit-page__collapse-body {
+  width: 100%;
   font-size: toRem(24);
 }
 

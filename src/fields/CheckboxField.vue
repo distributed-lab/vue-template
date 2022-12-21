@@ -71,6 +71,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .checkbox-field {
+  position: relative;
   cursor: pointer;
   display: grid;
   align-items: start;

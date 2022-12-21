@@ -1,20 +1,79 @@
+<template>
+  <div class="input-field" :class="inputClasses">
+    <div class="input-field__input-wrp">
+      <div v-if="$slots.nodeLeft" class="input-field__node-left-wrp">
+        <slot name="nodeLeft" />
+      </div>
+      <input
+        class="input-field__input"
+        :id="`input-field--${uid}`"
+        v-on="listeners"
+        :value="modelValue"
+        :placeholder="!label ? placeholder : ' '"
+        :tabindex="isDisabled || isReadonly ? -1 : $attrs.tabindex"
+        :type="inputType"
+        :min="min"
+        :max="max"
+        :disabled="isDisabled || isReadonly"
+      />
+      <span
+        class="input-field__focus-indicator"
+        v-if="scheme === 'secondary'"
+      />
+      <label
+        v-if="label"
+        :for="`input-field--${uid}`"
+        class="input-field__label"
+      >
+        {{ label }}
+      </label>
+      <div
+        v-if="$slots.nodeRight || isPasswordType || props.errorMessage"
+        class="input-field__node-right-wrp"
+      >
+        <button
+          v-if="isPasswordType"
+          type="button"
+          @click="isPasswordShown = !isPasswordShown"
+        >
+          <icon
+            class="input-field__password-icon"
+            :name="isPasswordShown ? $icons.eye : $icons.eyeOff"
+          />
+        </button>
+        <icon
+          v-else-if="props.errorMessage"
+          class="input-field__error-icon"
+          :name="$icons.exclamation"
+        />
+        <slot v-else name="nodeRight" />
+      </div>
+    </div>
+    <transition
+      name="input-field__err-msg-transition"
+      @enter="setHeightCSSVar"
+      @before-leave="setHeightCSSVar"
+    >
+      <span v-if="errorMessage" class="input-field__err-msg">
+        {{ errorMessage }}
+      </span>
+    </transition>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { Icon } from '@/common'
 
 import { BN } from '@/utils'
 import { computed, getCurrentInstance, ref, useAttrs, useSlots } from 'vue'
 
-type INPUT_TYPES = 'text' | 'number' | 'password'
-
-type SCHEMES = 'primary' | 'secondary'
-
 const props = withDefaults(
   defineProps<{
-    scheme?: SCHEMES
+    scheme?: 'primary' | 'secondary'
     modelValue: string | number
     label?: string
     placeholder?: string
-    type?: INPUT_TYPES
+    type?: 'text' | 'number' | 'password'
     errorMessage?: string
   }>(),
   {
@@ -107,70 +166,6 @@ const setHeightCSSVar = (element: HTMLElement) => {
   )
 }
 </script>
-
-<template>
-  <div class="input-field" :class="inputClasses">
-    <div class="input-field__input-wrp">
-      <div v-if="$slots.nodeLeft" class="input-field__node-left-wrp">
-        <slot name="nodeLeft" />
-      </div>
-      <input
-        class="input-field__input"
-        :id="`input-field--${uid}`"
-        v-bind="$attrs"
-        v-on="listeners"
-        :value="modelValue"
-        :placeholder="!label ? placeholder : ' '"
-        :tabindex="isDisabled || isReadonly ? -1 : $attrs.tabindex"
-        :type="inputType"
-        :min="min"
-        :max="max"
-        :disabled="isDisabled || isReadonly"
-      />
-      <span
-        class="input-field__focus-indicator"
-        v-if="scheme === 'secondary'"
-      />
-      <label
-        v-if="label"
-        :for="`input-field--${uid}`"
-        class="input-field__label"
-      >
-        {{ label }}
-      </label>
-      <div
-        v-if="$slots.nodeRight || isPasswordType || props.errorMessage"
-        class="input-field__node-right-wrp"
-      >
-        <button
-          v-if="isPasswordType"
-          type="button"
-          @click="isPasswordShown = !isPasswordShown"
-        >
-          <icon
-            class="input-field__password-icon"
-            :name="isPasswordShown ? $icons.eye : $icons.eyeOff"
-          />
-        </button>
-        <icon
-          v-else-if="props.errorMessage"
-          class="input-field__error-icon"
-          :name="$icons.exclamation"
-        />
-        <slot v-else name="nodeRight" />
-      </div>
-    </div>
-    <transition
-      name="input-field__err-msg-transition"
-      @enter="setHeightCSSVar"
-      @before-leave="setHeightCSSVar"
-    >
-      <span v-if="errorMessage" class="input-field__err-msg">
-        {{ errorMessage }}
-      </span>
-    </transition>
-  </div>
-</template>
 
 <style lang="scss" scoped>
 $z-index-side-nodes: 1;
