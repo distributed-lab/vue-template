@@ -1,7 +1,7 @@
 <template>
   <teleport to="#modal">
     <transition name="modal">
-      <div v-show="isShown" class="modal">
+      <div v-show="isShown" class="modal" v-bind="$attrs">
         <div class="modal__pane" ref="modalPane">
           <slot :modal="{ close: closeModal }" />
         </div>
@@ -57,6 +57,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+$z-index-local: 1;
+
 .modal {
   display: flex;
   justify-content: center;
@@ -67,13 +69,16 @@ export default defineComponent({
   width: 100vw;
   height: vh(100);
   background: rgba(var(--black-rgb), 0.5);
+  z-index: $z-index-local;
 }
 
 .modal__pane {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  background: var(--background-primary-main);
-  padding: toRem(50) toRem(100);
-  border-radius: toRem(10);
+  width: auto;
+  height: auto;
 }
 
 .modal-enter-active,

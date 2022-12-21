@@ -513,6 +513,7 @@
       <error-message :message="$t('ui-kit-page.loading-error-msg')" />
       <no-data-message :message="$t('ui-kit-page.no-data-msg')" />
       <loader />
+      <loader class="ui-kit-page__loader-skeleton" scheme="skeleton" />
       <accordion class="ui-kit-page__collapse">
         <template #head="{ accordion }">
           <app-button
@@ -542,18 +543,16 @@
         :text="$t('ui-kit-page.modal-btn')"
         @click="isModalShown = true"
       />
-      <modal v-model:is-shown="isModalShown">
-        <template #default="{ modal }">
-          <app-button
-            @click="modal.close"
-            :icon-right="$icons.xCircle"
-            scheme="default"
-            modification="default"
-            size="default"
-            color="default"
-          />
-        </template>
-      </modal>
+      <basic-modal
+        class="ui-kit-page__modal-pane"
+        v-model:is-shown="isModalShown"
+        title="Modal Title"
+        subtitle="Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+      >
+        <div class="ui-kit-page__modal-body">
+          {{ $t('ui-kit-page.collapse-text') }}
+        </div>
+      </basic-modal>
       <div class="ui-kit-page__icons">
         <icon :name="$icons.academicCap" />
         <icon :name="$icons.adjustments" />
@@ -793,7 +792,7 @@
 <script lang="ts" setup>
 import {
   AppButton,
-  Modal,
+  BasicModal,
   ErrorMessage,
   NoDataMessage,
   Loader,
@@ -905,5 +904,11 @@ const throwBusInfo = () => {
 .ui-kit-page__input-icon {
   max-width: toRem(24);
   max-height: toRem(24);
+}
+
+.ui-kit-page__loader-skeleton {
+  width: toRem(200);
+  height: toRem(24);
+  margin-bottom: toRem(16);
 }
 </style>
