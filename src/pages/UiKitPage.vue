@@ -544,7 +544,6 @@
         @click="isModalShown = true"
       />
       <basic-modal
-        class="ui-kit-page__modal-pane"
         v-model:is-shown="isModalShown"
         title="Modal Title"
         subtitle="Lorem ipsum dolor sit amet, consectetur adipisicing elit."

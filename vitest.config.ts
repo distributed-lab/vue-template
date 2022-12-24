@@ -1,15 +1,11 @@
-/// <reference types="vitest" />
-/// <reference types="vite/client" />
-
 import checker from 'vite-plugin-checker'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig, loadEnv } from 'vite'
 import { visualizer } from 'rollup-plugin-visualizer'
-import NodeGlobalsPolyfillPlugin from '@esbuild-plugins/node-globals-polyfill'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
-import * as fs from 'fs'
-import * as path from 'path'
+import fs from 'fs'
+import path from 'path'
 import { configDefaults } from 'vitest/config'
 
 const appDirectory = fs.realpathSync(process.cwd())
@@ -23,6 +19,7 @@ export default defineConfig(({ command, mode }) => {
   const isProduction = env.VITE_APP_ENVIRONMENT === 'production'
   const isDevelopment = env.VITE_APP_ENVIRONMENT === 'development'
   const isAnalyze = env.VITE_APP_ENVIRONMENT === 'analyze'
+  const buildVersion = env.VITE_APP_BUILD_VERSION
 
   return {
     server: {
@@ -70,18 +67,6 @@ export default defineConfig(({ command, mode }) => {
         '@': `${root}/`,
         '@config': `${root}/config.ts`,
         '@static': `${root}/../static`,
-      },
-    },
-    optimizeDeps: {
-      esbuildOptions: {
-        define: {
-          global: 'globalThis',
-        },
-        plugins: [
-          NodeGlobalsPolyfillPlugin({
-            buffer: true,
-          }),
-        ],
       },
     },
     test: {

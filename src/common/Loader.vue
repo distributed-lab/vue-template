@@ -15,7 +15,7 @@ import { Spinner, Skeleton } from '@/common/loaders'
 
 withDefaults(
   defineProps<{
-    scheme: 'spinner' | 'skeleton'
+    scheme?: 'spinner' | 'skeleton'
   }>(),
   {
     scheme: 'spinner',
