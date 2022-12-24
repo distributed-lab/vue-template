@@ -18,6 +18,11 @@ const routes: Array<RouteRecordRaw> = [
     name: ROUTE_NAMES.uiKit,
     component: () => import('@/pages/UiKitPage.vue'),
   },
+  {
+    path: '/complex-form',
+    name: ROUTE_NAMES.uiKit,
+    component: () => import('@/forms/ComplexForm.vue'),
+  },
 ]
 
 const router = createRouter({
