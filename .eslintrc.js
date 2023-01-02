@@ -108,7 +108,6 @@ module.exports = {
     'vue/attribute-hyphenation': 1,
     'vue/component-name-in-template-casing': [2, 'kebab-case'],
     'vue/html-end-tags': 2,
-    'vue/html-indent': 1,
     'vue/html-quotes': 1,
     'vue/multiline-html-element-content-newline': 1,
     'vue/mustache-interpolation-spacing': 1,
@@ -154,5 +153,6 @@ module.exports = {
     'promise/no-nesting': 'warn',
     'promise/no-callback-in-promise': 'warn',
     'promise/prefer-await-to-then': 'warn',
+    '@typescript-eslint/no-non-null-assertion': 'off',
   },
 }
