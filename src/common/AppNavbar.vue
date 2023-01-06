@@ -1,12 +1,12 @@
-<script lang="ts" setup>
-import { AppLogo } from '@/common'
-</script>
-
 <template>
   <div class="app-navbar">
     <app-logo class="app-navbar__logo" />
   </div>
 </template>
+
+<script lang="ts" setup>
+import { AppLogo } from '@/common'
+</script>
 
 <style lang="scss" scoped>
 .app-navbar {

@@ -1,3 +1,40 @@
+<template>
+  <div :class="textareaClasses">
+    <div class="textarea-field__textarea-wrp">
+      <textarea
+        class="textarea-field__textarea"
+        :id="`textarea-field--${uid}`"
+        v-bind="$attrs"
+        v-on="listeners"
+        :value="modelValue"
+        :placeholder="!label ? placeholder : ' '"
+        :tabindex="isDisabled || isReadonly ? -1 : $attrs.tabindex"
+        :disabled="isDisabled || isReadonly"
+      />
+      <span
+        class="textarea-field__focus-indicator"
+        v-if="scheme === 'secondary'"
+      />
+      <label
+        v-if="label"
+        :for="`textarea-field--${uid}`"
+        class="textarea-field__label"
+      >
+        {{ label }}
+      </label>
+    </div>
+    <transition
+      name="textarea-field__err-msg-transition"
+      @enter="setHeightCSSVar"
+      @before-leave="setHeightCSSVar"
+    >
+      <span v-if="errorMessage" class="textarea-field__err-msg">
+        {{ errorMessage }}
+      </span>
+    </transition>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { computed, getCurrentInstance, useAttrs } from 'vue'
 
@@ -62,43 +99,6 @@ const setHeightCSSVar = (element: HTMLElement) => {
   )
 }
 </script>
-
-<template>
-  <div :class="textareaClasses">
-    <div class="textarea-field__textarea-wrp">
-      <textarea
-        class="textarea-field__textarea"
-        :id="`textarea-field--${uid}`"
-        v-bind="$attrs"
-        v-on="listeners"
-        :value="modelValue"
-        :placeholder="!label ? placeholder : ' '"
-        :tabindex="isDisabled || isReadonly ? -1 : $attrs.tabindex"
-        :disabled="isDisabled || isReadonly"
-      />
-      <span
-        class="textarea-field__focus-indicator"
-        v-if="scheme === 'secondary'"
-      />
-      <label
-        v-if="label"
-        :for="`textarea-field--${uid}`"
-        class="textarea-field__label"
-      >
-        {{ label }}
-      </label>
-    </div>
-    <transition
-      name="textarea-field__err-msg-transition"
-      @enter="setHeightCSSVar"
-      @before-leave="setHeightCSSVar"
-    >
-      <span v-if="errorMessage" class="textarea-field__err-msg">
-        {{ errorMessage }}
-      </span>
-    </transition>
-  </div>
-</template>
 
 <style lang="scss" scoped>
 .textarea-field {

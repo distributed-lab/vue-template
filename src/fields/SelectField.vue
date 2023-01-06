@@ -1,3 +1,101 @@
+<template>
+  <div :class="selectFieldClasses">
+    <div ref="selectElement" class="select-field__select-wrp">
+      <div class="select-field__select-head-wrp">
+        <button
+          type="button"
+          class="select-field__select-head"
+          @click="toggleDropdown"
+        >
+          <template v-if="$slots.head && !!modelValue">
+            <slot
+              name="head"
+              :select-field="{
+                select,
+                isOpen: isDropdownOpen,
+                close: closeDropdown,
+                open: openDropdown,
+                toggle: toggleDropdown,
+              }"
+            />
+          </template>
+          <template v-else>
+            <template v-if="modelValue">
+              {{ modelValue }}
+            </template>
+            <template v-else-if="!label">
+              <span class="select-field__placeholder">
+                {{ props.placeholder }}
+              </span>
+            </template>
+          </template>
+          <icon
+            :class="[
+              'select-field__select-head-indicator',
+              {
+                'select-field__select-head-indicator--open': isDropdownOpen,
+              },
+            ]"
+            :name="$icons.chevronDown"
+          />
+        </button>
+        <span
+          class="select-field__focus-indicator"
+          v-if="scheme === 'secondary'"
+        />
+        <label
+          v-if="label"
+          class="select-field__label"
+          :for="`select-field--${uid}`"
+        >
+          {{ label }}
+        </label>
+      </div>
+      <transition name="select-field__select-dropdown">
+        <div v-if="isDropdownOpen" class="select-field__select-dropdown">
+          <template v-if="$slots.default">
+            <slot
+              :select-field="{
+                select,
+                isOpen: isDropdownOpen,
+                close: closeDropdown,
+                open: openDropdown,
+                toggle: toggleDropdown,
+              }"
+            />
+          </template>
+          <template v-else-if="valueOptions.length">
+            <button
+              :class="[
+                'select-field__select-dropdown-item',
+                {
+                  'select-field__select-dropdown-item--active':
+                    modelValue === option,
+                },
+              ]"
+              type="button"
+              v-for="(option, idx) in valueOptions"
+              :key="`[${idx}] ${option}`"
+              @click="select(option)"
+            >
+              {{ option }}
+            </button>
+          </template>
+        </div>
+      </transition>
+    </div>
+    <transition
+      name="select-field__err-msg-transition"
+      @enter="setHeightCSSVar"
+      @before-leave="setHeightCSSVar"
+    >
+      <span v-if="errorMessage" class="select-field__err-msg">
+        {{ errorMessage }}
+      </span>
+    </transition>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import { Icon } from '@/common'
 
@@ -113,104 +211,6 @@ watch(
   },
 )
 </script>
-
-<template>
-  <div :class="selectFieldClasses">
-    <div ref="selectElement" class="select-field__select-wrp">
-      <div class="select-field__select-head-wrp">
-        <button
-          type="button"
-          class="select-field__select-head"
-          @click="toggleDropdown"
-        >
-          <template v-if="$slots.head && !!modelValue">
-            <slot
-              name="head"
-              :select-field="{
-                select,
-                isOpen: isDropdownOpen,
-                close: closeDropdown,
-                open: openDropdown,
-                toggle: toggleDropdown,
-              }"
-            />
-          </template>
-          <template v-else>
-            <template v-if="modelValue">
-              {{ modelValue }}
-            </template>
-            <template v-else-if="!label">
-              <span class="select-field__placeholder">
-                {{ props.placeholder }}
-              </span>
-            </template>
-          </template>
-          <icon
-            :class="[
-              'select-field__select-head-indicator',
-              {
-                'select-field__select-head-indicator--open': isDropdownOpen,
-              },
-            ]"
-            :name="$icons.chevronDown"
-          />
-        </button>
-        <span
-          class="select-field__focus-indicator"
-          v-if="scheme === 'secondary'"
-        />
-        <label
-          v-if="label"
-          class="select-field__label"
-          :for="`select-field--${uid}`"
-        >
-          {{ label }}
-        </label>
-      </div>
-      <transition name="select-field__select-dropdown">
-        <div v-if="isDropdownOpen" class="select-field__select-dropdown">
-          <template v-if="$slots.default">
-            <slot
-              :select-field="{
-                select,
-                isOpen: isDropdownOpen,
-                close: closeDropdown,
-                open: openDropdown,
-                toggle: toggleDropdown,
-              }"
-            />
-          </template>
-          <template v-else-if="valueOptions.length">
-            <button
-              :class="[
-                'select-field__select-dropdown-item',
-                {
-                  'select-field__select-dropdown-item--active':
-                    modelValue === option,
-                },
-              ]"
-              type="button"
-              v-for="(option, idx) in valueOptions"
-              :key="`[${idx}] ${option}`"
-              @click="select(option)"
-            >
-              {{ option }}
-            </button>
-          </template>
-        </div>
-      </transition>
-    </div>
-    <transition
-      name="select-field__err-msg-transition"
-      @enter="setHeightCSSVar"
-      @before-leave="setHeightCSSVar"
-    >
-      <span v-if="errorMessage" class="select-field__err-msg">
-        {{ errorMessage }}
-      </span>
-    </transition>
-  </div>
-</template>
 
 <style lang="scss" scoped>
 $z-local-index: 2;
