@@ -384,7 +384,8 @@ const buttonType = computed<ButtonType>(
       --button-icon-size: #{toRem(20)};
 
       padding: toRem(18);
-      height: auto;
+      width: calc(var(--button-icon-size) + #{toRem(18)});
+      height: calc(var(--button-icon-size) + #{toRem(18)});
     }
   }
 
@@ -402,7 +403,8 @@ const buttonType = computed<ButtonType>(
       --button-icon-size: #{toRem(20)};
 
       padding: toRem(12);
-      height: auto;
+      width: calc(var(--button-icon-size) + #{toRem(12)});
+      height: calc(var(--button-icon-size) + #{toRem(12)});
     }
   }
 
@@ -420,7 +422,8 @@ const buttonType = computed<ButtonType>(
       --button-icon-size: #{toRem(20)};
 
       padding: toRem(8);
-      height: auto;
+      width: calc(var(--button-icon-size) + #{toRem(8)});
+      height: calc(var(--button-icon-size) + #{toRem(8)});
     }
   }
 }
