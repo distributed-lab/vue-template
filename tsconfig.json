@@ -1,44 +1,47 @@
 {
   "compilerOptions": {
     "useDefineForClassFields": true,
-    "target": "esnext",
-    "module": "esnext",
+    "target": "ESNext",
+    "module": "ESNext",
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "composite": true,
     "types": [
       "node",
       "vite/client",
-      "@types/lodash-es",
-      "jsona",
-      "vitest/globals"
+      "@types/lodash"
     ],
     "paths": {
       "@/*": ["src/*"],
       "@config": ["src/config.ts"],
-      "@static": ["static"],
+      "@static": ["static"]
     },
     "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost",
+      "ESNext",
+      "DOM",
+      "DOM.Iterable",
+      "ScriptHost",
     ],
+    "isolatedModules": true,
+    "noEmit": true
   },
   "include": [
     "src/**/*.ts",
+    "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx",
     "index.d.ts",
-  ],
-  "exclude": ["node_modules", "dist"]
+    "package.json",
+    "src/**/*.json"
+  ]
 }

@@ -3,63 +3,55 @@
     <transition name="modal">
       <div v-show="isShown" class="modal" v-bind="$attrs">
         <div class="modal__pane" ref="modalPane">
-          <slot :modal="{ close: closeModal }" />
+          <slot :modal="{ close: closeModal }" :key="String(isShown)" />
         </div>
       </div>
     </transition>
   </teleport>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
+<script lang="ts" setup>
 import { onClickOutside } from '@vueuse/core'
+import { onMounted, ref } from 'vue'
 
-const EVENTS = {
-  updateIsShown: 'update:is-shown',
-}
-
-export default defineComponent({
-  name: 'modal',
-  props: {
-    isShown: {
-      type: Boolean,
-      default: false,
-    },
-    isCloseByClickOutside: {
-      type: Boolean,
-      default: true,
-    },
+const props = withDefaults(
+  defineProps<{
+    isShown?: boolean
+    isCloseByClickOutside?: boolean
+  }>(),
+  {
+    isShown: false,
+    isCloseByClickOutside: true,
   },
-  setup(props, { emit }) {
-    const modalPane = ref<HTMLElement | undefined>()
+)
 
-    onMounted(() => {
-      if (modalPane.value) {
-        if (props.isCloseByClickOutside) {
-          onClickOutside(modalPane, () => {
-            closeModal()
-          })
-        }
-      }
-    })
+const emit = defineEmits<{
+  (e: 'update:is-shown', value: boolean): void
+}>()
 
-    const closeModal = () => {
-      emit(EVENTS.updateIsShown, false)
+const modalPane = ref<HTMLElement | undefined>()
+
+onMounted(() => {
+  if (modalPane.value) {
+    if (props.isCloseByClickOutside) {
+      onClickOutside(modalPane, () => {
+        closeModal()
+      })
     }
-
-    return {
-      modalPane,
-
-      closeModal,
-    }
-  },
+  }
 })
+
+const closeModal = () => {
+  emit('update:is-shown', false)
+}
 </script>
 
 <style lang="scss" scoped>
-$z-index-local: 1;
+$z-index-local: 100;
 
 .modal {
+  --max-width: #{toRem(600)};
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,8 +69,8 @@ $z-index-local: 1;
   align-items: center;
   justify-content: center;
   position: relative;
-  width: auto;
   height: auto;
+  max-width: var(--max-width);
 }
 
 .modal-enter-active,

@@ -31,10 +31,9 @@ import { AppButton } from '@/common'
 import { InputField } from '@/fields'
 
 import { reactive } from 'vue'
-import { Bus, ErrorHandler } from '@/helpers'
+import { Bus, ErrorHandler, email, required } from '@/helpers'
 import { useI18n } from 'vue-i18n'
 import { useForm, useFormValidation } from '@/composables'
-import { email, required } from '@/validators'
 
 const { t } = useI18n({ useScope: 'global' })
 const form = reactive({

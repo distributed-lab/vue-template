@@ -8,7 +8,7 @@
         v-on="listeners"
         :value="modelValue"
         :placeholder="!label ? placeholder : ' '"
-        :tabindex="isDisabled || isReadonly ? -1 : $attrs.tabindex"
+        :tabindex="isDisabled || isReadonly ? -1 : ($attrs.tabindex as number)"
         :disabled="isDisabled || isReadonly"
       />
       <span
@@ -31,6 +31,9 @@
       <span v-if="errorMessage" class="textarea-field__err-msg">
         {{ errorMessage }}
       </span>
+      <span v-else-if="note" class="textarea-field__note">
+        {{ note }}
+      </span>
     </transition>
   </div>
 </template>
@@ -47,12 +50,14 @@ const props = withDefaults(
     label?: string
     placeholder?: string
     errorMessage?: string
+    note?: string
   }>(),
   {
     scheme: 'primary',
     label: '',
     placeholder: ' ',
     errorMessage: '',
+    note: '',
   },
 )
 
@@ -92,8 +97,8 @@ const textareaClasses = computed(() =>
   ].join(' '),
 )
 
-const setHeightCSSVar = (element: HTMLElement) => {
-  element.style.setProperty(
+const setHeightCSSVar = (element: Element) => {
+  ;(element as HTMLElement).style.setProperty(
     '--field-error-msg-height',
     `${element.scrollHeight}px`,
   )
@@ -299,8 +304,13 @@ const setHeightCSSVar = (element: HTMLElement) => {
   }
 }
 
-.textarea-field__err-msg {
+.textarea-field__err-msg,
+.textarea-field__note {
   @include field-error;
+}
+
+.textarea-field__note {
+  color: var(--text-primary-light);
 }
 
 .textarea-field__err-msg-transition-enter-active {

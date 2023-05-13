@@ -77,7 +77,7 @@ import { InputField } from '@/fields'
 
 import { useForm, useFormValidation } from '@/composables'
 import { reactive } from 'vue'
-import { required } from '@/validators'
+import { required } from '@/helpers'
 
 const form = reactive({
   field1: '',

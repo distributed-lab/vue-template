@@ -1,6 +1,7 @@
 import packageJson from '../package.json'
 import { LogLevelDesc } from 'loglevel'
-import { pickBy, mapKeys } from 'lodash-es'
+import pickBy from 'lodash/pickBy'
+import mapKeys from 'lodash/mapKeys'
 
 export const config = {
   API_URL: import.meta.env.VITE_API_URL,

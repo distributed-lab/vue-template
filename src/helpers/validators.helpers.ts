@@ -8,7 +8,7 @@ import {
 import { ValidationRule } from '@vuelidate/core'
 import { Ref } from 'vue'
 import { createI18nMessage, MessageProps } from '@vuelidate/validators'
-import { get } from 'lodash-es'
+import get from 'lodash/get'
 import { i18n } from '@/localization'
 
 const { t } = i18n.global || i18n

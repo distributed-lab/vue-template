@@ -12,20 +12,40 @@
 <script lang="ts" setup>
 import { AppNavbar } from '@/common'
 
-import { ErrorHandler } from '@/helpers/error-handler'
 import { ref } from 'vue'
 import { useNotifications } from '@/composables'
 import { config } from '@config'
+import { Bus, ErrorHandler } from '@/helpers'
+import { NotificationPayload } from '@/types'
 
 const isAppInitialized = ref(false)
+
+const { showToast } = useNotifications()
+
 const init = async () => {
   try {
-    useNotifications()
     document.title = config.APP_NAME
+
+    initNotifications()
   } catch (error) {
     ErrorHandler.process(error)
   }
   isAppInitialized.value = true
+}
+
+const initNotifications = () => {
+  Bus.on(Bus.eventList.success, payload =>
+    showToast('success', payload as NotificationPayload),
+  )
+  Bus.on(Bus.eventList.warning, payload =>
+    showToast('warning', payload as NotificationPayload),
+  )
+  Bus.on(Bus.eventList.error, payload =>
+    showToast('error', payload as NotificationPayload),
+  )
+  Bus.on(Bus.eventList.info, payload =>
+    showToast('info', payload as NotificationPayload),
+  )
 }
 
 init()

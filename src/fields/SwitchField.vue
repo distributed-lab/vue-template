@@ -1,14 +1,14 @@
 <template>
   <label
-    class="checkbox-field"
+    class="switch-field"
     :class="{
-      'checkbox-field--disabled': disabled,
-      'checkbox-field--checked': modelValue,
+      'switch-field--disabled': disabled,
+      'switch-field--checked': modelValue,
     }"
   >
     <input
       v-bind="$attrs"
-      class="checkbox-field__input"
+      class="switch-field__input"
       type="checkbox"
       :checked="modelValue"
       :name="($attrs.name as string) || label"
@@ -17,29 +17,20 @@
       @change="onChange"
     />
 
-    <span class="checkbox-field__frame-wrp" aria-hidden="true">
+    <span class="switch-field__frame-wrp" aria-hidden="true">
       <span
-        class="checkbox-field__frame"
-        :class="{ 'checkbox-field__frame--checked': modelValue }"
-      >
-        <icon
-          v-if="modelValue"
-          class="checkbox-field__frame-icon"
-          :name="ICON_NAMES.check"
-        />
-      </span>
+        class="switch-field__frame"
+        :class="{ 'switch-field__frame--checked': modelValue }"
+      />
     </span>
 
-    <span v-if="label" class="checkbox-field__label">
+    <span v-if="label" class="switch-field__label">
       {{ label }}
     </span>
   </label>
 </template>
 
 <script lang="ts" setup>
-import { Icon } from '@/common'
-import { ICON_NAMES } from '@/enums'
-
 withDefaults(
   defineProps<{
     modelValue: boolean
@@ -55,7 +46,7 @@ withDefaults(
 )
 
 const emit = defineEmits<{
-  (e: 'update:model-value', v: boolean): void
+  (e: 'update:model-value', value: boolean): void
 }>()
 
 const onChange = (event: Event) => {
@@ -66,12 +57,11 @@ const onChange = (event: Event) => {
 </script>
 
 <style lang="scss" scoped>
-.checkbox-field {
+.switch-field {
   cursor: pointer;
-  display: grid;
-  align-items: start;
-  grid-template-columns: toRem(18) 1fr;
-  grid-gap: toRem(12);
+  display: flex;
+  align-items: center;
+  gap: toRem(12);
   position: relative;
 
   &--disabled {
@@ -81,7 +71,7 @@ const onChange = (event: Event) => {
   }
 }
 
-.checkbox-field__input {
+.switch-field__input {
   position: absolute;
   width: toRem(1);
   height: toRem(1);
@@ -94,35 +84,43 @@ const onChange = (event: Event) => {
   overflow: hidden;
 }
 
-.checkbox-field__frame-wrp {
+.switch-field__frame-wrp {
+  position: relative;
   overflow: hidden;
-  width: toRem(18);
-  height: toRem(18);
+  width: toRem(48);
+  height: toRem(24);
   transition: var(--field-transition-duration) ease-in;
   transition-property: border-color, box-shadow, background-color;
-  border-radius: toRem(3);
-  box-shadow: inset 0 0 0 toRem(2) var(--field-border);
-}
+  border-radius: toRem(50);
+  box-shadow: inset 0 0 0 toRem(1) var(--field-border);
 
-.checkbox-field__frame {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  color: var(--field-bg-primary);
-
-  .checkbox-field--checked & {
+  .switch-field--checked & {
     background-color: var(--primary-main);
   }
 }
 
-.checkbox-field__frame-icon {
-  width: toRem(42);
-  height: toRem(42);
+.switch-field__frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: toRem(calc((24 - 16) / 2));
+  transform: translateY(-50%);
+  width: clamp(#{toRem(16)}, #{toRem(16)}, #{toRem(16)});
+  height: clamp(#{toRem(16)}, #{toRem(16)}, #{toRem(16)});
+  min-width: clamp(#{toRem(16)}, #{toRem(16)}, #{toRem(16)});
+  min-height: clamp(#{toRem(16)}, #{toRem(16)}, #{toRem(16)});
+  border-radius: 50%;
+  background: var(--primary-light);
+  transition: left var(--field-transition-duration) ease-in-out;
+
+  .switch-field--checked & {
+    left: calc(100% - #{toRem(16 + calc((24 - 16) / 2))});
+  }
 }
 
-.checkbox-field__label {
+.switch-field__label {
   display: inline-flex;
   user-select: none;
 

@@ -4,7 +4,7 @@
     :is-close-by-click-outside="isCloseByClickOutside"
   >
     <template #default="{ modal }">
-      <div class="basic-modal__pane" v-bind="$attrs">
+      <div class="basic-modal__pane">
         <div class="basic-modal__header">
           <div class="basic-modal__header-titles">
             <h5 v-if="title" class="basic-modal__title">
@@ -16,8 +16,8 @@
           </div>
           <app-button
             class="basic-modal__close-btn"
-            scheme="default"
-            :icon-right="$icons.x"
+            scheme="none"
+            :icon-right="ICON_NAMES.x"
             @click="modal.close"
           />
         </div>
@@ -28,9 +28,10 @@
 </template>
 
 <script lang="ts" setup>
-import { AppButton, Modal } from '@/common'
-
 import { ref, watch } from 'vue'
+
+import { AppButton, Modal } from '@/common'
+import { ICON_NAMES } from '@/enums'
 
 const props = withDefaults(
   defineProps<{
@@ -64,18 +65,20 @@ watch(isModalShown, value => {
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .basic-modal__pane {
+  --basic-modal-max-width: #{toRem(400)};
+
   background: var(--background-primary-main);
   padding: toRem(24);
-  border-radius: toRem(8);
-  max-width: toRem(552);
+  border-radius: toRem(28);
+  max-width: var(--basic-modal-max-width);
 }
 
 .basic-modal__header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: toRem(32);
 }
 

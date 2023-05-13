@@ -1,47 +1,71 @@
-import mitt, { Emitter, EventType } from 'mitt'
-import { NotificationObjectPayload } from '@/types'
+import { EventEmitter } from '@distributedlab/tools'
+
+import { NotificationPayload } from '@/types'
 
 enum EVENTS {
   error = 'error',
   warning = 'warning',
   success = 'success',
   info = 'info',
-  default = 'default',
+}
+
+const isFunctionsEqual = (
+  a: (...params: unknown[]) => unknown,
+  b: (...params: unknown[]) => unknown,
+) => {
+  return (
+    a.toString().replaceAll(' ', '').replaceAll('\n', '') ===
+    b.toString().replaceAll(' ', '').replaceAll('\n', '')
+  )
 }
 
 export class EventBus {
-  private emitter: Emitter<Record<EventType, unknown>>
+  readonly #emitter: EventEmitter<Record<EVENTS, unknown>>
 
   constructor() {
-    this.emitter = mitt<Record<EventType, unknown>>()
+    this.#emitter = new EventEmitter<Record<EVENTS, unknown>>()
   }
 
   public get eventList(): Readonly<typeof EVENTS> {
     return EVENTS
   }
 
-  on(eventName: EventType, handlerFn: (payload: unknown) => void): void {
-    this.emitter.on(eventName, handlerFn)
+  on(eventName: EVENTS, handlerFn: (payload?: unknown) => void): void {
+    if (
+      this.#emitter.handlers[EVENTS.success]?.find(el => {
+        return isFunctionsEqual(el, payload => {
+          handlerFn(payload as NotificationPayload)
+        })
+      })
+    ) {
+      return
+    }
+
+    this.#emitter.on(eventName, handlerFn)
   }
 
-  emit(eventName: EventType, payload?: unknown): void {
-    this.emitter.emit(eventName, payload)
+  emit(eventName: EVENTS, payload: NotificationPayload): void {
+    this.#emitter.emit(eventName, payload)
   }
 
-  success(payload: string | NotificationObjectPayload): void {
-    this.emit(this.eventList.success, payload)
+  off(eventName: EVENTS, handlerFn: (payload: unknown) => void): void {
+    this.#emitter.off(eventName, handlerFn)
   }
 
-  error(payload: string | NotificationObjectPayload): void {
-    this.emit(this.eventList.error, payload)
+  success(payload: NotificationPayload): void {
+    this.#emitter.emit(EVENTS.success, payload)
   }
 
-  warning(payload: string | NotificationObjectPayload): void {
-    this.emit(this.eventList.warning, payload)
+  error(payload: NotificationPayload): void {
+    this.#emitter.emit(EVENTS.error, payload)
   }
 
-  info(payload: string | NotificationObjectPayload): void {
-    this.emit(this.eventList.info, payload)
+  warning(payload: NotificationPayload): void {
+    this.#emitter.emit(EVENTS.warning, payload)
+  }
+
+  info(payload: NotificationPayload): void {
+    this.#emitter.emit(EVENTS.info, payload)
   }
 }
 

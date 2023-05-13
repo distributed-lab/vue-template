@@ -23,4 +23,10 @@ deprecated
 *.sln
 *.local
 stats.html
+.yarn
+.yarnrc.yml
+
 .env
+.env.production
+.env.analyze
+tsconfig.tsbuildinfo

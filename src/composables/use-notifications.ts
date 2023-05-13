@@ -1,58 +1,54 @@
-import { Notification } from '@/common'
-
-import { TYPE, useToast } from 'vue-toastification'
 import { useI18n } from 'vue-i18n'
-import { NotificationObjectPayload } from '@/types'
-import { Bus } from '@/helpers'
-import { isObject } from 'lodash-es'
 import { ICON_NAMES } from '@/enums'
+import isObject from 'lodash/isObject'
+import { TYPE, useToast } from 'vue-toastification'
 
-export const useNotifications = (): void => {
+import { DefaultToast } from '@/common'
+import { CommonNotificationTypes, NotificationObjectPayload } from '@/types'
+
+const MINUTE = 60 * 1000
+
+export const useNotifications = () => {
   const toast = useToast()
+
   const { t } = useI18n({ useScope: 'global' })
 
-  Bus.on(Bus.eventList.success, payload => showToast(TYPE.SUCCESS, payload))
-  Bus.on(Bus.eventList.warning, payload => showToast(TYPE.WARNING, payload))
-  Bus.on(Bus.eventList.error, payload => showToast(TYPE.ERROR, payload))
-  Bus.on(Bus.eventList.info, payload => showToast(TYPE.INFO, payload))
-  Bus.on(Bus.eventList.default, payload => showToast(TYPE.DEFAULT, payload))
+  const defaultTitles = {
+    [TYPE.SUCCESS]: t('notification.default-title-success'),
+    [TYPE.ERROR]: t('notification.default-title-error'),
+    [TYPE.WARNING]: t('notification.default-title-warning'),
+    [TYPE.INFO]: t('notification.default-title-info'),
+    [TYPE.DEFAULT]: t('notification.default-title-default'),
+  }
+  const defaultMessages = {
+    [TYPE.DEFAULT]: t('notification.default-message-default'),
+    [TYPE.INFO]: t('notification.default-message-info'),
+    [TYPE.SUCCESS]: t('notification.default-message-success'),
+    [TYPE.ERROR]: t('notification.default-message-error'),
+    [TYPE.WARNING]: t('notification.default-message-warning'),
+  }
+  const defaultIconNames = {
+    [TYPE.DEFAULT]: ICON_NAMES.exclamationCircle,
+    [TYPE.INFO]: ICON_NAMES.exclamationCircle,
+    [TYPE.SUCCESS]: ICON_NAMES.checkCircle,
+    [TYPE.ERROR]: ICON_NAMES.xCircle,
+    [TYPE.WARNING]: ICON_NAMES.shieldExclamation,
+  }
 
   const showToast = (
-    messageType = TYPE.DEFAULT as TYPE,
-    payload?: string | NotificationObjectPayload | unknown,
-  ): void => {
+    messageType = 'default' as CommonNotificationTypes,
+    payload?: string | NotificationObjectPayload,
+  ) => {
     let title = ''
     let message = ''
-    let iconName = ''
-
-    const defaultTitles = {
-      [TYPE.SUCCESS]: t('notification.default-title-success'),
-      [TYPE.ERROR]: t('notification.default-title-error'),
-      [TYPE.WARNING]: t('notification.default-title-warning'),
-      [TYPE.INFO]: t('notification.default-title-info'),
-      [TYPE.DEFAULT]: t('notification.default-title-default'),
-    }
-    const defaultMessages = {
-      [TYPE.DEFAULT]: t('notification.default-message-default'),
-      [TYPE.INFO]: t('notification.default-message-info'),
-      [TYPE.SUCCESS]: t('notification.default-message-success'),
-      [TYPE.ERROR]: t('notification.default-message-error'),
-      [TYPE.WARNING]: t('notification.default-message-warning'),
-    }
-    const defaultIconNames = {
-      [TYPE.DEFAULT]: ICON_NAMES.informationCircle,
-      [TYPE.INFO]: ICON_NAMES.informationCircle,
-      [TYPE.SUCCESS]: ICON_NAMES.checkCircle,
-      [TYPE.ERROR]: ICON_NAMES.exclamationCircle,
-      [TYPE.WARNING]: ICON_NAMES.exclamation,
-    }
+    let iconName: ICON_NAMES | undefined
 
     if (isObject(payload)) {
       const msgPayload = payload as NotificationObjectPayload
 
       title = msgPayload.title || ''
       message = msgPayload.message
-      iconName = msgPayload.iconName ? (msgPayload.iconName as string) : ''
+      iconName = msgPayload.iconName
     } else if (payload) {
       message = payload as string
     } else {
@@ -66,9 +62,9 @@ export const useNotifications = (): void => {
       iconName = defaultIconNames[messageType]
     }
 
-    toast(
+    return toast(
       {
-        component: Notification,
+        component: DefaultToast,
         props: {
           ...(title && { title }),
           message,
@@ -77,10 +73,23 @@ export const useNotifications = (): void => {
       },
       {
         icon: false,
-        type: messageType,
+        type: {
+          default: TYPE.DEFAULT,
+          info: TYPE.INFO,
+          success: TYPE.SUCCESS,
+          error: TYPE.ERROR,
+          warning: TYPE.WARNING,
+        }[messageType],
+        toastClassName: 'default-toast',
+        timeout: MINUTE / 2,
+        closeOnClick: false,
       },
     )
   }
+
+  const removeToast = (id: string | number) => toast.dismiss(id)
+
+  return { showToast, removeToast }
 }
 
 export * from 'vue-toastification'

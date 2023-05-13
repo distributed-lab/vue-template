@@ -1,514 +1,434 @@
 <template>
   <div class="ui-kit-page">
-    <section class="ui-kit-page__buttons">
+    <div class="ui-kit-page__buttons">
+      <app-button size="small" :text="'button'" />
+      <app-button size="small" :text="'button'" scheme="flat" />
+      <app-button size="small" :text="'button'" scheme="none" />
+
+      <app-button size="small" :text="'button'" color="success" />
+      <app-button size="small" :text="'button'" scheme="flat" color="success" />
+      <app-button size="small" :text="'button'" scheme="none" color="success" />
+
+      <app-button size="small" :text="'button'" color="error" />
+      <app-button size="small" :text="'button'" scheme="flat" color="error" />
+      <app-button size="small" :text="'button'" scheme="none" color="error" />
+
+      <app-button size="small" :text="'button'" color="warning" />
+      <app-button size="small" :text="'button'" scheme="flat" color="warning" />
+      <app-button size="small" :text="'button'" scheme="none" color="warning" />
+
+      <app-button size="small" :text="'button'" color="warning" />
+      <app-button size="small" :text="'button'" scheme="flat" color="warning" />
+      <app-button size="small" :text="'button'" scheme="none" color="warning" />
+
+      <app-button size="small" :text="'button'" color="info" />
+      <app-button size="small" :text="'button'" scheme="flat" color="info" />
+      <app-button size="small" :text="'button'" scheme="none" color="info" />
+    </div>
+    <div class="ui-kit-page__buttons">
+      <app-button :text="'button'" />
+      <app-button :text="'button'" scheme="flat" />
+      <app-button :text="'button'" scheme="none" />
+
+      <app-button :text="'button'" modification="border-circle" />
+      <app-button :text="'button'" scheme="flat" modification="border-circle" />
+      <app-button :text="'button'" scheme="none" modification="border-circle" />
+
+      <app-button :text="'button'" modification="border-rounded" />
       <app-button
-        :icon-right="$icons.gift"
-        :text="'router, border-rounded, icon'"
-        :route="{ name: $routes.uiKit }"
-      />
-      <app-button
-        modification="border-circle"
-        :text="'href, border-circle'"
-        href="https://www.youtube.com/"
-        target="_blank"
-      />
-      <app-button
-        :text="'Alert, icon-first'"
-        :icon-left="$icons.exclamationCircle"
-        @click="handleClick"
-      />
-      <app-button size="large" :text="'large'" />
-      <app-button size="small" :text="'small'" />
-      <app-button
-        color="success"
-        :text="'Bus.success, success'"
-        @click="throwBusSuccess"
-      />
-      <app-button
-        color="error"
-        :text="'Bus.error, error'"
-        @click="throwBusError"
-      />
-      <app-button
-        color="warning"
-        :text="'Bus.warning, warning'"
-        @click="throwBusWarning"
-      />
-      <app-button color="info" :text="'Bus.info, info'" @click="throwBusInfo" />
-      <app-button
-        modification="border-circle"
-        color="success"
-        :text="'border-circle, success'"
-      />
-      <app-button
+        :text="'button'"
+        scheme="flat"
         modification="border-rounded"
-        color="error"
-        :text="'border-rounded, error'"
-      />
-      <app-button color="warning" size="large" :text="'large, warning'" />
-      <app-button color="info" size="small" :text="'small, info'" />
-      <app-button scheme="flat" :text="'flat'" />
-      <app-button
-        scheme="flat"
-        modification="border-circle"
-        :text="'flat, border-circle'"
       />
       <app-button
-        scheme="flat"
-        :icon-left="$icons.switchHorizontal"
-        :text="'flat'"
+        :text="'button'"
+        scheme="none"
+        modification="border-rounded"
       />
+
+      <app-button :text="'button'" modification="none" />
+      <app-button :text="'button'" scheme="flat" modification="none" />
+      <app-button :text="'button'" scheme="none" modification="none" />
+    </div>
+    <div class="ui-kit-page__buttons">
+      <app-button size="large" :text="'button'" />
+      <app-button size="large" :text="'button'" scheme="flat" />
+      <app-button size="large" :text="'button'" scheme="none" />
+    </div>
+    <div class="ui-kit-page__buttons">
+      <app-button size="small" :icon-right="$icons.plus" />
+      <app-button size="small" :icon-right="$icons.plus" scheme="flat" />
+      <app-button size="small" :icon-right="$icons.plus" scheme="none" />
+
+      <app-button size="small" :icon-right="$icons.plus" color="success" />
       <app-button
-        scheme="flat"
-        size="large"
-        :text="'flat, large'"
-        :icon-right="$icons.phone"
-      />
-      <app-button scheme="flat" size="small" :text="'flat, small'" />
-      <app-button scheme="flat" color="success" :text="'flat, success'" />
-      <app-button scheme="flat" color="error" :text="'flat, error'" />
-      <app-button scheme="flat" color="warning" :text="'flat, warning'" />
-      <app-button scheme="flat" color="info" :text="'flat, info'" />
-      <app-button
-        scheme="flat"
-        modification="border-circle"
-        color="success"
-        :text="'flat, border-circle, success'"
-      />
-      <app-button
-        scheme="flat"
-        modification="border-circle"
-        color="error"
-        :text="'flat, border-circle, error'"
-      />
-      <app-button
-        scheme="flat"
-        modification="border-circle"
-        :icon-left="$icons.gift"
-        :text="'flat'"
-      />
-      <app-button
-        scheme="flat"
-        modification="border-circle"
-        color="warning"
-        size="large"
-        :text="'flat, border-circle, large, warning'"
-      />
-      <app-button
-        scheme="flat"
-        modification="border-circle"
         size="small"
-        color="info"
-        :text="'flat, border-circle, small, info'"
-      />
-      <app-button
-        scheme="default"
-        modification="default"
-        size="default"
-        color="default"
-        :text="'default'"
-      />
-      <app-button :icon-right="$icons.switchHorizontal" />
-      <app-button
-        :icon-right="$icons.switchHorizontal"
-        modification="border-circle"
-      />
-      <app-button :icon-right="$icons.switchHorizontal" size="large" />
-      <app-button :icon-right="$icons.switchHorizontal" size="small" />
-      <app-button :icon-right="$icons.switchHorizontal" color="success" />
-      <app-button :icon-right="$icons.switchHorizontal" color="error" />
-      <app-button :icon-right="$icons.switchHorizontal" color="warning" />
-      <app-button :icon-right="$icons.switchHorizontal" color="info" />
-      <app-button scheme="flat" :icon-right="$icons.switchHorizontal" />
-      <app-button
+        :icon-right="$icons.plus"
         scheme="flat"
-        :icon-right="$icons.switchHorizontal"
-        modification="border-circle"
-      />
-      <app-button
-        scheme="flat"
-        :icon-right="$icons.switchHorizontal"
-        size="large"
-      />
-      <app-button
-        scheme="flat"
-        :icon-right="$icons.switchHorizontal"
-        size="small"
-      />
-      <app-button
-        scheme="flat"
-        :icon-right="$icons.switchHorizontal"
         color="success"
       />
       <app-button
+        size="small"
+        :icon-right="$icons.plus"
+        scheme="none"
+        color="success"
+      />
+
+      <app-button size="small" :icon-right="$icons.plus" color="error" />
+      <app-button
+        size="small"
+        :icon-right="$icons.plus"
         scheme="flat"
-        :icon-right="$icons.switchHorizontal"
         color="error"
       />
       <app-button
+        size="small"
+        :icon-right="$icons.plus"
+        scheme="none"
+        color="error"
+      />
+
+      <app-button size="small" :icon-right="$icons.plus" color="warning" />
+      <app-button
+        size="small"
+        :icon-right="$icons.plus"
         scheme="flat"
-        :icon-right="$icons.switchHorizontal"
         color="warning"
       />
       <app-button
+        size="small"
+        :icon-right="$icons.plus"
+        scheme="none"
+        color="warning"
+      />
+
+      <app-button size="small" :icon-right="$icons.plus" color="warning" />
+      <app-button
+        size="small"
+        :icon-right="$icons.plus"
         scheme="flat"
-        :icon-right="$icons.switchHorizontal"
+        color="warning"
+      />
+      <app-button
+        size="small"
+        :icon-right="$icons.plus"
+        scheme="none"
+        color="warning"
+      />
+
+      <app-button size="small" :icon-right="$icons.plus" color="info" />
+      <app-button
+        size="small"
+        :icon-right="$icons.plus"
+        scheme="flat"
         color="info"
       />
       <app-button
-        scheme="default"
-        :icon-right="$icons.switchHorizontal"
-        color="default"
+        size="small"
+        :icon-right="$icons.plus"
+        scheme="none"
+        color="info"
+      />
+    </div>
+    <div class="ui-kit-page__buttons">
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
       />
       <app-button
-        scheme="default"
-        :icon-right="$icons.switchHorizontal"
-        color="default"
-        size="default"
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        scheme="flat"
       />
-    </section>
-    <section class="ui-kit-page__inputs">
-      <select-field
-        v-model="form.selectValue"
-        scheme="secondary"
-        :label="'Label'"
-        :placeholder="'select placeholder'"
-        :value-options="['1', '2', '3', '4', '5', '6', '7']"
-        :error-message="form.selectValue === '7' ? 'error for number 7' : ''"
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        scheme="none"
       />
-      <select-field
-        v-model="form.selectValue"
-        scheme="secondary"
-        :label="'Custom select'"
-        :placeholder="'select placeholder'"
-      >
-        <template #default="{ selectField }">
-          <app-button
-            v-for="(items, idx) in [
-              { label: 'Value 1', value: '1' },
-              { label: 'Value 2', value: '2' },
-              { label: 'Value 3', value: '3' },
-              { label: 'Value 4', value: '4' },
-              { label: 'Value 5', value: '5' },
-              { label: 'Value 6', value: '6' },
-              { label: 'Value 7', value: '7' },
-            ]"
-            :key="idx"
-            :text="items.label"
-            :style="{ width: '100%', hoverOpacity: '0.5' }"
-            scheme="default"
-            :icon-left="$icons.printer"
-            @click="selectField.select(items.value)"
-          />
-        </template>
-      </select-field>
-      <select-field
-        v-model="form.selectValue"
-        scheme="secondary"
-        :label="'Custom select'"
-        :placeholder="'select placeholder'"
-      >
-        <template #head>
-          <div
-            :style="{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-            }"
-          >
-            <icon
-              :name="$icons.globe"
-              :style="{ width: '18px', height: '18px' }"
-            />
-            {{
-              [
-                { label: 'Value 1', value: '1' },
-                { label: 'Value 2', value: '2' },
-                { label: 'Value 3', value: '3' },
-                { label: 'Value 4', value: '4' },
-                { label: 'Value 5', value: '5' },
-                { label: 'Value 6', value: '6' },
-                { label: 'Value 7', value: '7' },
-              ].find(item => item.value === form.selectValue)?.label
-            }}
-          </div>
-        </template>
-        <template #default="{ selectField }">
-          <app-button
-            v-for="(items, idx) in [
-              { label: 'Value 1', value: '1' },
-              { label: 'Value 2', value: '2' },
-              { label: 'Value 3', value: '3' },
-              { label: 'Value 4', value: '4' },
-              { label: 'Value 5', value: '5' },
-              { label: 'Value 6', value: '6' },
-              { label: 'Value 7', value: '7' },
-            ]"
-            :key="idx"
-            :text="items.label"
-            :style="{ width: '100%', hoverOpacity: '0.5' }"
-            scheme="default"
-            :icon-left="$icons.printer"
-            @click="selectField.select(items.value)"
-          />
-        </template>
-      </select-field>
+
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        color="success"
+      />
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        scheme="flat"
+        color="success"
+      />
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        scheme="none"
+        color="success"
+      />
+
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        color="error"
+      />
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        scheme="flat"
+        color="error"
+      />
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        scheme="none"
+        color="error"
+      />
+
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        color="warning"
+      />
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        scheme="flat"
+        color="warning"
+      />
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        scheme="none"
+        color="warning"
+      />
+
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        color="warning"
+      />
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        scheme="flat"
+        color="warning"
+      />
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        scheme="none"
+        color="warning"
+      />
+
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        color="info"
+      />
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        scheme="flat"
+        color="info"
+      />
+      <app-button
+        size="small"
+        modification="border-circle"
+        :icon-right="$icons.plus"
+        scheme="none"
+        color="info"
+      />
+    </div>
+
+    <div class="ui-kit-page__buttons">
+      <app-button
+        size="small"
+        :text="'Bus.success'"
+        color="success"
+        @click="() => Bus.success('Some success message')"
+      />
+      <app-button
+        size="small"
+        :text="'Bus.error'"
+        color="error"
+        @click="() => Bus.error('Some error message')"
+      />
+      <app-button
+        size="small"
+        :text="'Bus.warning'"
+        color="warning"
+        @click="() => Bus.warning('Some warning message')"
+      />
+      <app-button
+        size="small"
+        :text="'Bus.info'"
+        color="info"
+        @click="() => Bus.info('Some info message')"
+      />
+
+      <app-button
+        size="small"
+        :text="'ErrorHandler.process'"
+        color="error"
+        @click="handleProcessError"
+      />
+    </div>
+
+    <div class="ui-kit-page__inputs">
+      <input-field v-model="form.input" />
+      <input-field v-model="form.input" :label="'label'" />
       <input-field
-        v-model="form.inputValue"
-        scheme="secondary"
+        v-model="form.input"
         :label="'label'"
-        :placeholder="$t('ui-kit-page.some-placeholder')"
+        :placeholder="'placeholder'"
       />
       <input-field
-        v-model="form.inputValue"
-        scheme="secondary"
+        v-model="form.input"
         :label="'label'"
-        :placeholder="$t('ui-kit-page.some-placeholder')"
-      >
-        <template #nodeRight>
-          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
-        </template>
-      </input-field>
+        :placeholder="'placeholder'"
+        :error-message="'error message'"
+      />
       <input-field
-        v-model="form.inputValue"
-        scheme="secondary"
+        v-model="form.input"
         :label="'label'"
-        :placeholder="$t('ui-kit-page.some-placeholder')"
+        :placeholder="'placeholder'"
       >
         <template #nodeLeft>
-          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
+          <icon class="input__icon" :name="$icons.search" />
         </template>
       </input-field>
       <input-field
-        v-model="form.inputValue"
-        scheme="secondary"
-        type="password"
+        v-model="form.input"
         :label="'label'"
-        :placeholder="$t('ui-kit-page.some-placeholder')"
-      />
-      <input-field
-        v-model="form.inputValue"
-        scheme="secondary"
-        :label="$t('ui-kit-page.some-label')"
-        :error-message="$t('ui-kit-page.some-error-message')"
-        :placeholder="$t('ui-kit-page.some-placeholder')"
+        :placeholder="'placeholder'"
       >
         <template #nodeLeft>
-          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
+          <icon class="input__icon" :name="$icons.search" />
         </template>
         <template #nodeRight>
-          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
+          <icon class="input__icon" :name="$icons.plus" />
         </template>
       </input-field>
       <input-field
-        v-model="form.inputValue"
-        scheme="secondary"
-        :label="$t('ui-kit-page.some-label')"
-        :placeholder="$t('ui-kit-page.some-placeholder')"
-        disabled
-      />
-      <input-field
-        v-model="form.inputValue"
-        scheme="secondary"
-        :label="$t('ui-kit-page.some-label')"
-        :error-message="$t('ui-kit-page.some-error-message')"
-        :placeholder="$t('ui-kit-page.some-placeholder')"
-        disabled
-      />
-      <checkbox-field
-        v-model="form.chbValue"
-        :label="$t('ui-kit-page.some-label')"
-      />
-      <checkbox-field
-        v-model="form.chbValue"
-        :label="$t('ui-kit-page.some-label')"
-        disabled
-      />
-      <textarea-field
-        v-model="form.textareaValue"
-        scheme="secondary"
-        :label="'textarea'"
-        :placeholder="'textarea'"
-      />
-      <textarea-field
-        v-model="form.textareaValue"
-        scheme="secondary"
-        :label="'textarea'"
-        :placeholder="'textarea'"
-        :error-message="form.textareaValue"
-      />
-      <textarea-field
-        v-model="form.textareaValue"
-        scheme="secondary"
-        :label="'textarea'"
-        :placeholder="'textarea'"
-        :error-message="form.textareaValue ? 'form.textareaValue' : ''"
-      />
-      <textarea-field
-        v-model="form.textareaValue"
-        scheme="secondary"
-        :label="'textarea'"
-        :placeholder="'textarea'"
-        :error-message="form.textareaValue"
-        disabled
-      />
-    </section>
-    <section class="ui-kit-page__inputs">
-      <select-field
-        v-model="form.selectValue"
-        :label="'Label'"
-        :placeholder="'select placeholder'"
-        :value-options="['1', '2', '3', '4', '5', '6', '7']"
-        :error-message="form.selectValue === '7' ? 'error for number 7' : ''"
-      />
-      <select-field
-        v-model="form.selectValue"
-        :label="'Custom select'"
-        :placeholder="'select placeholder'"
-      >
-        <template #default="{ selectField }">
-          <app-button
-            v-for="(items, idx) in [
-              { label: 'Value 1', value: '1' },
-              { label: 'Value 2', value: '2' },
-              { label: 'Value 3', value: '3' },
-              { label: 'Value 4', value: '4' },
-              { label: 'Value 5', value: '5' },
-              { label: 'Value 6', value: '6' },
-              { label: 'Value 7', value: '7' },
-            ]"
-            :key="idx"
-            :text="items.label"
-            :style="{ width: '100%', hoverOpacity: '0.5' }"
-            scheme="default"
-            :icon-left="$icons.printer"
-            @click="selectField.select(items.value)"
-          />
-        </template>
-      </select-field>
-      <select-field
-        v-model="form.selectValue"
-        :label="'Custom select'"
-        :placeholder="'select placeholder'"
-      >
-        <template #head>
-          <div
-            :style="{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-            }"
-          >
-            <icon
-              :name="$icons.globe"
-              :style="{ width: '18px', height: '18px' }"
-            />
-            {{
-              [
-                { label: 'Value 1', value: '1' },
-                { label: 'Value 2', value: '2' },
-                { label: 'Value 3', value: '3' },
-                { label: 'Value 4', value: '4' },
-                { label: 'Value 5', value: '5' },
-                { label: 'Value 6', value: '6' },
-                { label: 'Value 7', value: '7' },
-              ].find(item => item.value === form.selectValue)?.label
-            }}
-          </div>
-        </template>
-        <template #default="{ selectField }">
-          <app-button
-            v-for="(items, idx) in [
-              { label: 'Value 1', value: '1' },
-              { label: 'Value 2', value: '2' },
-              { label: 'Value 3', value: '3' },
-              { label: 'Value 4', value: '4' },
-              { label: 'Value 5', value: '5' },
-              { label: 'Value 6', value: '6' },
-              { label: 'Value 7', value: '7' },
-            ]"
-            :key="idx"
-            :text="items.label"
-            :style="{ width: '100%', hoverOpacity: '0.5' }"
-            scheme="default"
-            :icon-left="$icons.printer"
-            @click="selectField.select(items.value)"
-          />
-        </template>
-      </select-field>
-      <input-field
-        v-model="form.inputValue"
+        v-model="form.input"
         :label="'label'"
-        :placeholder="$t('ui-kit-page.some-placeholder')"
-      />
-      <input-field
-        v-model="form.inputValue"
-        :label="'label'"
-        :placeholder="$t('ui-kit-page.some-placeholder')"
-      >
-        <template #nodeRight>
-          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
-        </template>
-      </input-field>
-      <input-field
-        v-model="form.inputValue"
-        :label="'label'"
-        :placeholder="$t('ui-kit-page.some-placeholder')"
+        :placeholder="'placeholder'"
+        :note="'lorem ipsum dolor sit amet concestetur!'"
       >
         <template #nodeLeft>
-          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
-        </template>
-      </input-field>
-      <input-field
-        v-model="form.inputValue"
-        type="password"
-        :label="'label'"
-        :placeholder="$t('ui-kit-page.some-placeholder')"
-      />
-      <input-field
-        v-model="form.inputValue"
-        :label="$t('ui-kit-page.some-label')"
-        :error-message="$t('ui-kit-page.some-error-message')"
-        :placeholder="$t('ui-kit-page.some-placeholder')"
-      >
-        <template #nodeLeft>
-          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
+          <icon class="input__icon" :name="$icons.search" />
         </template>
         <template #nodeRight>
-          <icon class="ui-kit-page__input-icon" :name="$icons.dotsVertical" />
+          <icon class="input__icon" :name="$icons.plus" />
         </template>
       </input-field>
       <input-field
-        v-model="form.inputValue"
-        :label="$t('ui-kit-page.some-label')"
-        :placeholder="$t('ui-kit-page.some-placeholder')"
+        v-model="form.input"
+        :label="'label'"
+        :placeholder="'placeholder'"
+        :note="'lorem ipsum dolor sit amet concestetur!'"
+        disabled
+      >
+        <template #nodeLeft>
+          <icon class="input__icon" :name="$icons.search" />
+        </template>
+        <template #nodeRight>
+          <icon class="input__icon" :name="$icons.plus" />
+        </template>
+      </input-field>
+    </div>
+
+    <div class="ui-kit-page__select-fields">
+      <select-field v-model="form.select" :value-options="SELECT_OPTIONS" />
+      <select-field
+        :label="`Label`"
+        v-model="form.select"
+        :value-options="SELECT_OPTIONS"
+      />
+      <select-field
+        :label="`Label`"
+        v-model="form.select"
+        :value-options="SELECT_OPTIONS"
+        error-message="error message"
+      />
+      <select-field
+        :label="`Label`"
+        v-model="form.select"
+        :value-options="SELECT_OPTIONS"
+        note="Note message"
+      />
+      <basic-select-field
+        :label="`Label`"
+        v-model="form.select"
+        :value-options="
+          SELECT_OPTIONS.map(el => ({
+            title: String(el).concat('++'),
+            value: el,
+          }))
+        "
+      />
+      <select-field
+        :label="`Label`"
+        v-model="form.select"
+        :value-options="SELECT_OPTIONS"
         disabled
       />
-      <input-field
-        v-model="form.inputValue"
-        :label="$t('ui-kit-page.some-label')"
-        :error-message="$t('ui-kit-page.some-error-message')"
-        :placeholder="$t('ui-kit-page.some-placeholder')"
+      <basic-select-field
+        :label="`Label`"
+        v-model="form.select"
+        :value-options="
+          SELECT_OPTIONS.map(el => ({
+            title: String(el).concat('++'),
+            value: el,
+          }))
+        "
         disabled
       />
-      <checkbox-field
-        v-model="form.chbValue"
-        :label="$t('ui-kit-page.some-label')"
-      />
-      <checkbox-field
-        v-model="form.chbValue"
-        :label="$t('ui-kit-page.some-label')"
-        disabled
-      />
+
+      <textarea-field v-model="form.textarea" />
+      <textarea-field v-model="form.textarea" :label="`Label`" />
       <textarea-field
-        v-model="form.textareaValue"
-        :label="'textarea'"
-        :placeholder="'textarea'"
+        v-model="form.textarea"
+        :label="`Label`"
+        error-message="Error message"
       />
-    </section>
+
+      <checkbox-field v-model="form.checkbox" />
+      <checkbox-field v-model="form.checkbox" :label="`Label`" />
+      <checkbox-field v-model="form.checkbox" :label="`Label`" disabled />
+
+      <switch-field v-model="form.switch" :value="String(form.switch)" />
+      <switch-field
+        v-model="form.switch"
+        :value="String(form.switch)"
+        :label="`Label`"
+      />
+      <switch-field
+        v-model="form.switch"
+        :value="String(form.switch)"
+        disabled
+      />
+    </div>
+
     <section class="ui-kit-page__form">
       <login-form />
     </section>
+
     <section class="ui-kit-page__common">
       <error-message :message="$t('ui-kit-page.loading-error-msg')" />
       <no-data-message :message="$t('ui-kit-page.no-data-msg')" />
@@ -544,9 +464,10 @@
         @click="isModalShown = true"
       />
       <basic-modal
+        class="ui-kit-page__basic-modal"
         v-model:is-shown="isModalShown"
-        title="Modal Title"
-        subtitle="Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+        :title="`Modal Title`"
+        :subtitle="`Lorem ipsum dolor sit amet, consectetur adipisicing elit.`"
       >
         <div class="ui-kit-page__modal-body">
           {{ $t('ui-kit-page.collapse-text') }}
@@ -563,226 +484,6 @@
         <icon :name="$icons.arrowCircleUp" />
         <icon :name="$icons.arrowDown" />
         <icon :name="$icons.arrowLeft" />
-        <icon :name="$icons.arrowNarrowDown" />
-        <icon :name="$icons.arrowNarrowLeft" />
-        <icon :name="$icons.arrowNarrowRight" />
-        <icon :name="$icons.arrowNarrowUp" />
-        <icon :name="$icons.arrowRight" />
-        <icon :name="$icons.arrowSmDown" />
-        <icon :name="$icons.arrowSmLeft" />
-        <icon :name="$icons.arrowSmRight" />
-        <icon :name="$icons.arrowSmUp" />
-        <icon :name="$icons.arrowUp" />
-        <icon :name="$icons.arrowsExpand" />
-        <icon :name="$icons.atSymbol" />
-        <icon :name="$icons.backspace" />
-        <icon :name="$icons.badgeCheck" />
-        <icon :name="$icons.ban" />
-        <icon :name="$icons.beaker" />
-        <icon :name="$icons.bell" />
-        <icon :name="$icons.bookOpen" />
-        <icon :name="$icons.bookmarkAlt" />
-        <icon :name="$icons.bookmark" />
-        <icon :name="$icons.briefcase" />
-        <icon :name="$icons.cake" />
-        <icon :name="$icons.calculator" />
-        <icon :name="$icons.calendar" />
-        <icon :name="$icons.camera" />
-        <icon :name="$icons.cash" />
-        <icon :name="$icons.chartBar" />
-        <icon :name="$icons.chartPie" />
-        <icon :name="$icons.chartSquareBar" />
-        <icon :name="$icons.chatAlt2" />
-        <icon :name="$icons.chatAlt" />
-        <icon :name="$icons.chat" />
-        <icon :name="$icons.checkCircle" />
-        <icon :name="$icons.check" />
-        <icon :name="$icons.chevronDoubleDown" />
-        <icon :name="$icons.chevronDoubleLeft" />
-        <icon :name="$icons.chevronDoubleRight" />
-        <icon :name="$icons.chevronDoubleUp" />
-        <icon :name="$icons.chevronDown" />
-        <icon :name="$icons.chevronLeft" />
-        <icon :name="$icons.chevronRight" />
-        <icon :name="$icons.chevronUp" />
-        <icon :name="$icons.chip" />
-        <icon :name="$icons.clipboardCheck" />
-        <icon :name="$icons.clipboardCopy" />
-        <icon :name="$icons.clipboardList" />
-        <icon :name="$icons.clipboard" />
-        <icon :name="$icons.clock" />
-        <icon :name="$icons.cloudDownload" />
-        <icon :name="$icons.cloudUpload" />
-        <icon :name="$icons.cloud" />
-        <icon :name="$icons.code" />
-        <icon :name="$icons.cog" />
-        <icon :name="$icons.collection" />
-        <icon :name="$icons.colorSwatch" />
-        <icon :name="$icons.creditCard" />
-        <icon :name="$icons.cubeTransparent" />
-        <icon :name="$icons.cube" />
-        <icon :name="$icons.currencyBangladeshi" />
-        <icon :name="$icons.currencyDollar" />
-        <icon :name="$icons.currencyEuro" />
-        <icon :name="$icons.currencyPound" />
-        <icon :name="$icons.currencyRupee" />
-        <icon :name="$icons.currencyYen" />
-        <icon :name="$icons.cursorClick" />
-        <icon :name="$icons.database" />
-        <icon :name="$icons.desktopComputer" />
-        <icon :name="$icons.deviceMobile" />
-        <icon :name="$icons.deviceTablet" />
-        <icon :name="$icons.documentAdd" />
-        <icon :name="$icons.documentDownload" />
-        <icon :name="$icons.documentDuplicate" />
-        <icon :name="$icons.documentRemove" />
-        <icon :name="$icons.documentReport" />
-        <icon :name="$icons.documentSearch" />
-        <icon :name="$icons.documentText" />
-        <icon :name="$icons.document" />
-        <icon :name="$icons.dotsCircleHorizontal" />
-        <icon :name="$icons.dotsHorizontal" />
-        <icon :name="$icons.dotsVertical" />
-        <icon :name="$icons.download" />
-        <icon :name="$icons.duplicate" />
-        <icon :name="$icons.emojiHappy" />
-        <icon :name="$icons.emojiSad" />
-        <icon :name="$icons.exclamationCircle" />
-        <icon :name="$icons.exclamation" />
-        <icon :name="$icons.externalLink" />
-        <icon :name="$icons.eyeOff" />
-        <icon :name="$icons.eye" />
-        <icon :name="$icons.fastForward" />
-        <icon :name="$icons.film" />
-        <icon :name="$icons.filter" />
-        <icon :name="$icons.fingerPrint" />
-        <icon :name="$icons.fire" />
-        <icon :name="$icons.flag" />
-        <icon :name="$icons.folderAdd" />
-        <icon :name="$icons.folderDownload" />
-        <icon :name="$icons.folderOpen" />
-        <icon :name="$icons.folderRemove" />
-        <icon :name="$icons.folder" />
-        <icon :name="$icons.gift" />
-        <icon :name="$icons.globeAlt" />
-        <icon :name="$icons.globe" />
-        <icon :name="$icons.hand" />
-        <icon :name="$icons.hashtag" />
-        <icon :name="$icons.heart" />
-        <icon :name="$icons.home" />
-        <icon :name="$icons.identification" />
-        <icon :name="$icons.inboxIn" />
-        <icon :name="$icons.inbox" />
-        <icon :name="$icons.informationCircle" />
-        <icon :name="$icons.key" />
-        <icon :name="$icons.library" />
-        <icon :name="$icons.lightBulb" />
-        <icon :name="$icons.lightningBolt" />
-        <icon :name="$icons.link" />
-        <icon :name="$icons.locationMarker" />
-        <icon :name="$icons.lockClosed" />
-        <icon :name="$icons.lockOpen" />
-        <icon :name="$icons.login" />
-        <icon :name="$icons.logout" />
-        <icon :name="$icons.mailOpen" />
-        <icon :name="$icons.mail" />
-        <icon :name="$icons.map" />
-        <icon :name="$icons.menuAlt1" />
-        <icon :name="$icons.menuAlt2" />
-        <icon :name="$icons.menuAlt3" />
-        <icon :name="$icons.menuAlt4" />
-        <icon :name="$icons.menu" />
-        <icon :name="$icons.microphone" />
-        <icon :name="$icons.minusCircle" />
-        <icon :name="$icons.minusSm" />
-        <icon :name="$icons.minus" />
-        <icon :name="$icons.moon" />
-        <icon :name="$icons.musicNote" />
-        <icon :name="$icons.newspaper" />
-        <icon :name="$icons.officeBuilding" />
-        <icon :name="$icons.paperAirplane" />
-        <icon :name="$icons.paperClip" />
-        <icon :name="$icons.pause" />
-        <icon :name="$icons.pencilAlt" />
-        <icon :name="$icons.pencil" />
-        <icon :name="$icons.phoneIncoming" />
-        <icon :name="$icons.phoneMissedCall" />
-        <icon :name="$icons.phoneOutgoing" />
-        <icon :name="$icons.phone" />
-        <icon :name="$icons.photograph" />
-        <icon :name="$icons.play" />
-        <icon :name="$icons.plusCircle" />
-        <icon :name="$icons.plusSm" />
-        <icon :name="$icons.plus" />
-        <icon :name="$icons.presentationChartBar" />
-        <icon :name="$icons.presentationChartLine" />
-        <icon :name="$icons.printer" />
-        <icon :name="$icons.puzzle" />
-        <icon :name="$icons.qrcode" />
-        <icon :name="$icons.questionMarkCircle" />
-        <icon :name="$icons.receiptRefund" />
-        <icon :name="$icons.receiptTax" />
-        <icon :name="$icons.refresh" />
-        <icon :name="$icons.reply" />
-        <icon :name="$icons.rewind" />
-        <icon :name="$icons.rss" />
-        <icon :name="$icons.saveAs" />
-        <icon :name="$icons.save" />
-        <icon :name="$icons.scale" />
-        <icon :name="$icons.scissors" />
-        <icon :name="$icons.searchCircle" />
-        <icon :name="$icons.search" />
-        <icon :name="$icons.selector" />
-        <icon :name="$icons.server" />
-        <icon :name="$icons.share" />
-        <icon :name="$icons.shieldCheck" />
-        <icon :name="$icons.shieldExclamation" />
-        <icon :name="$icons.shoppingBag" />
-        <icon :name="$icons.shoppingCart" />
-        <icon :name="$icons.sortAscending" />
-        <icon :name="$icons.sortDescending" />
-        <icon :name="$icons.sparkles" />
-        <icon :name="$icons.speakerphone" />
-        <icon :name="$icons.star" />
-        <icon :name="$icons.statusOffline" />
-        <icon :name="$icons.statusOnline" />
-        <icon :name="$icons.stop" />
-        <icon :name="$icons.sun" />
-        <icon :name="$icons.support" />
-        <icon :name="$icons.switchHorizontal" />
-        <icon :name="$icons.switchVertical" />
-        <icon :name="$icons.table" />
-        <icon :name="$icons.tag" />
-        <icon :name="$icons.template" />
-        <icon :name="$icons.terminal" />
-        <icon :name="$icons.thumbDown" />
-        <icon :name="$icons.thumbUp" />
-        <icon :name="$icons.ticket" />
-        <icon :name="$icons.translate" />
-        <icon :name="$icons.trash" />
-        <icon :name="$icons.trendingDown" />
-        <icon :name="$icons.trendingUp" />
-        <icon :name="$icons.truck" />
-        <icon :name="$icons.upload" />
-        <icon :name="$icons.userAdd" />
-        <icon :name="$icons.userCircle" />
-        <icon :name="$icons.userGroup" />
-        <icon :name="$icons.userRemove" />
-        <icon :name="$icons.user" />
-        <icon :name="$icons.users" />
-        <icon :name="$icons.variable" />
-        <icon :name="$icons.videoCamera" />
-        <icon :name="$icons.viewBoards" />
-        <icon :name="$icons.viewGridAdd" />
-        <icon :name="$icons.viewGrid" />
-        <icon :name="$icons.viewList" />
-        <icon :name="$icons.volumeOff" />
-        <icon :name="$icons.volumeUp" />
-        <icon :name="$icons.wifi" />
-        <icon :name="$icons.xCircle" />
-        <icon :name="$icons.x" />
-        <icon :name="$icons.zoomIn" />
-        <icon :name="$icons.zoomOut" />
       </div>
     </section>
   </div>
@@ -799,55 +500,62 @@ import {
   Accordion,
   Collapse,
 } from '@/common'
-import { CheckboxField, InputField, SelectField, TextareaField } from '@/fields'
+import {
+  CheckboxField,
+  InputField,
+  SelectField,
+  TextareaField,
+  BasicSelectField,
+  SwitchField,
+} from '@/fields'
 import LoginForm from '@/forms/LoginForm.vue'
 
 import { reactive, ref } from 'vue'
-import { Bus } from '@/helpers'
+import { Bus, ErrorHandler } from '@/helpers'
 
 const isModalShown = ref(false)
 const isCollapseShown = ref(false)
 
+const SELECT_OPTIONS = [1, 2, 3, 4, 5]
+
 const form = reactive({
-  chbValue: false,
-  inputValue: '',
-  selectValue: '',
-  textareaValue: '',
+  input: '',
+  select: '',
+  textarea: '',
+  checkbox: false,
+  switch: false,
 })
 
-const handleClick = () => {
-  alert('some string')
-}
-
-const throwBusSuccess = () => {
-  Bus.success('Success')
-}
-
-const throwBusError = () => {
-  Bus.error('Error')
-}
-
-const throwBusWarning = () => {
-  Bus.warning('Warning')
-}
-
-const throwBusInfo = () => {
-  Bus.info('Info')
+const handleProcessError = () => {
+  ErrorHandler.process(new Error('some error message'))
 }
 </script>
 
 <style lang="scss" scoped>
 .ui-kit-page {
-  display: grid;
-  grid-gap: toRem(50);
-  padding-bottom: toRem(200);
+  display: flex;
+  flex-direction: column;
+  gap: toRem(24);
+  padding: toRem(24);
 }
 
 .ui-kit-page__buttons {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
-  gap: toRem(32);
+  gap: toRem(12);
+}
+
+.ui-kit-page__inputs,
+.ui-kit-page__select-fields {
+  display: grid;
+  align-items: start;
+  grid-template-columns: repeat(auto-fill, #{toRem(210)});
+  grid-gap: toRem(36);
+}
+
+.input__icon {
+  width: toRem(24);
+  height: toRem(24);
 }
 
 .ui-kit-page__inputs {
@@ -909,5 +617,11 @@ const throwBusInfo = () => {
   width: toRem(200);
   height: toRem(24);
   margin-bottom: toRem(16);
+}
+
+.ui-kit-page__basic-modal {
+  &::v-global(.basic-modal__pane) {
+    --basic-modal-max-width: #{toRem(452)};
+  }
 }
 </style>

@@ -1,21 +1,27 @@
 <template>
-  <transition
-    name="collapse__body-transition"
-    @enter="setHeightCSSVar"
-    @before-leave="setHeightCSSVar"
-  >
-    <div v-show="isShown" class="collapse__body">
-      <slot />
-    </div>
-  </transition>
+  <div class="collapse" ref="rootEl">
+    <transition
+      name="collapse__body-transition"
+      @enter="setHeightCSSVar"
+      @before-leave="setHeightCSSVar"
+    >
+      <div v-show="isShown" class="collapse__body">
+        <slot />
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script lang="ts" setup>
-withDefaults(
+import { onClickOutside } from '@vueuse/core'
+import { onMounted, ref } from 'vue'
+import { onBeforeRouteUpdate } from 'vue-router'
+
+const props = withDefaults(
   defineProps<{
-    isShown: boolean
     isOpenedByDefault?: boolean
     isCloseByClickOutside?: boolean
+    isShown: boolean
   }>(),
   {
     isOpenedByDefault: false,
@@ -23,8 +29,32 @@ withDefaults(
   },
 )
 
-const setHeightCSSVar = (element: HTMLElement) => {
-  element.style.setProperty(
+const emit = defineEmits<{
+  (event: 'update:isShown', value: boolean): void
+}>()
+
+const rootEl = ref<HTMLElement | null>(null)
+
+onBeforeRouteUpdate(() => {
+  closeCollapse()
+})
+
+onMounted(() => {
+  if (rootEl.value) {
+    if (props.isCloseByClickOutside) {
+      onClickOutside(rootEl, () => {
+        closeCollapse()
+      })
+    }
+  }
+})
+
+const closeCollapse = () => {
+  emit('update:isShown', false)
+}
+
+const setHeightCSSVar = (element: Element) => {
+  ;(element as HTMLElement).style.setProperty(
     '--collapse-body-height',
     `${element.scrollHeight}px`,
   )
@@ -32,14 +62,16 @@ const setHeightCSSVar = (element: HTMLElement) => {
 </script>
 
 <style lang="scss" scoped>
+.collapse__body {
+  overflow: hidden;
+}
+
 .collapse__body-transition-enter-active {
   animation: collapse-frame-keyframes 0.25s ease-in-out;
-  overflow: hidden;
 }
 
 .collapse__body-transition-leave-active {
   animation: collapse-frame-keyframes 0.25s ease-in-out reverse;
-  overflow: hidden;
 }
 
 @keyframes collapse-frame-keyframes {
