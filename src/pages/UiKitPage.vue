@@ -536,7 +536,7 @@ const handleProcessError = () => {
   display: flex;
   flex-direction: column;
   gap: toRem(24);
-  padding: toRem(24);
+  padding: toRem(24) var(--app-padding-right) toRem(24) var(--app-padding-left);
 }
 
 .ui-kit-page__buttons {

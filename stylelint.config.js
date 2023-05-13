@@ -11,6 +11,19 @@ module.exports = {
     /* disable unnecessary rules from recommended extends */
     'function-no-unknown': null,
     'at-rule-no-unknown': null,
+    'no-empty-first-line': null,
+    'selector-class-pattern': null,
+    'function-name-case': null,
+    'selector-no-vendor-prefix': null,
+    'custom-property-empty-line-before': null,
+    'no-empty-source': null,
+    'scss/at-else-empty-line-before': null,
+    'scss/at-if-closing-brace-space-after': null,
+    'scss/at-if-closing-brace-newline-after': null,
+    'scss/at-else-closing-brace-newline-after': null,
+    'scss/at-else-closing-brace-space-after': null,
+    'declaration-colon-newline-after': null,
+    'scss/at-function-pattern': null,
 
     'color-no-invalid-hex': [true, { severity: 'warning' }],
     'font-family-no-duplicate-names': [true, { severity: 'warning' }],
@@ -161,23 +174,10 @@ module.exports = {
     'color-function-notation': 'legacy',
     'scss/at-mixin-parentheses-space-before': 'always',
     'alpha-value-notation': 'number',
-    /* TEMP. disable */
-    'no-empty-first-line': null,
-    'selector-class-pattern': null,
-    'function-name-case': null,
-    'selector-no-vendor-prefix': null,
-    'custom-property-empty-line-before': null,
-    'no-empty-source': null,
-    'scss/at-else-empty-line-before': null,
-    'scss/at-if-closing-brace-space-after': null,
-    'scss/at-if-closing-brace-newline-after': null,
-    'scss/at-else-closing-brace-newline-after': null,
-    'scss/at-else-closing-brace-space-after': null,
-    'declaration-colon-newline-after': null,
-    'scss/at-function-pattern': null,
     'selector-not-notation': 'simple',
 
     // FIXME: deprecated
+    /* eslint-disable max-len */
     // 'at-rule-name-case': ['lower', { severity: 'warning' }],
     // 'at-rule-semicolon-space-before': ['never', { severity: 'warning' }],
     // 'at-rule-name-space-after': ['always', { severity: 'warning' }],
@@ -323,5 +323,6 @@ module.exports = {
     //     ignore: ['param'],
     //   },
     // ],
+    /* eslint-enable max-len */
   },
 }
