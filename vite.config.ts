@@ -79,7 +79,6 @@ export default defineConfig(({ mode }) => {
         '@': `${root}/`,
         '@config': `${root}/config.ts`,
         '@static': `${root}/../static`,
-        'near-api-js': 'node_modules/near-api-js/dist/near-api-js.js'
       },
     },
     /**
