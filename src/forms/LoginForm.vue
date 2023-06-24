@@ -31,7 +31,7 @@ import { AppButton } from '@/common'
 import { InputField } from '@/fields'
 
 import { reactive } from 'vue'
-import { Bus, ErrorHandler, email, required } from '@/helpers'
+import { bus, ErrorHandler, email, required, BUS_EVENTS } from '@/helpers'
 import { useI18n } from 'vue-i18n'
 import { useForm, useFormValidation } from '@/composables'
 
@@ -56,7 +56,7 @@ const submit = async () => {
 
   disableForm()
   try {
-    Bus.success(t('login-form.login-success-msg'))
+    bus.emit(BUS_EVENTS.success, t('login-form.login-success-msg'))
   } catch (error) {
     ErrorHandler.process(error)
   }

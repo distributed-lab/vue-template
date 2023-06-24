@@ -258,27 +258,27 @@
     <div class="ui-kit-page__buttons">
       <app-button
         size="small"
-        :text="'Bus.success'"
+        :text="'bus.success'"
         color="success"
-        @click="() => Bus.success('Some success message')"
+        @click="() => bus.emit(BUS_EVENTS.success, 'Some success message')"
       />
       <app-button
         size="small"
-        :text="'Bus.error'"
+        :text="'bus.error'"
         color="error"
-        @click="() => Bus.error('Some error message')"
+        @click="() => bus.emit(BUS_EVENTS.error, 'Some error message')"
       />
       <app-button
         size="small"
-        :text="'Bus.warning'"
+        :text="'bus.warning'"
         color="warning"
-        @click="() => Bus.warning('Some warning message')"
+        @click="() => bus.emit(BUS_EVENTS.warning, 'Some warning message')"
       />
       <app-button
         size="small"
-        :text="'Bus.info'"
+        :text="'bus.info'"
         color="info"
-        @click="() => Bus.info('Some info message')"
+        @click="() => bus.emit(BUS_EVENTS.info, 'Some info message')"
       />
 
       <app-button
@@ -511,7 +511,7 @@ import {
 import LoginForm from '@/forms/LoginForm.vue'
 
 import { reactive, ref } from 'vue'
-import { Bus, ErrorHandler } from '@/helpers'
+import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
 
 const isModalShown = ref(false)
 const isCollapseShown = ref(false)

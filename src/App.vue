@@ -15,7 +15,7 @@ import { AppNavbar } from '@/common'
 import { ref } from 'vue'
 import { useNotifications } from '@/composables'
 import { config } from '@config'
-import { Bus, ErrorHandler } from '@/helpers'
+import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
 import { NotificationPayload } from '@/types'
 
 const isAppInitialized = ref(false)
@@ -34,16 +34,16 @@ const init = async () => {
 }
 
 const initNotifications = () => {
-  Bus.on(Bus.eventList.success, payload =>
+  bus.on(BUS_EVENTS.success, payload =>
     showToast('success', payload as NotificationPayload),
   )
-  Bus.on(Bus.eventList.warning, payload =>
+  bus.on(BUS_EVENTS.warning, payload =>
     showToast('warning', payload as NotificationPayload),
   )
-  Bus.on(Bus.eventList.error, payload =>
+  bus.on(BUS_EVENTS.error, payload =>
     showToast('error', payload as NotificationPayload),
   )
-  Bus.on(Bus.eventList.info, payload =>
+  bus.on(BUS_EVENTS.info, payload =>
     showToast('info', payload as NotificationPayload),
   )
 }
