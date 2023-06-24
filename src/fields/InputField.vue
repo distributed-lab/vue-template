@@ -42,17 +42,13 @@
         >
           <icon
             class="input-field__password-icon"
-            :name="
-              isPasswordShown
-                ? ICON_NAMES.eyeFilled
-                : ICON_NAMES.eyeCrossedOutFilled
-            "
+            :name="isPasswordShown ? ICON_NAMES.eye : ICON_NAMES.eyeOff"
           />
         </button>
         <icon
           v-else-if="props.errorMessage"
           class="input-field__error-icon"
-          :name="ICON_NAMES.exclamationCircleFilled"
+          :name="ICON_NAMES.exclamationCircle"
         />
       </div>
     </div>
@@ -73,17 +69,11 @@
 
 <script lang="ts" setup>
 import { BN, DECIMALS } from '@distributedlab/tools'
-import {
-  computed,
-  getCurrentInstance,
-  onMounted,
-  ref,
-  useAttrs,
-  useSlots,
-} from 'vue'
+import { computed, onMounted, ref, useAttrs, useSlots } from 'vue'
 
 import { Icon } from '@/common'
 import { ICON_NAMES } from '@/enums'
+import { v4 as uuidv4 } from 'uuid'
 
 const props = withDefaults(
   defineProps<{
@@ -113,7 +103,7 @@ const attrs = useAttrs()
 
 const slots = useSlots()
 
-const uid = getCurrentInstance()?.uid
+const uid = uuidv4()
 
 const inputEl = ref<HTMLInputElement>()
 const nodeLeftWrp = ref<HTMLDivElement>()
@@ -142,6 +132,7 @@ const isReadonly = computed(() =>
 const listeners = computed(() => ({
   input: (event: Event) => {
     const eventTarget = event.target as HTMLInputElement
+
     if (isNumberType.value) {
       eventTarget.value = normalizeRange(normalizeNumber(eventTarget.value))
     }

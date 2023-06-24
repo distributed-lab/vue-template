@@ -8,7 +8,7 @@
         gridTemplateColumns: sizing,
       }"
     >
-      <skeleton v-for="scheme in schemes" :key="scheme" :scheme="scheme" />
+      <skeleton v-for="(scheme, idx) in schemes" :key="idx" :scheme="scheme" />
     </div>
   </div>
 </template>

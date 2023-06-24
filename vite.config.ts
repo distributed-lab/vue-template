@@ -3,7 +3,14 @@ import vue from '@vitejs/plugin-vue'
 import { defineConfig, loadEnv } from 'vite'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
+
+/**
+ * @description Enable import if you need polyfills
+ *
+ * import { nodePolyfills } from 'vite-plugin-node-polyfills'
+ * import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
+ * import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill'
+ */
 
 import * as fs from 'fs'
 import * as path from 'path'
@@ -32,7 +39,7 @@ export default defineConfig(({ mode }) => {
     publicDir: 'static',
     plugins: [
       vue(),
-      viteCommonjs(),
+
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
         symbolId: '[name]',
@@ -67,21 +74,42 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
-      dedupe: ['vue', 'vue-router', 'lodash', 'lodash-es'],
+      dedupe: ['vue', '@vueuse/core', 'lodash'],
       alias: {
         '@': `${root}/`,
         '@config': `${root}/config.ts`,
         '@static': `${root}/../static`,
+        'near-api-js': 'node_modules/near-api-js/dist/near-api-js.js'
       },
     },
-    optimizeDeps: {
-      disabled: false,
-    },
-    build: {
-      target: 'esnext',
-      commonjsOptions: {
-        include: [],
-      },
-    },
+    /**
+     * @description Enable configuration for polyfills
+     *
+     * optimizeDeps: {
+     *       esbuildOptions: {
+     *         define: {
+     *           global: 'globalThis',
+     *         },
+     *       },
+     *       // Enable esbuild polyfill plugins
+     *       plugins: [
+     *         NodeGlobalsPolyfillPlugin({
+     *           process: true,
+     *           buffer: true,
+     *         }),
+     *         NodeModulesPolyfillPlugin(),
+     *       ],
+     *     },
+     *     build: {
+     *       target: 'esnext',
+     *       rollupOptions: {
+     *         plugins: [
+     *           // Enable rollup polyfills plugin
+     *           // used during production bundling
+     *           nodePolyfills(),
+     *         ],
+     *       },
+     *     },
+     */
   }
 })

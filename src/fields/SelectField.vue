@@ -23,7 +23,7 @@
             <template v-if="modelValue">
               {{ modelValue }}
             </template>
-            <template v-else-if="!label">
+            <template v-else-if="!label && placeholder">
               <span class="select-field__placeholder">
                 {{ props.placeholder }}
               </span>
@@ -36,7 +36,7 @@
                 'select-field__select-head-indicator--open': isDropdownOpen,
               },
             ]"
-            :name="ICON_NAMES.triangleDown"
+            :name="$icons.arrowDown"
           />
         </button>
         <label
@@ -96,19 +96,12 @@
 </template>
 
 <script lang="ts" setup>
-import { onClickOutside } from '@vueuse/core'
-import {
-  computed,
-  getCurrentInstance,
-  onMounted,
-  ref,
-  useAttrs,
-  watch,
-} from 'vue'
-import { onBeforeRouteUpdate } from 'vue-router'
-
 import { Icon } from '@/common'
-import { ICON_NAMES } from '@/enums'
+
+import { onClickOutside } from '@vueuse/core'
+import { computed, onMounted, ref, useAttrs, watch } from 'vue'
+import { onBeforeRouteUpdate } from 'vue-router'
+import { v4 as uuidv4 } from 'uuid'
 
 const props = withDefaults(
   defineProps<{
@@ -140,7 +133,7 @@ const attrs = useAttrs()
 const selectElement = ref<HTMLDivElement>()
 
 const isDropdownOpen = ref(false)
-const uid = getCurrentInstance()?.uid
+const uid = uuidv4()
 
 onBeforeRouteUpdate(() => {
   closeDropdown()
