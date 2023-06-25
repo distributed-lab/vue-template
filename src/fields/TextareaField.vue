@@ -11,10 +11,6 @@
         :tabindex="isDisabled || isReadonly ? -1 : ($attrs.tabindex as number)"
         :disabled="isDisabled || isReadonly"
       />
-      <span
-        class="textarea-field__focus-indicator"
-        v-if="scheme === 'secondary'"
-      />
       <label
         v-if="label"
         :for="`textarea-field--${uid}`"
@@ -39,9 +35,10 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, getCurrentInstance, useAttrs } from 'vue'
+import { computed, useAttrs } from 'vue'
+import { v4 as uuidv4 } from 'uuid'
 
-type SCHEMES = 'primary' | 'secondary'
+type SCHEMES = 'primary'
 
 const props = withDefaults(
   defineProps<{
@@ -67,7 +64,7 @@ const emit = defineEmits<{
 
 const attrs = useAttrs()
 
-const uid = getCurrentInstance()?.uid
+const uid = uuidv4()
 
 const isDisabled = computed(() =>
   ['', 'disabled', true].includes(attrs.disabled as string | boolean),
@@ -135,19 +132,10 @@ const setHeightCSSVar = (element: Element) => {
 
   transition-property: all;
 
-  .textarea-field--secondary & {
-    padding: 0;
-    background: transparent;
-  }
-
   .textarea-field__textarea:not(:placeholder-shown) ~ & {
     top: 0;
     color: var(--field-text);
     border-color: var(--field-border-hover);
-
-    .textarea-field--secondary & {
-      transform: translateY(25%);
-    }
   }
 
   .textarea-field--error:not(:focus):not(:placeholder-shown) & {
@@ -168,11 +156,6 @@ const setHeightCSSVar = (element: Element) => {
   .textarea-field__textarea:not([disabled]):focus ~ & {
     color: var(--field-label-focus);
     font-weight: 700;
-
-    .textarea-field--secondary & {
-      transform: translateY(25%);
-      color: var(--primary-main);
-    }
   }
 
   .textarea-field__textarea:not(:focus):placeholder-shown:-webkit-autofill ~ & {
@@ -230,16 +213,6 @@ const setHeightCSSVar = (element: Element) => {
     @include field-border;
   }
 
-  .textarea-field--secondary & {
-    position: relative;
-    background: var(--field-bg-secondary);
-    box-shadow: inset 0 0 0 toRem(500) var(--field-bg-secondary),
-      0 toRem(2) 0 0 var(--field-border);
-    padding: calc(var(--field-padding-top) + #{toRem(12)})
-      var(--field-padding-right) var(--field-padding-bottom)
-      var(--field-padding-left);
-  }
-
   transition-property: all;
 
   &::-webkit-input-placeholder {
@@ -262,24 +235,10 @@ const setHeightCSSVar = (element: Element) => {
     @include field-placeholder;
   }
 
-  &:not(:placeholder-shown) {
-    .textarea-field--secondary & {
-      & + .textarea-field__focus-indicator:after {
-        width: 100%;
-      }
-    }
-  }
-
   .textarea-field--error.textarea-field--primary & {
     border-color: var(--field-error);
     box-shadow: inset 0 0 0 toRem(50) var(--field-bg-primary),
       0 0 0 toRem(1) var(--field-error);
-  }
-
-  .textarea-field--error.textarea-field--secondary & {
-    border-color: var(--field-error);
-    box-shadow: inset 0 0 0 toRem(50) var(--field-bg-secondary),
-      0 toRem(2) 0 0 var(--field-error);
   }
 
   &:not([disabled]):focus {
@@ -288,12 +247,6 @@ const setHeightCSSVar = (element: Element) => {
       box-shadow: inset 0 0 0 toRem(500) var(--field-bg-primary),
         0 0 0 toRem(1) var(--field-border-focus);
       border-color: var(--field-border-focus);
-    }
-
-    .textarea-field--secondary & {
-      & + .textarea-field__focus-indicator:after {
-        width: 100%;
-      }
     }
   }
 

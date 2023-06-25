@@ -69,7 +69,7 @@ const onChange = (event: Event) => {
 .checkbox-field {
   cursor: pointer;
   display: grid;
-  align-items: start;
+  align-items: center;
   grid-template-columns: toRem(18) 1fr;
   grid-gap: toRem(12);
   position: relative;
