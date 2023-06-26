@@ -38,7 +38,7 @@ $media-breakpoints: (
   font-size: var(--field-text-font-size);
   line-height: var(--field-text-line-height);
   -webkit-text-fill-color: var(--field-text-font-size);
-  color: var(--field-text-font-size);
+  color: var(--field-text);
   transition: color var(--field-transition-duration) ease;
   font-weight: 400;
 }
