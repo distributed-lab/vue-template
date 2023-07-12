@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Please check our [developers guide](https://gitlab.com/tokend/developers-guide)
 for further information about branching and tagging conventions.
 
-## Unreleased
+## [Unreleased]
+#### Removed
+- Unnecessary non-null assertion operator in `NoDataMessage`
+- Unnecessary non-null assertion operator in `ErrorMessage`
 
-## Fixed
+#### Fixed
 - Color property in `field-text` mixin
 
 ## [1.0.0-rc.1] - 2022-09-23
