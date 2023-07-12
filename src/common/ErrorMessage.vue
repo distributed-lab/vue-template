@@ -1,6 +1,6 @@
 <template>
   <div class="error-message">
-    <icon class="error-message__img" :name="iconName!" />
+    <icon class="error-message__img" :name="iconName" />
     <h3 v-if="title" class="error-message__title">
       {{ title }}
     </h3>

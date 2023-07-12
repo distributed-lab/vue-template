@@ -1,6 +1,6 @@
 <template>
   <div class="no-data-message">
-    <icon class="no-data-message__img" :name="iconName!" />
+    <icon class="no-data-message__img" :name="iconName" />
     <span v-if="message" class="no-data-message__message">
       {{ message }}
     </span>
