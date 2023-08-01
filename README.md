@@ -47,3 +47,6 @@ yarn rsc %release-version%
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details
+
+### Dealing with env variables
+Env variables can be rewritten by [env.is] (./static/env.js) file in runtime. To do so, we need to provide same [env variables](.env.example) there in json format
