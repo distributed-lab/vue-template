@@ -23,10 +23,10 @@ const root = path.resolve(__dirname, resolveApp('src'))
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
-  const isProduction = env.VITE_APP_ENVIRONMENT === 'production'
-  const isDevelopment = env.VITE_APP_ENVIRONMENT === 'development'
-  const isAnalyze = env.VITE_APP_ENVIRONMENT === 'analyze'
-  const buildVersion = env.VITE_APP_BUILD_VERSION
+  const isProduction = env.VITE_ENVIRONMENT === 'production'
+  const isDevelopment = env.VITE_ENVIRONMENT === 'development'
+  const isAnalyze = env.VITE_ENVIRONMENT === 'analyze'
+  const buildVersion = env.VITE_BUILD_VERSION
 
   return {
     ...(env.VITE_PORT
