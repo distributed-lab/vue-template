@@ -193,16 +193,12 @@ const normalizeRange = (value: string | number): string => {
 
   if (
     String(min.value) &&
-    BN.fromRaw(value, DECIMALS.WEI).isLessThan(
-      BN.fromRaw(min.value, DECIMALS.WEI),
-    )
+    BN.fromRaw(value, DECIMALS.WEI).lt(BN.fromRaw(min.value, DECIMALS.WEI))
   ) {
     result = min.value
   } else if (
     String(max.value) &&
-    BN.fromRaw(value, DECIMALS.WEI).isGreaterThan(
-      BN.fromRaw(max.value, DECIMALS.WEI),
-    )
+    BN.fromRaw(value, DECIMALS.WEI).gt(BN.fromRaw(max.value, DECIMALS.WEI))
   ) {
     result = max.value
   }

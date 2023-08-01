@@ -30,6 +30,9 @@ yarn rsc %release-version%
  docker build --no-cache --progress=plain --build-arg BUILD_VERSION=1.0.0-rc.0 -t vue-template .
 ```
 
+### Dealing with env variables
+Env variables can be rewritten by [env.is] (./static/env.js) file in runtime. To do so, we need to provide same [env variables](.env.example) there in json format
+
 ## Some additional features
 
 ### JsonApi lib
@@ -47,6 +50,3 @@ yarn rsc %release-version%
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details
-
-### Dealing with env variables
-Env variables can be rewritten by [env.is] (./static/env.js) file in runtime. To do so, we need to provide same [env variables](.env.example) there in json format

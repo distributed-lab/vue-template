@@ -47,6 +47,7 @@ const props = withDefaults(
 )
 
 const rootEl = ref<HTMLElement | null>(null)
+// eslint-disable-next-line vue/no-setup-props-destructure
 const isAccordionOpen = ref(props.isOpenedByDefault)
 
 onBeforeRouteUpdate(() => {

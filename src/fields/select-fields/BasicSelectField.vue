@@ -62,6 +62,7 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: string | number): void
 }>()
 
+// eslint-disable-next-line vue/no-setup-props-destructure
 const localModelValue = ref(props.modelValue)
 
 const selectedOption = computed(() => {

@@ -35,8 +35,10 @@ const initApp = async () => {
     app.config.globalProperties.$config = config
     app.config.globalProperties.$icons = ICON_NAMES
 
-    app.config.errorHandler = function (err, vm, info) {
-      log.error(`Error: ${err}; Info: ${info}`)
+    app.config.errorHandler = function (error, instance, info) {
+      log.error(error)
+      log.error(instance)
+      log.error(info)
     }
 
     app.mount('#app')

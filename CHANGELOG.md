@@ -8,59 +8,10 @@ Please check our [developers guide](https://gitlab.com/tokend/developers-guide)
 for further information about branching and tagging conventions.
 
 ## [Unreleased]
-#### Removed
-- Unnecessary non-null assertion operator in `NoDataMessage`
-- Unnecessary non-null assertion operator in `ErrorMessage`
-
-#### Fixed
-- Color property in `field-text` mixin
-
-## [1.0.0-rc.1] - 2022-09-23
-#### Added
-- Eslint
-- Stylelint
-- prettier
-- Vite bundler
-- PiniaJS store
-- Vue-Router
-- CI/CD
-  - gitlab-ci
-  - werf.yaml
-- Dockerfile
-- nginx.conf
-- static dir as public dir
-  - branding static files
-  - styles and files for init-loader
-  - noscript files
-- sanity-check
-- ErrorHandler
-- Event Bus by mitt
-- i18n localization
-- MathUtil
-- DateUtil
-- Styles structure
-- Loader
-  - Spinner
-- ErrorMessage
-- AppButton
-- App navbar
-- App logo
-- Icon
-- Fields
-  - InputField
-  - CheckboxField
-- composables
-  - useForm
-  - useFormValidation
-  - useNotifications
-- Collapse
-- Unit tests
-- versioning
 
 ## [1.0.0-rc.0] - 2021-12-23
 #### Under the hood changes
-- Initiated and setup project
+- Forked from [vue-template](https://gitlab.com/distributed_lab/frontend/vue-template)
 
-[Unreleased]: https://gitlab.com/distributed_lab/frontend/vue-template/compare/1.0.0-rc.1...main
-[1.0.0-rc.1]: https://gitlab.com/distributed_lab/frontend/vue-template/compare/1.0.0-rc.0...1.0.0-rc.1
+[Unreleased]: https://gitlab.com/distributed_lab/frontend/vue-template/compare/1.0.0-rc.0...main
 [1.0.0-rc.0]: https://gitlab.com/distributed_lab/frontend/vue-template/tags/1.0.0-rc.0
