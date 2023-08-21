@@ -72,7 +72,7 @@ module.exports = {
         location: 'anywhere',
       },
     ],
-    'no-return-await': 0,
+    'no-return-await': 1,
     'object-curly-spacing': ['error', 'always'],
     'no-var': 'error',
     'comma-dangle': [1, 'always-multiline'],
