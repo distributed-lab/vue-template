@@ -6,21 +6,21 @@ import {
   useRouter,
 } from 'vue-router'
 
-import { ROUTE_NAMES } from '@/enums'
+import { RouteNames } from '@/enums'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/:catchAll(.*)',
-    redirect: { name: ROUTE_NAMES.uiKit },
+    redirect: { name: RouteNames.uiKit },
   },
   {
     path: '/ui-kit',
-    name: ROUTE_NAMES.uiKit,
+    name: RouteNames.uiKit,
     component: () => import('@/pages/UiKitPage.vue'),
   },
   {
     path: '/complex-form',
-    name: ROUTE_NAMES.complexForm,
+    name: RouteNames.complexForm,
     component: () => import('@/forms/ComplexForm.vue'),
   },
 ]

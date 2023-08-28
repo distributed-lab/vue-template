@@ -36,7 +36,7 @@
                 'select-field__select-head-indicator--open': isDropdownOpen,
               },
             ]"
-            :name="$icons.arrowDown"
+            :name="$icons.ArrowDown"
           />
         </button>
         <label

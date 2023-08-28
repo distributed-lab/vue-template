@@ -10,14 +10,14 @@
 <script lang="ts" setup>
 import { Icon } from '@/common'
 
-import { ICON_NAMES } from '@/enums'
+import { IconNames } from '@/enums'
 
 withDefaults(
   defineProps<{
     message?: string
-    iconName?: ICON_NAMES
+    iconName?: IconNames
   }>(),
-  { message: '', iconName: ICON_NAMES.template },
+  { message: '', iconName: IconNames.template },
 )
 </script>
 

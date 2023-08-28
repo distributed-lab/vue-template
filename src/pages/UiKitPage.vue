@@ -56,76 +56,76 @@
       <app-button size="large" :text="'button'" scheme="none" />
     </div>
     <div class="ui-kit-page__buttons">
-      <app-button size="small" :icon-right="$icons.plus" />
-      <app-button size="small" :icon-right="$icons.plus" scheme="flat" />
-      <app-button size="small" :icon-right="$icons.plus" scheme="none" />
+      <app-button size="small" :icon-right="$icons.Plus" />
+      <app-button size="small" :icon-right="$icons.Plus" scheme="flat" />
+      <app-button size="small" :icon-right="$icons.Plus" scheme="none" />
 
-      <app-button size="small" :icon-right="$icons.plus" color="success" />
+      <app-button size="small" :icon-right="$icons.Plus" color="success" />
       <app-button
         size="small"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="flat"
         color="success"
       />
       <app-button
         size="small"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="none"
         color="success"
       />
 
-      <app-button size="small" :icon-right="$icons.plus" color="error" />
+      <app-button size="small" :icon-right="$icons.Plus" color="error" />
       <app-button
         size="small"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="flat"
         color="error"
       />
       <app-button
         size="small"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="none"
         color="error"
       />
 
-      <app-button size="small" :icon-right="$icons.plus" color="warning" />
+      <app-button size="small" :icon-right="$icons.Plus" color="warning" />
       <app-button
         size="small"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="flat"
         color="warning"
       />
       <app-button
         size="small"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="none"
         color="warning"
       />
 
-      <app-button size="small" :icon-right="$icons.plus" color="warning" />
+      <app-button size="small" :icon-right="$icons.Plus" color="warning" />
       <app-button
         size="small"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="flat"
         color="warning"
       />
       <app-button
         size="small"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="none"
         color="warning"
       />
 
-      <app-button size="small" :icon-right="$icons.plus" color="info" />
+      <app-button size="small" :icon-right="$icons.Plus" color="info" />
       <app-button
         size="small"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="flat"
         color="info"
       />
       <app-button
         size="small"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="none"
         color="info"
       />
@@ -134,38 +134,38 @@
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
       />
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="flat"
       />
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="none"
       />
 
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         color="success"
       />
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="flat"
         color="success"
       />
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="none"
         color="success"
       />
@@ -173,20 +173,20 @@
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         color="error"
       />
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="flat"
         color="error"
       />
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="none"
         color="error"
       />
@@ -194,20 +194,20 @@
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         color="warning"
       />
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="flat"
         color="warning"
       />
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="none"
         color="warning"
       />
@@ -215,20 +215,20 @@
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         color="warning"
       />
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="flat"
         color="warning"
       />
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="none"
         color="warning"
       />
@@ -236,20 +236,20 @@
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         color="info"
       />
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="flat"
         color="info"
       />
       <app-button
         size="small"
         modification="border-circle"
-        :icon-right="$icons.plus"
+        :icon-right="$icons.Plus"
         scheme="none"
         color="info"
       />
@@ -309,7 +309,7 @@
         :placeholder="'placeholder'"
       >
         <template #nodeLeft>
-          <icon class="input__icon" :name="$icons.search" />
+          <icon class="input__icon" :name="$icons.Search" />
         </template>
       </input-field>
       <input-field
@@ -318,10 +318,10 @@
         :placeholder="'placeholder'"
       >
         <template #nodeLeft>
-          <icon class="input__icon" :name="$icons.search" />
+          <icon class="input__icon" :name="$icons.Search" />
         </template>
         <template #nodeRight>
-          <icon class="input__icon" :name="$icons.plus" />
+          <icon class="input__icon" :name="$icons.Plus" />
         </template>
       </input-field>
       <input-field
@@ -331,10 +331,10 @@
         :note="'lorem ipsum dolor sit amet concestetur!'"
       >
         <template #nodeLeft>
-          <icon class="input__icon" :name="$icons.search" />
+          <icon class="input__icon" :name="$icons.Search" />
         </template>
         <template #nodeRight>
-          <icon class="input__icon" :name="$icons.plus" />
+          <icon class="input__icon" :name="$icons.Plus" />
         </template>
       </input-field>
       <input-field
@@ -345,10 +345,10 @@
         disabled
       >
         <template #nodeLeft>
-          <icon class="input__icon" :name="$icons.search" />
+          <icon class="input__icon" :name="$icons.Search" />
         </template>
         <template #nodeRight>
-          <icon class="input__icon" :name="$icons.plus" />
+          <icon class="input__icon" :name="$icons.Plus" />
         </template>
       </input-field>
     </div>
@@ -474,16 +474,16 @@
         </div>
       </basic-modal>
       <div class="ui-kit-page__icons">
-        <icon :name="$icons.academicCap" />
-        <icon :name="$icons.adjustments" />
-        <icon :name="$icons.annotation" />
-        <icon :name="$icons.archive" />
-        <icon :name="$icons.arrowCircleDown" />
-        <icon :name="$icons.arrowCircleLeft" />
-        <icon :name="$icons.arrowCircleRight" />
+        <icon :name="$icons.AcademicCap" />
+        <icon :name="$icons.Adjustments" />
+        <icon :name="$icons.Annotation" />
+        <icon :name="$icons.Archive" />
+        <icon :name="$icons.ArrowCircleDown" />
+        <icon :name="$icons.ArrowCircleLeft" />
+        <icon :name="$icons.ArrowCircleRight" />
         <icon :name="$icons.arrowCircleUp" />
-        <icon :name="$icons.arrowDown" />
-        <icon :name="$icons.arrowLeft" />
+        <icon :name="$icons.ArrowDown" />
+        <icon :name="$icons.ArrowLeft" />
       </div>
     </section>
   </div>

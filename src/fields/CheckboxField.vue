@@ -25,7 +25,7 @@
         <icon
           v-if="modelValue"
           class="checkbox-field__frame-icon"
-          :name="ICON_NAMES.check"
+          :name="$icons.Check"
         />
       </span>
     </span>
@@ -38,7 +38,6 @@
 
 <script lang="ts" setup>
 import { Icon } from '@/common'
-import { ICON_NAMES } from '@/enums'
 
 withDefaults(
   defineProps<{

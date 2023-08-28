@@ -18,13 +18,13 @@
 import { Icon } from '@/common'
 
 import { computed } from 'vue'
-import { ICON_NAMES } from '@/enums'
+import { IconNames } from '@/enums'
 
 const props = withDefaults(
   defineProps<{
     title?: string
     message: string
-    iconName?: ICON_NAMES
+    iconName?: IconNames
   }>(),
   {
     title: '',
@@ -32,7 +32,7 @@ const props = withDefaults(
   },
 )
 
-const toastIcon = computed(() => props.iconName || ICON_NAMES.checkCircle)
+const toastIcon = computed(() => props.iconName || IconNames.CheckCircle)
 </script>
 
 <style lang="scss">

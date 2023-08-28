@@ -59,7 +59,7 @@ import { computed, useAttrs, useSlots } from 'vue'
 import type { LocationAsRelativeRaw } from 'vue-router'
 
 import { Icon } from '@/common'
-import type { ICON_NAMES } from '@/enums'
+import type { IconNames } from '@/enums'
 
 type ButtonType = 'button' | 'submit' | 'reset'
 
@@ -72,8 +72,8 @@ const props = withDefaults(
     size?: 'large' | 'medium' | 'small' | 'x-small' | 'none'
     route?: LocationAsRelativeRaw
     href?: string
-    iconLeft?: ICON_NAMES
-    iconRight?: ICON_NAMES
+    iconLeft?: IconNames
+    iconRight?: IconNames
   }>(),
   {
     text: '',

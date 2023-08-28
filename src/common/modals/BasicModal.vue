@@ -17,7 +17,7 @@
           <app-button
             class="basic-modal__close-btn"
             scheme="none"
-            :icon-right="ICON_NAMES.x"
+            :icon-right="$icons.X"
             @click="modal.close"
           />
         </div>
@@ -31,7 +31,6 @@
 import { ref, watch } from 'vue'
 
 import { AppButton, Modal } from '@/common'
-import { ICON_NAMES } from '@/enums'
 
 const props = withDefaults(
   defineProps<{

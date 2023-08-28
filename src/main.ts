@@ -5,7 +5,7 @@ import App from '@/App.vue'
 import log from 'loglevel'
 
 import VueToastificationPlugin from 'vue-toastification'
-import { ICON_NAMES, ROUTE_NAMES } from '@/enums'
+import { IconNames, RouteNames } from '@/enums'
 import { createApp, getCurrentInstance, h } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { i18n } from '@/localization'
@@ -31,9 +31,9 @@ const initApp = async () => {
 
     app.use(router).use(store).use(i18n).use(VueToastificationPlugin)
 
-    app.config.globalProperties.$routes = ROUTE_NAMES
+    app.config.globalProperties.$routes = RouteNames
     app.config.globalProperties.$config = config
-    app.config.globalProperties.$icons = ICON_NAMES
+    app.config.globalProperties.$icons = IconNames
 
     app.config.errorHandler = function (error, instance, info) {
       log.error(error)

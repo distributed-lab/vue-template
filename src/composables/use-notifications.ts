@@ -1,5 +1,5 @@
 import { useI18n } from 'vue-i18n'
-import { ICON_NAMES } from '@/enums'
+import { IconNames } from '@/enums'
 import isObject from 'lodash/isObject'
 import { TYPE, useToast } from 'vue-toastification'
 
@@ -28,11 +28,11 @@ export const useNotifications = () => {
     [TYPE.WARNING]: t('notification.default-message-warning'),
   }
   const defaultIconNames = {
-    [TYPE.DEFAULT]: ICON_NAMES.exclamationCircle,
-    [TYPE.INFO]: ICON_NAMES.exclamationCircle,
-    [TYPE.SUCCESS]: ICON_NAMES.checkCircle,
-    [TYPE.ERROR]: ICON_NAMES.xCircle,
-    [TYPE.WARNING]: ICON_NAMES.shieldExclamation,
+    [TYPE.DEFAULT]: IconNames.ExclamationCircle,
+    [TYPE.INFO]: IconNames.ExclamationCircle,
+    [TYPE.SUCCESS]: IconNames.CheckCircle,
+    [TYPE.ERROR]: IconNames.XCircle,
+    [TYPE.WARNING]: IconNames.ShieldExclamation,
   }
 
   const showToast = (
@@ -41,7 +41,7 @@ export const useNotifications = () => {
   ) => {
     let title = ''
     let message = ''
-    let iconName: ICON_NAMES | undefined
+    let iconName: IconNames | undefined
 
     if (isObject(payload)) {
       const msgPayload = payload as NotificationObjectPayload

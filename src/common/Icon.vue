@@ -5,10 +5,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ICON_NAMES } from '@/enums'
+import { IconNames } from '@/enums'
 
 defineProps<{
-  name: ICON_NAMES
+  name: IconNames
 }>()
 </script>
 

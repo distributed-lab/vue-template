@@ -13,20 +13,20 @@
 <script lang="ts" setup>
 import { Icon } from '@/common'
 
-import { ICON_NAMES } from '@/enums'
+import { IconNames } from '@/enums'
 
 withDefaults(
   defineProps<{
     title?: string
     message?: string
     schema?: 'large' | 'small'
-    iconName?: ICON_NAMES
+    iconName?: IconNames
   }>(),
   {
     title: '',
     message: '',
     schema: 'large',
-    iconName: ICON_NAMES.exclamationCircle,
+    iconName: IconNames.ExclamationCircle,
   },
 )
 </script>
