@@ -394,27 +394,27 @@
 </template>
 
 <script lang="ts" setup>
+import { reactive, ref } from 'vue'
+
 import {
+  Accordion,
   AppButton,
   BasicModal,
-  ErrorMessage,
-  NoDataMessage,
-  Loader,
-  Icon,
-  Accordion,
   Collapse,
+  ErrorMessage,
+  Icon,
+  Loader,
+  NoDataMessage,
 } from '@/common'
 import {
+  BasicSelectField,
   CheckboxField,
   InputField,
   SelectField,
-  TextareaField,
-  BasicSelectField,
   SwitchField,
+  TextareaField,
 } from '@/fields'
 import LoginForm from '@/forms/LoginForm.vue'
-
-import { reactive, ref } from 'vue'
 import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
 
 const isModalShown = ref(false)

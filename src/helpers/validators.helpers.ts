@@ -1,14 +1,15 @@
+import { ValidationRule } from '@vuelidate/core'
 import {
-  required as _required,
   email as _email,
-  minLength as _minLength,
   maxLength as _maxLength,
+  minLength as _minLength,
+  required as _required,
   sameAs as _sameAs,
 } from '@vuelidate/validators'
-import { ValidationRule } from '@vuelidate/core'
-import { Ref } from 'vue'
 import { createI18nMessage, MessageProps } from '@vuelidate/validators'
 import get from 'lodash/get'
+import { Ref } from 'vue'
+
 import { i18n } from '@/localization'
 
 const { t } = i18n.global || i18n

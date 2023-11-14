@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 /* create skeletons */
-import { Spinner, Skeleton } from '@/common/loaders'
+import { Skeleton, Spinner } from '@/common/loaders'
 
 withDefaults(
   defineProps<{

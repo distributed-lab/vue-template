@@ -1,9 +1,9 @@
-import { useI18n } from 'vue-i18n'
-import { IconNames } from '@/enums'
 import isObject from 'lodash/isObject'
+import { useI18n } from 'vue-i18n'
 import { TYPE, useToast } from 'vue-toastification'
 
 import { DefaultToast } from '@/common'
+import { IconNames } from '@/enums'
 import { CommonNotificationTypes, NotificationObjectPayload } from '@/types'
 
 const MINUTE = 60 * 1000

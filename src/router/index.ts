@@ -25,4 +25,4 @@ const router = createRouter({
   scrollBehavior: () => ({ top: 0, left: 0 }),
 })
 
-export { router, useRouter, useRoute }
+export { router, useRoute, useRouter }

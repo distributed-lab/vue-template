@@ -31,8 +31,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, useAttrs } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
+import { computed, useAttrs } from 'vue'
 
 type SCHEMES = 'primary'
 

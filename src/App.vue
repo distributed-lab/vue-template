@@ -10,11 +10,11 @@
 </template>
 
 <script lang="ts" setup>
-import { AppNavbar } from '@/common'
-
-import { onUnmounted, ref } from 'vue'
-import { useNotifications } from '@/composables'
 import { config } from '@config'
+import { onUnmounted, ref } from 'vue'
+
+import { AppNavbar } from '@/common'
+import { useNotifications } from '@/composables'
 import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
 import { NotificationPayload } from '@/types'
 

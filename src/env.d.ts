@@ -1,7 +1,8 @@
 /// <reference types="vite/client" />
 import { config } from '@config'
-import { IconNames, RouteNames } from '@/enums'
 import { WritableComputedRef } from 'vue'
+
+import { IconNames, RouteNames } from '@/enums'
 
 declare module '@vue/runtime-core' {
   export interface ComponentCustomProperties {

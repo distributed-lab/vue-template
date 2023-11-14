@@ -87,12 +87,12 @@
 </template>
 
 <script lang="ts" setup>
-import { Icon } from '@/common'
-
 import { onClickOutside } from '@vueuse/core'
+import { v4 as uuidv4 } from 'uuid'
 import { computed, onMounted, ref, useAttrs, watch } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
-import { v4 as uuidv4 } from 'uuid'
+
+import { Icon } from '@/common'
 
 const props = withDefaults(
   defineProps<{

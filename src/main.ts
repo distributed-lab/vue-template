@@ -1,15 +1,15 @@
 import '@/styles/app.scss'
 import 'virtual:svg-icons-register'
 
-import App from '@/App.vue'
+import { config } from '@config'
 import log from 'loglevel'
-
-import VueToastificationPlugin from 'vue-toastification'
-import { IconNames, RouteNames } from '@/enums'
 import { createApp, getCurrentInstance, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import VueToastificationPlugin from 'vue-toastification'
+
+import App from '@/App.vue'
+import { IconNames, RouteNames } from '@/enums'
 import { i18n } from '@/localization'
-import { config } from '@config'
 import { router } from '@/router'
 import { store } from '@/store'
 

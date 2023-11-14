@@ -25,7 +25,7 @@ module.exports = {
     '@vue/prettier',
     '@vue/eslint-config-prettier',
   ],
-  plugins: ['promise'],
+  plugins: ['promise', 'simple-import-sort'],
   globals: {
     defineProps: 'readonly',
     defineEmits: 'readonly',
@@ -49,6 +49,8 @@ module.exports = {
         ignoreText: ['—', '|', '×'],
       },
     ],
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
     'arrow-parens': 0,
     'no-debugger': 1,
     'no-warning-comments': [

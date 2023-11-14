@@ -61,10 +61,10 @@
 
 <script lang="ts" setup>
 import { BN, DECIMALS } from '@distributedlab/tools'
+import { v4 as uuidv4 } from 'uuid'
 import { computed, onMounted, ref, useAttrs, useSlots } from 'vue'
 
 import { Icon } from '@/common'
-import { v4 as uuidv4 } from 'uuid'
 
 const props = withDefaults(
   defineProps<{

@@ -60,11 +60,11 @@
 </template>
 
 <script lang="ts" setup>
-import { AppButton } from '@/common'
-import { InputField } from '@/fields'
-
-import { useForm, useFormValidation } from '@/composables'
 import { reactive } from 'vue'
+
+import { AppButton } from '@/common'
+import { useForm, useFormValidation } from '@/composables'
+import { InputField } from '@/fields'
 import { required } from '@/helpers'
 
 const form = reactive({

@@ -12,7 +12,6 @@
 
 <script lang="ts" setup>
 import { Icon } from '@/common'
-
 import { IconNames } from '@/enums'
 
 withDefaults(

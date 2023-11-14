@@ -15,9 +15,9 @@
 </template>
 
 <script lang="ts" setup>
-import { Icon } from '@/common'
-
 import { computed } from 'vue'
+
+import { Icon } from '@/common'
 import { IconNames } from '@/enums'
 
 const props = withDefaults(

@@ -27,13 +27,13 @@
 </template>
 
 <script lang="ts" setup>
-import { AppButton } from '@/common'
-import { InputField } from '@/fields'
-
 import { reactive } from 'vue'
-import { bus, ErrorHandler, email, required, BUS_EVENTS } from '@/helpers'
 import { useI18n } from 'vue-i18n'
+
+import { AppButton } from '@/common'
 import { useForm, useFormValidation } from '@/composables'
+import { InputField } from '@/fields'
+import { bus, BUS_EVENTS, email, ErrorHandler, required } from '@/helpers'
 
 const { t } = useI18n({ useScope: 'global' })
 const form = reactive({

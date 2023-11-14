@@ -2821,6 +2821,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-simple-import-sort@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "eslint-plugin-simple-import-sort@npm:10.0.0"
+  peerDependencies:
+    eslint: ">=5.0.0"
+  checksum: 23221ff63f80f9c52da807d388ee8a51bc36a3b73345f60ec886e7973c28d75eb1d1e47f7f2916a7c1f94a1b5037b1450356a64a8fbd58096fd6bee57c6e3e48
+  languageName: node
+  linkType: hard
+
 "eslint-plugin-vue-i18n@npm:^0.3.0":
   version: 0.3.0
   resolution: "eslint-plugin-vue-i18n@npm:0.3.0"
@@ -7395,6 +7404,7 @@ __metadata:
     eslint: ^8.53.0
     eslint-plugin-prettier: ^5.0.1
     eslint-plugin-promise: ^6.1.1
+    eslint-plugin-simple-import-sort: ^10.0.0
     eslint-plugin-vue: ^9.18.1
     eslint-plugin-vue-i18n: ^0.3.0
     lodash: ^4.17.21
