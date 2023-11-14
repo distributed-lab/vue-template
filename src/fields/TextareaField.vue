@@ -237,14 +237,16 @@ const setHeightCSSVar = (element: Element) => {
 
   .textarea-field--error.textarea-field--primary & {
     border-color: var(--field-error);
-    box-shadow: inset 0 0 0 toRem(50) var(--field-bg-primary),
+    box-shadow:
+      inset 0 0 0 toRem(50) var(--field-bg-primary),
       0 0 0 toRem(1) var(--field-error);
   }
 
   &:not([disabled]):focus {
     .textarea-field--primary & {
       box-sizing: border-box;
-      box-shadow: inset 0 0 0 toRem(500) var(--field-bg-primary),
+      box-shadow:
+        inset 0 0 0 toRem(500) var(--field-bg-primary),
         0 0 0 toRem(1) var(--field-border-focus);
       border-color: var(--field-border-focus);
     }
