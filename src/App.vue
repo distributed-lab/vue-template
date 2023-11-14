@@ -2,7 +2,10 @@
   <div v-if="isAppInitialized" class="app__container">
     <app-navbar class="app__navbar" />
     <router-view v-slot="{ Component, route }">
-      <transition :name="route.meta.transition || 'fade'" mode="out-in">
+      <transition
+        :name="(route.meta.transition as string) || 'fade'"
+        mode="out-in"
+      >
         <component class="app__main" :is="Component" />
       </transition>
     </router-view>
@@ -12,7 +15,7 @@
 <script lang="ts" setup>
 import { AppNavbar } from '@/common'
 
-import { ref } from 'vue'
+import { onUnmounted, ref } from 'vue'
 import { useNotifications } from '@/composables'
 import { config } from '@config'
 import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
@@ -34,19 +37,30 @@ const init = async () => {
 }
 
 const initNotifications = () => {
-  bus.on(BUS_EVENTS.success, payload =>
-    showToast('success', payload as NotificationPayload),
-  )
-  bus.on(BUS_EVENTS.warning, payload =>
-    showToast('warning', payload as NotificationPayload),
-  )
-  bus.on(BUS_EVENTS.error, payload =>
-    showToast('error', payload as NotificationPayload),
-  )
-  bus.on(BUS_EVENTS.info, payload =>
-    showToast('info', payload as NotificationPayload),
-  )
+  bus.on(BUS_EVENTS.success, showSuccessToast)
+  bus.on(BUS_EVENTS.warning, showWarningToast)
+  bus.on(BUS_EVENTS.error, showErrorToast)
+  bus.on(BUS_EVENTS.info, showInfoToast)
 }
+
+onUnmounted(() => {
+  bus.off(BUS_EVENTS.success, showSuccessToast)
+  bus.off(BUS_EVENTS.warning, showWarningToast)
+  bus.off(BUS_EVENTS.error, showErrorToast)
+  bus.off(BUS_EVENTS.info, showInfoToast)
+})
+
+const showSuccessToast = (payload: unknown) =>
+  showToast('success', payload as NotificationPayload)
+
+const showWarningToast = (payload: unknown) =>
+  showToast('warning', payload as NotificationPayload)
+
+const showErrorToast = (payload: unknown) =>
+  showToast('error', payload as NotificationPayload)
+
+const showInfoToast = (payload: unknown) =>
+  showToast('info', payload as NotificationPayload)
 
 init()
 </script>

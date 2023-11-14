@@ -7,28 +7,32 @@
       :to="route"
     >
       <icon v-if="iconLeft" class="app-button__icon-left" :name="iconLeft" />
+
       <template v-if="$slots.default">
         <slot />
       </template>
-      <template v-else>
-        <span v-if="text" class="app-button__text">
+      <template v-else-if="text">
+        <span class="app-button__text">
           {{ text }}
         </span>
       </template>
+
       <icon v-if="iconRight" class="app-button__icon-right" :name="iconRight" />
     </router-link>
   </template>
   <template v-else-if="href">
     <a class="app-button" :class="buttonClasses" v-bind="$attrs" :href="href">
       <icon v-if="iconLeft" class="app-button__icon-left" :name="iconLeft" />
+
       <template v-if="$slots.default">
         <slot />
       </template>
-      <template v-else>
-        <span v-if="text" class="app-button__text">
+      <template v-else-if="text">
+        <span class="app-button__text">
           {{ text }}
         </span>
       </template>
+
       <icon v-if="iconRight" class="app-button__icon-right" :name="iconRight" />
     </a>
   </template>
@@ -41,14 +45,16 @@
       :type="buttonType"
     >
       <icon v-if="iconLeft" class="app-button__icon-left" :name="iconLeft" />
+
       <template v-if="$slots.default">
         <slot />
       </template>
-      <template v-else>
-        <span v-if="text" class="app-button__text">
+      <template v-else-if="text">
+        <span class="app-button__text">
           {{ text }}
         </span>
       </template>
+
       <icon v-if="iconRight" class="app-button__icon-right" :name="iconRight" />
     </button>
   </template>
@@ -254,16 +260,43 @@ const buttonType = computed<ButtonType>(
     --app-button-text-active: var(--app-button-none-text-active);
   }
 
+  &--secondary {
+    --app-button-filled-bg: var(--background-tertiary-main);
+    --app-button-filled-bg-hover: var(--background-tertiary-main);
+    --app-button-filled-bg-focused: var(--background-tertiary-main);
+    --app-button-filled-bg-active: var(--background-tertiary-main);
+
+    --app-button-filled-text: var(--text-primary-invert-main);
+    --app-button-filled-text-hover: var(--text-primary-invert-main);
+    --app-button-filled-text-focused: var(--text-primary-invert-main);
+    --app-button-filled-text-active: var(--text-primary-invert-main);
+
+    --app-button-flat-text: var(--background-tertiary-main);
+    --app-button-flat-text-hover: var(--background-tertiary-main);
+    --app-button-flat-text-focused: var(--background-tertiary-main);
+    --app-button-flat-text-active: var(--background-tertiary-main);
+
+    --app-button-flat-border: #{toRem(1)} solid var(--background-tertiary-main);
+    --app-button-flat-border-hover: var(--app-button-flat-border);
+    --app-button-flat-border-focused: var(--app-button-flat-border);
+    --app-button-flat-border-active: #{toRem(1)} solid var(--background-tertiary-main);
+
+    --app-button-none-text: var(--background-tertiary-main);
+    --app-button-none-text-hover: var(--background-tertiary-main);
+    --app-button-none-text-focused: var(--background-tertiary-main);
+    --app-button-none-text-active: var(--background-tertiary-main);
+  }
+
   &--success {
     --app-button-filled-bg: var(--success-main);
     --app-button-filled-bg-hover: var(--success-main);
     --app-button-filled-bg-focused: var(--success-main);
     --app-button-filled-bg-active: var(--success-dark);
 
-    --app-button-filled-text: var(--text-primary-light);
-    --app-button-filled-text-hover: var(--text-primary-light);
-    --app-button-filled-text-focused: var(--text-primary-light);
-    --app-button-filled-text-active: var(--text-primary-light);
+    --app-button-filled-text: var(--text-primary-invert-main);
+    --app-button-filled-text-hover: var(--text-primary-invert-main);
+    --app-button-filled-text-focused: var(--text-primary-invert-main);
+    --app-button-filled-text-active: var(--text-primary-invert-main);
 
     --app-button-flat-text: var(--success-main);
     --app-button-flat-text-hover: var(--success-main);
@@ -287,10 +320,10 @@ const buttonType = computed<ButtonType>(
     --app-button-filled-bg-focused: var(--error-main);
     --app-button-filled-bg-active: var(--error-dark);
 
-    --app-button-filled-text: var(--text-primary-light);
-    --app-button-filled-text-hover: var(--text-primary-light);
-    --app-button-filled-text-focused: var(--text-primary-light);
-    --app-button-filled-text-active: var(--text-primary-light);
+    --app-button-filled-text: var(--text-primary-invert-main);
+    --app-button-filled-text-hover: var(--text-primary-invert-main);
+    --app-button-filled-text-focused: var(--text-primary-invert-main);
+    --app-button-filled-text-active: var(--text-primary-invert-main);
 
     --app-button-flat-text: var(--error-main);
     --app-button-flat-text-hover: var(--error-main);
@@ -314,10 +347,10 @@ const buttonType = computed<ButtonType>(
     --app-button-filled-bg-focused: var(--warning-main);
     --app-button-filled-bg-active: var(--warning-dark);
 
-    --app-button-filled-text: var(--text-primary-light);
-    --app-button-filled-text-hover: var(--text-primary-light);
-    --app-button-filled-text-focused: var(--text-primary-light);
-    --app-button-filled-text-active: var(--text-primary-light);
+    --app-button-filled-text: var(--text-primary-invert-main);
+    --app-button-filled-text-hover: var(--text-primary-invert-main);
+    --app-button-filled-text-focused: var(--text-primary-invert-main);
+    --app-button-filled-text-active: var(--text-primary-invert-main);
 
     --app-button-flat-text: var(--warning-main);
     --app-button-flat-text-hover: var(--warning-main);
@@ -341,10 +374,10 @@ const buttonType = computed<ButtonType>(
     --app-button-filled-bg-focused: var(--info-main);
     --app-button-filled-bg-active: var(--info-dark);
 
-    --app-button-filled-text: var(--text-primary-light);
-    --app-button-filled-text-hover: var(--text-primary-light);
-    --app-button-filled-text-focused: var(--text-primary-light);
-    --app-button-filled-text-active: var(--text-primary-light);
+    --app-button-filled-text: var(--text-primary-invert-main);
+    --app-button-filled-text-hover: var(--text-primary-invert-main);
+    --app-button-filled-text-focused: var(--text-primary-invert-main);
+    --app-button-filled-text-active: var(--text-primary-invert-main);
 
     --app-button-flat-text: var(--info-main);
     --app-button-flat-text-hover: var(--info-main);
@@ -375,10 +408,9 @@ const buttonType = computed<ButtonType>(
 
     padding: toRem(18) toRem(36);
     gap: toRem(8);
-    font-size: toRem(14);
+    font-size: toRem(20);
     line-height: 1.45;
-    font-weight: 500;
-    height: toRem(56);
+    font-weight: 600;
 
     &.app-button--icon-only {
       --button-icon-size: #{toRem(20)};
@@ -392,17 +424,16 @@ const buttonType = computed<ButtonType>(
   &--medium {
     --button-icon-size: #{toRem(16)};
 
-    padding: toRem(12) toRem(24);
-    font-size: toRem(12);
-    line-height: 1.3;
-    font-weight: 500;
+    padding: toRem(16) toRem(32);
+    font-size: toRem(16);
+    line-height: 1.25;
+    font-weight: 600;
     gap: toRem(8);
-    height: toRem(40);
 
     &.app-button--icon-only {
       --button-icon-size: #{toRem(20)};
 
-      padding: toRem(12);
+      padding: toRem(24);
       width: calc(var(--button-icon-size) + #{toRem(12)});
       height: calc(var(--button-icon-size) + #{toRem(12)});
     }
@@ -414,9 +445,8 @@ const buttonType = computed<ButtonType>(
     padding: toRem(8) toRem(16);
     font-size: toRem(12);
     line-height: 1.45;
-    font-weight: 500;
+    font-weight: 600;
     gap: toRem(8);
-    height: toRem(32);
 
     &.app-button--icon-only {
       --button-icon-size: #{toRem(20)};
