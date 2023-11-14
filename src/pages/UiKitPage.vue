@@ -378,16 +378,24 @@
         </div>
       </basic-modal>
       <div class="ui-kit-page__icons">
-        <icon :name="$icons.AcademicCap" />
-        <icon :name="$icons.Adjustments" />
-        <icon :name="$icons.Annotation" />
-        <icon :name="$icons.Archive" />
-        <icon :name="$icons.ArrowCircleDown" />
-        <icon :name="$icons.ArrowCircleLeft" />
-        <icon :name="$icons.ArrowCircleRight" />
-        <icon :name="$icons.arrowCircleUp" />
-        <icon :name="$icons.ArrowDown" />
-        <icon :name="$icons.ArrowLeft" />
+        <app-tooltip>
+          <template #trigger>
+            <icon class="ui-kit-page__icons-item" :name="$icons.AcademicCap" />
+          </template>
+          <template #default>
+            <icon class="ui-kit-page__icons-item" :name="$icons.AcademicCap" />
+          </template>
+        </app-tooltip>
+        <icon class="ui-kit-page__icons-item" :name="$icons.AcademicCap" />
+        <icon class="ui-kit-page__icons-item" :name="$icons.Adjustments" />
+        <icon class="ui-kit-page__icons-item" :name="$icons.Annotation" />
+        <icon class="ui-kit-page__icons-item" :name="$icons.Archive" />
+        <icon class="ui-kit-page__icons-item" :name="$icons.ArrowCircleDown" />
+        <icon class="ui-kit-page__icons-item" :name="$icons.ArrowCircleLeft" />
+        <icon class="ui-kit-page__icons-item" :name="$icons.ArrowCircleRight" />
+        <icon class="ui-kit-page__icons-item" :name="$icons.arrowCircleUp" />
+        <icon class="ui-kit-page__icons-item" :name="$icons.ArrowDown" />
+        <icon class="ui-kit-page__icons-item" :name="$icons.ArrowLeft" />
       </div>
     </section>
   </div>
@@ -399,6 +407,7 @@ import { reactive, ref } from 'vue'
 import {
   Accordion,
   AppButton,
+  AppTooltip,
   BasicModal,
   Collapse,
   ErrorMessage,
@@ -505,11 +514,11 @@ const handleProcessError = () => {
   display: grid;
   grid-template-columns: repeat(auto-fill, toRem(24));
   grid-gap: toRem(24);
+}
 
-  & > * {
-    width: toRem(24);
-    height: toRem(24);
-  }
+.ui-kit-page__icons-item {
+  width: toRem(24);
+  height: toRem(24);
 }
 
 .ui-kit-page__input-icon {
