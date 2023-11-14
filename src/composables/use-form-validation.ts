@@ -26,16 +26,12 @@ export const useFormValidation = (
     const field = get(validationController.value, fieldPath)
 
     if (!field || !Object.keys(field).length) {
-      throw new Error(
-        `getFieldErrorMessage: Cannot find vuelidate field by '${fieldPath}'`,
-      )
+      throw new Error(`getFieldErrorMessage: Cannot find vuelidate field by '${fieldPath}'`)
     }
 
     if (!field.$dirty) errorMessage = ''
 
-    errorMessage = field.$errors.length
-      ? (field.$errors[0].$message as string)
-      : ''
+    errorMessage = field.$errors.length ? (field.$errors[0].$message as string) : ''
 
     return errorMessage
   }

@@ -13,8 +13,7 @@ import { i18n } from '@/localization'
 
 const { t } = i18n.global || i18n
 
-const messagePath = ({ $validator }: MessageProps) =>
-  `validations.field-error_${$validator}`
+const messagePath = ({ $validator }: MessageProps) => `validations.field-error_${$validator}`
 
 const withI18nMessage = createI18nMessage({ t, messagePath })
 

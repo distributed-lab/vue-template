@@ -35,16 +35,8 @@
       <app-button :text="'button'" scheme="none" modification="border-circle" />
 
       <app-button :text="'button'" modification="border-rounded" />
-      <app-button
-        :text="'button'"
-        scheme="flat"
-        modification="border-rounded"
-      />
-      <app-button
-        :text="'button'"
-        scheme="none"
-        modification="border-rounded"
-      />
+      <app-button :text="'button'" scheme="flat" modification="border-rounded" />
+      <app-button :text="'button'" scheme="none" modification="border-rounded" />
 
       <app-button :text="'button'" modification="none" />
       <app-button :text="'button'" scheme="flat" modification="none" />
@@ -61,81 +53,27 @@
       <app-button size="small" :icon-right="$icons.Plus" scheme="none" />
 
       <app-button size="small" :icon-right="$icons.Plus" color="success" />
-      <app-button
-        size="small"
-        :icon-right="$icons.Plus"
-        scheme="flat"
-        color="success"
-      />
-      <app-button
-        size="small"
-        :icon-right="$icons.Plus"
-        scheme="none"
-        color="success"
-      />
+      <app-button size="small" :icon-right="$icons.Plus" scheme="flat" color="success" />
+      <app-button size="small" :icon-right="$icons.Plus" scheme="none" color="success" />
 
       <app-button size="small" :icon-right="$icons.Plus" color="error" />
-      <app-button
-        size="small"
-        :icon-right="$icons.Plus"
-        scheme="flat"
-        color="error"
-      />
-      <app-button
-        size="small"
-        :icon-right="$icons.Plus"
-        scheme="none"
-        color="error"
-      />
+      <app-button size="small" :icon-right="$icons.Plus" scheme="flat" color="error" />
+      <app-button size="small" :icon-right="$icons.Plus" scheme="none" color="error" />
 
       <app-button size="small" :icon-right="$icons.Plus" color="warning" />
-      <app-button
-        size="small"
-        :icon-right="$icons.Plus"
-        scheme="flat"
-        color="warning"
-      />
-      <app-button
-        size="small"
-        :icon-right="$icons.Plus"
-        scheme="none"
-        color="warning"
-      />
+      <app-button size="small" :icon-right="$icons.Plus" scheme="flat" color="warning" />
+      <app-button size="small" :icon-right="$icons.Plus" scheme="none" color="warning" />
 
       <app-button size="small" :icon-right="$icons.Plus" color="warning" />
-      <app-button
-        size="small"
-        :icon-right="$icons.Plus"
-        scheme="flat"
-        color="warning"
-      />
-      <app-button
-        size="small"
-        :icon-right="$icons.Plus"
-        scheme="none"
-        color="warning"
-      />
+      <app-button size="small" :icon-right="$icons.Plus" scheme="flat" color="warning" />
+      <app-button size="small" :icon-right="$icons.Plus" scheme="none" color="warning" />
 
       <app-button size="small" :icon-right="$icons.Plus" color="info" />
-      <app-button
-        size="small"
-        :icon-right="$icons.Plus"
-        scheme="flat"
-        color="info"
-      />
-      <app-button
-        size="small"
-        :icon-right="$icons.Plus"
-        scheme="none"
-        color="info"
-      />
+      <app-button size="small" :icon-right="$icons.Plus" scheme="flat" color="info" />
+      <app-button size="small" :icon-right="$icons.Plus" scheme="none" color="info" />
     </div>
     <div class="ui-kit-page__buttons">
-      <app-button
-        size="small"
-        modification="border-circle"
-        :icon-right="$icons.Plus"
-      />
+      <app-button size="small" modification="border-circle" :icon-right="$icons.Plus" />
       <app-button
         size="small"
         modification="border-circle"
@@ -292,31 +230,19 @@
     <div class="ui-kit-page__inputs">
       <input-field v-model="form.input" />
       <input-field v-model="form.input" :label="'label'" />
-      <input-field
-        v-model="form.input"
-        :label="'label'"
-        :placeholder="'placeholder'"
-      />
+      <input-field v-model="form.input" :label="'label'" :placeholder="'placeholder'" />
       <input-field
         v-model="form.input"
         :label="'label'"
         :placeholder="'placeholder'"
         :error-message="'error message'"
       />
-      <input-field
-        v-model="form.input"
-        :label="'label'"
-        :placeholder="'placeholder'"
-      >
+      <input-field v-model="form.input" :label="'label'" :placeholder="'placeholder'">
         <template #nodeLeft>
           <icon class="input__icon" :name="$icons.Search" />
         </template>
       </input-field>
-      <input-field
-        v-model="form.input"
-        :label="'label'"
-        :placeholder="'placeholder'"
-      >
+      <input-field v-model="form.input" :label="'label'" :placeholder="'placeholder'">
         <template #nodeLeft>
           <icon class="input__icon" :name="$icons.Search" />
         </template>
@@ -355,11 +281,7 @@
 
     <div class="ui-kit-page__select-fields">
       <select-field v-model="form.select" :value-options="SELECT_OPTIONS" />
-      <select-field
-        :label="`Label`"
-        v-model="form.select"
-        :value-options="SELECT_OPTIONS"
-      />
+      <select-field :label="`Label`" v-model="form.select" :value-options="SELECT_OPTIONS" />
       <select-field
         :label="`Label`"
         v-model="form.select"
@@ -402,27 +324,15 @@
 
       <textarea-field v-model="form.textarea" />
       <textarea-field v-model="form.textarea" :label="`Label`" />
-      <textarea-field
-        v-model="form.textarea"
-        :label="`Label`"
-        error-message="Error message"
-      />
+      <textarea-field v-model="form.textarea" :label="`Label`" error-message="Error message" />
 
       <checkbox-field v-model="form.checkbox" />
       <checkbox-field v-model="form.checkbox" :label="`Label`" />
       <checkbox-field v-model="form.checkbox" :label="`Label`" disabled />
 
       <switch-field v-model="form.switch" :value="String(form.switch)" />
-      <switch-field
-        v-model="form.switch"
-        :value="String(form.switch)"
-        :label="`Label`"
-      />
-      <switch-field
-        v-model="form.switch"
-        :value="String(form.switch)"
-        disabled
-      />
+      <switch-field v-model="form.switch" :value="String(form.switch)" :label="`Label`" />
+      <switch-field v-model="form.switch" :value="String(form.switch)" disabled />
     </div>
 
     <section class="ui-kit-page__form">
@@ -449,20 +359,14 @@
         </div>
       </accordion>
       <div class="ui-kit-page__collapse-wrp">
-        <app-button
-          text="Toggle collapse"
-          @click="() => (isCollapseShown = !isCollapseShown)"
-        />
+        <app-button text="Toggle collapse" @click="() => (isCollapseShown = !isCollapseShown)" />
         <collapse :is-shown="isCollapseShown">
           <div class="ui-kit-page__collapse-body">
             {{ $t('ui-kit-page.collapse-text') }}
           </div>
         </collapse>
       </div>
-      <app-button
-        :text="$t('ui-kit-page.modal-btn')"
-        @click="isModalShown = true"
-      />
+      <app-button :text="$t('ui-kit-page.modal-btn')" @click="isModalShown = true" />
       <basic-modal
         class="ui-kit-page__basic-modal"
         v-model:is-shown="isModalShown"

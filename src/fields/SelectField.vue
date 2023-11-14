@@ -2,11 +2,7 @@
   <div :class="selectFieldClasses">
     <div ref="selectElement" class="select-field__select-wrp">
       <div class="select-field__select-head-wrp">
-        <button
-          type="button"
-          class="select-field__select-head"
-          @click="toggleDropdown"
-        >
+        <button type="button" class="select-field__select-head" @click="toggleDropdown">
           <template v-if="$slots.head && !!modelValue">
             <slot
               name="head"
@@ -39,11 +35,7 @@
             :name="$icons.ArrowDown"
           />
         </button>
-        <label
-          v-if="label"
-          class="select-field__label"
-          :for="`select-field--${uid}`"
-        >
+        <label v-if="label" class="select-field__label" :for="`select-field--${uid}`">
           {{ label }}
         </label>
       </div>
@@ -65,8 +57,7 @@
               :class="[
                 'select-field__select-dropdown-item',
                 {
-                  'select-field__select-dropdown-item--active':
-                    modelValue === option,
+                  'select-field__select-dropdown-item--active': modelValue === option,
                 },
               ]"
               type="button"
@@ -276,13 +267,9 @@ $z-local-index: 2;
   width: 100%;
   height: 100%;
 
-  $field-text-height: calc(
-    var(--field-text-font-size) * var(--field-text-line-height)
-  );
+  $field-text-height: calc(var(--field-text-font-size) * var(--field-text-line-height));
 
-  min-height: calc(
-    $field-text-height + var(--field-padding-top) + var(--field-padding-bottom)
-  );
+  min-height: calc($field-text-height + var(--field-padding-top) + var(--field-padding-bottom));
 
   @include field-text;
 

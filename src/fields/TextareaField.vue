@@ -11,11 +11,7 @@
         :tabindex="isDisabled || isReadonly ? -1 : ($attrs.tabindex as number)"
         :disabled="isDisabled || isReadonly"
       />
-      <label
-        v-if="label"
-        :for="`textarea-field--${uid}`"
-        class="textarea-field__label"
-      >
+      <label v-if="label" :for="`textarea-field--${uid}`" class="textarea-field__label">
         {{ label }}
       </label>
     </div>
@@ -143,9 +139,7 @@ const setHeightCSSVar = (element: Element) => {
   }
   /* stylelint-disable-next-line */
   .textarea-field__textarea:not(:focus):placeholder-shown ~ & {
-    top: calc(
-      var(--field-padding-top) + var(--field-text-font-size) + #{toRem(8)}
-    );
+    top: calc(var(--field-padding-top) + var(--field-text-font-size) + #{toRem(8)});
     color: var(--field-label);
     font-size: toRem(16);
     font-weight: 400;
@@ -159,9 +153,7 @@ const setHeightCSSVar = (element: Element) => {
   }
 
   .textarea-field__textarea:not(:focus):placeholder-shown:-webkit-autofill ~ & {
-    top: calc(
-      var(--field-padding-top) + var(--field-text-font-size) - #{toRem(1)}
-    );
+    top: calc(var(--field-padding-top) + var(--field-text-font-size) - #{toRem(1)});
     color: var(--field-label);
     font-size: toRem(16);
     font-weight: 400;

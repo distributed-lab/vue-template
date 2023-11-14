@@ -43,13 +43,10 @@ const form = reactive({
 
 const { isFormDisabled, disableForm, enableForm } = useForm()
 
-const { isFormValid, getFieldErrorMessage, touchField } = useFormValidation(
-  form,
-  {
-    login: { email, required },
-    password: { required },
-  },
-)
+const { isFormValid, getFieldErrorMessage, touchField } = useFormValidation(form, {
+  login: { email, required },
+  password: { required },
+})
 
 const submit = async () => {
   if (!isFormValid()) return

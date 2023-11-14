@@ -1,11 +1,7 @@
 <template>
   <div class="input-field" :class="inputClasses">
     <div class="input-field__input-wrp">
-      <div
-        v-if="$slots.nodeLeft"
-        ref="nodeLeftWrp"
-        class="input-field__node-left-wrp"
-      >
+      <div v-if="$slots.nodeLeft" ref="nodeLeftWrp" class="input-field__node-left-wrp">
         <slot name="nodeLeft" />
       </div>
       <input
@@ -22,11 +18,7 @@
         :max="max"
         :disabled="isDisabled || isReadonly"
       />
-      <label
-        v-if="label"
-        :for="`input-field--${uid}`"
-        class="input-field__label"
-      >
+      <label v-if="label" :for="`input-field--${uid}`" class="input-field__label">
         {{ label }}
       </label>
       <div
@@ -167,18 +159,14 @@ onMounted(() => {
   if (slots?.nodeLeft && nodeLeftWrp.value) {
     inputEl.value?.style.setProperty(
       'padding-left',
-      `calc(${
-        nodeLeftWrp.value?.offsetWidth || 0
-      }px + var(--field-padding-left) * 2)`,
+      `calc(${nodeLeftWrp.value?.offsetWidth || 0}px + var(--field-padding-left) * 2)`,
     )
   }
 
   if (slots?.nodeRight && nodeRightWrp.value) {
     inputEl.value?.style.setProperty(
       'padding-right',
-      `calc(${
-        nodeRightWrp.value?.offsetWidth || 0
-      }px + var(--field-padding-right) * 2)`,
+      `calc(${nodeRightWrp.value?.offsetWidth || 0}px + var(--field-padding-right) * 2)`,
     )
   }
 })

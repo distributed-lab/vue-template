@@ -1,10 +1,4 @@
-import {
-  createRouter,
-  createWebHistory,
-  RouteRecordRaw,
-  useRoute,
-  useRouter,
-} from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw, useRoute, useRouter } from 'vue-router'
 
 import { RouteNames } from '@/enums'
 

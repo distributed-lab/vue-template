@@ -1,8 +1,5 @@
 <template>
-  <modal
-    v-model:is-shown="isModalShown"
-    :is-close-by-click-outside="isCloseByClickOutside"
-  >
+  <modal v-model:is-shown="isModalShown" :is-close-by-click-outside="isCloseByClickOutside">
     <template #default="{ modal }">
       <div class="basic-modal__pane">
         <div class="basic-modal__header">

@@ -54,10 +54,7 @@ const closeCollapse = () => {
 }
 
 const setHeightCSSVar = (element: Element) => {
-  ;(element as HTMLElement).style.setProperty(
-    '--collapse-body-height',
-    `${element.scrollHeight}px`,
-  )
+  ;(element as HTMLElement).style.setProperty('--collapse-body-height', `${element.scrollHeight}px`)
 }
 </script>
 

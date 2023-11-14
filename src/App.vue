@@ -2,10 +2,7 @@
   <div v-if="isAppInitialized" class="app__container">
     <app-navbar class="app__navbar" />
     <router-view v-slot="{ Component, route }">
-      <transition
-        :name="(route.meta.transition as string) || 'fade'"
-        mode="out-in"
-      >
+      <transition :name="(route.meta.transition as string) || 'fade'" mode="out-in">
         <component class="app__main" :is="Component" />
       </transition>
     </router-view>
@@ -50,17 +47,13 @@ onUnmounted(() => {
   bus.off(BUS_EVENTS.info, showInfoToast)
 })
 
-const showSuccessToast = (payload: unknown) =>
-  showToast('success', payload as NotificationPayload)
+const showSuccessToast = (payload: unknown) => showToast('success', payload as NotificationPayload)
 
-const showWarningToast = (payload: unknown) =>
-  showToast('warning', payload as NotificationPayload)
+const showWarningToast = (payload: unknown) => showToast('warning', payload as NotificationPayload)
 
-const showErrorToast = (payload: unknown) =>
-  showToast('error', payload as NotificationPayload)
+const showErrorToast = (payload: unknown) => showToast('error', payload as NotificationPayload)
 
-const showInfoToast = (payload: unknown) =>
-  showToast('info', payload as NotificationPayload)
+const showInfoToast = (payload: unknown) => showToast('info', payload as NotificationPayload)
 
 init()
 </script>

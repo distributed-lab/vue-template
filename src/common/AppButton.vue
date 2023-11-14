@@ -1,11 +1,6 @@
 <template>
   <template v-if="route">
-    <router-link
-      class="app-button"
-      :class="buttonClasses"
-      v-bind="$attrs"
-      :to="route"
-    >
+    <router-link class="app-button" :class="buttonClasses" v-bind="$attrs" :to="route">
       <icon v-if="iconLeft" class="app-button__icon-left" :name="iconLeft" />
 
       <template v-if="$slots.default">
@@ -115,9 +110,7 @@ const buttonClasses = computed(() =>
   ].join(' '),
 )
 
-const buttonType = computed<ButtonType>(
-  () => (attrs.type as ButtonType) || 'button',
-)
+const buttonType = computed<ButtonType>(() => (attrs.type as ButtonType) || 'button')
 </script>
 
 <style lang="scss" scoped>

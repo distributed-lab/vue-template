@@ -21,8 +21,7 @@
         :class="[
           'basic-select-field__option',
           {
-            'basic-select-field__option--active':
-              item?.value === localModelValue,
+            'basic-select-field__option--active': item?.value === localModelValue,
           },
         ]"
         @click="selectField?.select(item?.value)"
