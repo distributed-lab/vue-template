@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Icon } from '@/common'
+import { Icon } from '@/ui'
 
 withDefaults(
   defineProps<{

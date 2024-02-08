@@ -3,9 +3,9 @@ import type { Component } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { TYPE, useToast } from 'vue-toastification'
 
-import { DefaultToast } from '@/common'
 import { IconNames } from '@/enums'
 import { CommonNotificationTypes, NotificationObjectPayload } from '@/types'
+import { DefaultToast } from '@/ui'
 
 const MINUTE = 60 * 1000
 

@@ -404,27 +404,25 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 
+import LoginForm from '@/forms/LoginForm.vue'
+import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
 import {
   Accordion,
   AppButton,
   AppTooltip,
   BasicModal,
+  BasicSelectField,
+  CheckboxField,
   Collapse,
   ErrorMessage,
   Icon,
+  InputField,
   Loader,
   NoDataMessage,
-} from '@/common'
-import {
-  BasicSelectField,
-  CheckboxField,
-  InputField,
   SelectField,
   SwitchField,
   TextareaField,
-} from '@/fields'
-import LoginForm from '@/forms/LoginForm.vue'
-import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
+} from '@/ui'
 
 const isModalShown = ref(false)
 const isCollapseShown = ref(false)

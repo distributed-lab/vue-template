@@ -27,7 +27,7 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
 
-import { AppButton, Modal } from '@/common'
+import { AppButton, Modal } from '../index'
 
 const props = withDefaults(
   defineProps<{

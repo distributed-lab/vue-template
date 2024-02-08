@@ -92,7 +92,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { computed, onMounted, ref, useAttrs, watch } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 
-import { Icon } from '@/common'
+import { Icon } from '@/ui'
 
 const props = withDefaults(
   defineProps<{

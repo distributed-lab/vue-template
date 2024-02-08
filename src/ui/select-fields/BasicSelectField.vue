@@ -35,7 +35,7 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
 
-import SelectField from '@/fields/SelectField.vue'
+import SelectField from '@/ui/SelectField.vue'
 
 type ValueOption = { title: string; value: string | number }
 

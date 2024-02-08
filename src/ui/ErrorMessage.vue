@@ -11,8 +11,8 @@
 </template>
 
 <script lang="ts" setup>
-import { Icon } from '@/common'
 import { IconNames } from '@/enums'
+import { Icon } from '@/ui'
 
 withDefaults(
   defineProps<{

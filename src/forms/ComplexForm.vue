@@ -62,10 +62,9 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 
-import { AppButton } from '@/common'
 import { useForm, useFormValidation } from '@/composables'
-import { InputField } from '@/fields'
 import { required } from '@/helpers'
+import { AppButton, InputField } from '@/ui'
 
 const form = reactive({
   field1: '',

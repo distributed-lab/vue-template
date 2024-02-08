@@ -19,8 +19,8 @@
 </template>
 
 <script lang="ts" setup>
-import { AppLogo } from '@/common'
-import AppButton from '@/common/AppButton.vue'
+import AppButton from './AppButton.vue'
+import { AppLogo } from './index'
 </script>
 
 <style lang="scss" scoped>
