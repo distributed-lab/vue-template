@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Skeleton } from '../index'
+import { Skeleton } from '@/ui'
 
 withDefaults(
   defineProps<{

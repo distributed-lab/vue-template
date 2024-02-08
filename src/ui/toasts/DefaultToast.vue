@@ -17,8 +17,8 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 
-import { IconNames } from '../../enums'
-import { Icon } from '../index'
+import { IconNames } from '@/enums'
+import { Icon } from '@/ui'
 
 const props = withDefaults(
   defineProps<{
