@@ -1,13 +1,13 @@
 <template>
-  <div class="default-toast__body">
-    <div class="default-toast__icon-wrp">
-      <icon v-if="toastIcon" class="default-toast__icon" :name="toastIcon" />
+  <div class="toast__body">
+    <div class="toast__icon-wrp">
+      <icon v-if="toastIcon" class="toast__icon" :name="toastIcon" />
     </div>
-    <div class="default-toast__details">
-      <h4 class="default-toast__title">
+    <div class="toast__details">
+      <h4 class="toast__title">
         {{ title }}
       </h4>
-      <p class="default-toast__message">
+      <p class="toast__message">
         {{ message }}
       </p>
     </div>
@@ -36,17 +36,17 @@ const toastIcon = computed(() => props.iconName || IconNames.CheckCircle)
 </script>
 
 <style lang="scss">
-.Vue-Toastification__toast.default-toast {
+.Vue-Toastification__toast.toast {
   background: var(--white);
   padding: toRem(12);
 }
 
-.default-toast__body {
+.toast__body {
   display: flex;
   gap: toRem(12);
 }
 
-.default-toast__icon-wrp {
+.toast__icon-wrp {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,19 +79,19 @@ const toastIcon = computed(() => props.iconName || IconNames.CheckCircle)
   }
 }
 
-.default-toast .default-toast__icon {
+.toast .toast__icon {
   max-width: toRem(24);
   max-height: toRem(24);
 }
 
-.default-toast__details {
+.toast__details {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: toRem(8) 0;
 }
 
-.default-toast__title {
+.toast__title {
   font-size: toRem(14);
   line-height: 1.5;
   font-weight: 500;
@@ -99,7 +99,7 @@ const toastIcon = computed(() => props.iconName || IconNames.CheckCircle)
   color: var(--text-primary-main);
 }
 
-.default-toast__message {
+.toast__message {
   font-size: toRem(14);
   line-height: 1.5;
   letter-spacing: toRem(0.25);

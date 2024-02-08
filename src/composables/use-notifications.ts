@@ -1,4 +1,5 @@
 import isObject from 'lodash/isObject'
+import type { Component } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { TYPE, useToast } from 'vue-toastification'
 
@@ -38,6 +39,7 @@ export const useNotifications = () => {
   const showToast = (
     messageType = 'default' as CommonNotificationTypes,
     payload?: string | NotificationObjectPayload,
+    toastComponent?: { component: Component; props: unknown },
   ) => {
     let title = ''
     let message = ''
@@ -63,7 +65,7 @@ export const useNotifications = () => {
     }
 
     return toast(
-      {
+      toastComponent || {
         component: DefaultToast,
         props: {
           ...(title && { title }),
@@ -80,7 +82,7 @@ export const useNotifications = () => {
           error: TYPE.ERROR,
           warning: TYPE.WARNING,
         }[messageType],
-        toastClassName: 'default-toast',
+        toastClassName: 'toast',
         timeout: MINUTE / 2,
         closeOnClick: false,
       },
