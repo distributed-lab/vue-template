@@ -2,14 +2,14 @@
   <div class="app-navbar">
     <app-logo class="app-navbar__logo" />
 
-    <app-button
+    <ui-button
       class="app-navbar__link"
       :scheme="'flat'"
       :text="$routes.uiKit"
       :route="{ name: $routes.uiKit }"
     />
 
-    <app-button
+    <ui-button
       class="app-navbar__link"
       :scheme="'flat'"
       :text="$routes.complexForm"
@@ -19,8 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import AppButton from './AppButton.vue'
-import { AppLogo } from './index'
+import { AppLogo, UiButton } from '@/ui'
 </script>
 
 <style lang="scss" scoped>

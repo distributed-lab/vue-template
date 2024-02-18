@@ -1,13 +1,13 @@
 <template>
-  <div class="input-field" :class="inputClasses">
-    <div class="input-field__input-wrp">
-      <div v-if="$slots.nodeLeft" ref="nodeLeftWrp" class="input-field__node-left-wrp">
+  <div class="ui-input-field" :class="inputClasses">
+    <div class="ui-input-field__input-wrp">
+      <div v-if="$slots.nodeLeft" ref="nodeLeftWrp" class="ui-input-field__node-left-wrp">
         <slot name="nodeLeft" />
       </div>
       <input
         ref="inputEl"
-        class="input-field__input"
-        :id="`input-field--${uid}`"
+        class="ui-input-field__input"
+        :id="`ui-input-field--${uid}`"
         v-bind="$attrs"
         v-on="listeners"
         :value="modelValue"
@@ -18,13 +18,13 @@
         :max="max"
         :disabled="isDisabled || isReadonly"
       />
-      <label v-if="label" :for="`input-field--${uid}`" class="input-field__label">
+      <label v-if="label" :for="`ui-input-field--${uid}`" class="ui-input-field__label">
         {{ label }}
       </label>
       <div
         v-if="$slots.nodeRight || isPasswordType || props.errorMessage"
         ref="nodeRightWrp"
-        class="input-field__node-right-wrp"
+        class="ui-input-field__node-right-wrp"
       >
         <slot v-if="$slots.nodeRight" name="nodeRight" />
         <button
@@ -32,27 +32,27 @@
           type="button"
           @click="isPasswordShown = !isPasswordShown"
         >
-          <icon
-            class="input-field__password-icon"
+          <ui-icon
+            class="ui-input-field__password-icon"
             :name="isPasswordShown ? $icons.Eye : $icons.EyeOff"
           />
         </button>
-        <icon
+        <ui-icon
           v-else-if="props.errorMessage"
-          class="input-field__error-icon"
+          class="ui-input-field__error-icon"
           :name="$icons.ExclamationCircle"
         />
       </div>
     </div>
     <transition
-      name="input-field__err-msg-transition"
+      name="ui-input-field__err-msg-transition"
       @enter="setHeightCSSVar"
       @before-leave="setHeightCSSVar"
     >
-      <span v-if="errorMessage" class="input-field__err-msg">
+      <span v-if="errorMessage" class="ui-input-field__err-msg">
         {{ errorMessage }}
       </span>
-      <span v-else-if="note" class="input-field__note-msg">
+      <span v-else-if="note" class="ui-input-field__note-msg">
         {{ note }}
       </span>
     </transition>
@@ -64,7 +64,7 @@ import { BN, DECIMALS } from '@distributedlab/tools'
 import { v4 as uuidv4 } from 'uuid'
 import { computed, onMounted, ref, useAttrs, useSlots } from 'vue'
 
-import { Icon } from '@/ui'
+import { UiIcon } from '@/ui'
 
 const props = withDefaults(
   defineProps<{
@@ -135,14 +135,14 @@ const listeners = computed(() => ({
 
 const inputClasses = computed(() =>
   [
-    ...(slots.nodeLeft ? ['input-field--node-left'] : []),
+    ...(slots.nodeLeft ? ['ui-input-field--node-left'] : []),
     ...(slots.nodeRight || isPasswordType.value || props.errorMessage
-      ? ['input-field--node-right']
+      ? ['ui-input-field--node-right']
       : []),
-    ...(isDisabled.value ? ['input-field--disabled'] : []),
-    ...(isReadonly.value ? ['input-field--readonly'] : []),
-    ...(props.errorMessage ? ['input-field--error'] : []),
-    `input-field--${props.scheme}`,
+    ...(isDisabled.value ? ['ui-input-field--disabled'] : []),
+    ...(isReadonly.value ? ['ui-input-field--readonly'] : []),
+    ...(props.errorMessage ? ['ui-input-field--error'] : []),
+    `ui-input-field--${props.scheme}`,
   ].join(' '),
 )
 
@@ -204,7 +204,7 @@ const setHeightCSSVar = (element: Element) => {
 <style lang="scss" scoped>
 $z-index-side-nodes: 1;
 
-.input-field {
+.ui-input-field {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -217,7 +217,7 @@ $z-index-side-nodes: 1;
   }
 }
 
-.input-field__label {
+.ui-input-field__label {
   pointer-events: none;
   position: absolute;
   padding: toRem(4);
@@ -231,52 +231,52 @@ $z-index-side-nodes: 1;
 
   @include field-label;
 
-  .input-field__input:not(:placeholder-shown) ~ & {
+  .ui-input-field__input:not(:placeholder-shown) ~ & {
     top: 0;
     color: var(--field-text);
     border-color: var(--field-border-hover);
   }
 
-  .input-field__input:not(:focus):placeholder-shown ~ & {
+  .ui-input-field__input:not(:focus):placeholder-shown ~ & {
     top: 50%;
 
     @include field-label;
 
-    .input-field--node-left & {
+    .ui-input-field--node-left & {
       left: calc(var(--field-padding-left) * 3);
     }
   }
 
-  .input-field--error .input-field__input:not(:focus):placeholder-shown ~ & {
+  .ui-input-field--error .ui-input-field__input:not(:focus):placeholder-shown ~ & {
     color: var(--field-error);
   }
 
   /* stylelint-disable-next-line */
-  .input-field__input:not([disabled]):focus ~ & {
+  .ui-input-field__input:not([disabled]):focus ~ & {
     color: var(--field-label-focus);
     font-weight: 700;
   }
 
-  .input-field__input:not(:focus):placeholder-shown:-webkit-autofill ~ & {
+  .ui-input-field__input:not(:focus):placeholder-shown:-webkit-autofill ~ & {
     top: 50%;
     color: var(--field-label);
     font-size: toRem(16);
     font-weight: 400;
     line-height: 1.3;
 
-    .input-field--node-left & {
+    .ui-input-field--node-left & {
       left: calc(var(--field-padding-left) * 3);
     }
   }
 }
 
-.input-field__input-wrp {
+.ui-input-field__input-wrp {
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-.input-field__input {
+.ui-input-field__input {
   padding: var(--field-padding);
   background: var(--field-bg-primary);
   box-shadow: inset 0 0 0 toRem(50) var(--field-bg-primary);
@@ -284,7 +284,7 @@ $z-index-side-nodes: 1;
 
   @include field-text;
 
-  .input-field--primary & {
+  .ui-input-field--primary & {
     @include field-border;
   }
 
@@ -322,15 +322,15 @@ $z-index-side-nodes: 1;
     }
   }
 
-  .input-field--node-left & {
+  .ui-input-field--node-left & {
     padding-left: calc(var(--field-padding-left) * 3);
   }
 
-  .input-field--node-right & {
+  .ui-input-field--node-right & {
     padding-right: calc(var(--field-padding-right) * 3);
   }
 
-  .input-field--error.input-field--primary & {
+  .ui-input-field--error.ui-input-field--primary & {
     border-color: var(--field-error);
     box-shadow:
       inset 0 0 0 toRem(50) var(--field-bg-primary),
@@ -338,7 +338,7 @@ $z-index-side-nodes: 1;
   }
 
   &:not([disabled]):focus {
-    .input-field--primary & {
+    .ui-input-field--primary & {
       box-sizing: border-box;
       box-shadow:
         inset 0 0 0 toRem(50) var(--field-bg-primary),
@@ -348,13 +348,13 @@ $z-index-side-nodes: 1;
   }
 
   &:not([disabled]):not(:focus):hover {
-    .input-field--primary & {
+    .ui-input-field--primary & {
       border-color: var(--field-border-hover);
     }
   }
 }
 
-.input-field__node-left-wrp {
+.ui-input-field__node-left-wrp {
   overflow: hidden;
   position: absolute;
   top: 50%;
@@ -365,7 +365,7 @@ $z-index-side-nodes: 1;
   z-index: $z-index-side-nodes;
 }
 
-.input-field__node-right-wrp {
+.ui-input-field__node-right-wrp {
   position: absolute;
   top: 50%;
   right: var(--field-padding-right);
@@ -374,36 +374,36 @@ $z-index-side-nodes: 1;
   z-index: $z-index-side-nodes;
 }
 
-.input-field__password-icon {
+.ui-input-field__password-icon {
   max-width: toRem(24);
   max-height: toRem(24);
 }
 
-.input-field__error-icon {
+.ui-input-field__error-icon {
   max-width: toRem(24);
   max-height: toRem(24);
   color: var(--field-error);
 }
 
-.input-field__icon {
+.ui-input-field__icon {
   width: toRem(18);
   height: toRem(18);
 }
 
-.input-field__err-msg,
-.input-field__note-msg {
+.ui-input-field__err-msg,
+.ui-input-field__note-msg {
   @include field-error;
 }
 
-.input-field__note-msg {
+.ui-input-field__note-msg {
   color: var(--text-primary-light);
 }
 
-.input-field__err-msg-transition-enter-active {
+.ui-input-field__err-msg-transition-enter-active {
   animation: fade-down var(--field-transition-duration);
 }
 
-.input-field__err-msg-transition-leave-active {
+.ui-input-field__err-msg-transition-leave-active {
   animation: fade-down var(--field-transition-duration) reverse;
 }
 

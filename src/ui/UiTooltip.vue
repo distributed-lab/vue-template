@@ -1,16 +1,16 @@
 <template>
-  <div class="app-tooltip__wrapper">
+  <div class="ui-tooltip__wrapper">
     <tooltip
       :triggers="[...(isShowByClick ? ['click'] : ['hover'])]"
       :auto-hide="true"
-      :popper-class="`app-tooltip ${$attrs.class}`"
+      :popper-class="`ui-tooltip ${$attrs.class}`"
     >
-      <div class="app-tooltip__trigger">
+      <div class="ui-tooltip__trigger">
         <slot name="trigger" />
       </div>
 
       <template #popper>
-        <div class="app-tooltip__body">
+        <div class="ui-tooltip__body">
           <slot />
         </div>
       </template>
@@ -39,7 +39,7 @@ const isShowByClick = computed(() => props.isPreferClick || isMobile())
 </script>
 
 <style lang="scss">
-.app-tooltip {
+.ui-tooltip {
   .v-popper {
     width: auto;
   }
@@ -49,11 +49,11 @@ const isShowByClick = computed(() => props.isPreferClick || isMobile())
   }
 }
 
-.app-tooltip__trigger {
+.ui-tooltip__trigger {
   cursor: help;
 }
 
-.app-tooltip__body {
+.ui-tooltip__body {
   text-align: center;
   padding: toRem(10);
   border-radius: toRem(28);

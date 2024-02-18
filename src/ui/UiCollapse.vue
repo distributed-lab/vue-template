@@ -1,11 +1,11 @@
 <template>
-  <div class="collapse" ref="rootEl">
+  <div class="ui-collapse" ref="rootEl">
     <transition
-      name="collapse__body-transition"
+      name="ui-collapse__body-transition"
       @enter="setHeightCSSVar"
       @before-leave="setHeightCSSVar"
     >
-      <div v-show="isShown" class="collapse__body">
+      <div v-show="isShown" class="ui-collapse__body">
         <slot />
       </div>
     </transition>
@@ -54,30 +54,33 @@ const closeCollapse = () => {
 }
 
 const setHeightCSSVar = (element: Element) => {
-  ;(element as HTMLElement).style.setProperty('--collapse-body-height', `${element.scrollHeight}px`)
+  ;(element as HTMLElement).style.setProperty(
+    '--ui-collapse-body-height',
+    `${element.scrollHeight}px`,
+  )
 }
 </script>
 
 <style lang="scss" scoped>
-.collapse__body {
+.ui-collapse__body {
   overflow: hidden;
 }
 
-.collapse__body-transition-enter-active {
-  animation: collapse-frame-keyframes 0.25s ease-in-out;
+.ui-collapse__body-transition-enter-active {
+  animation: ui-collapse-frame-keyframes 0.25s ease-in-out;
 }
 
-.collapse__body-transition-leave-active {
-  animation: collapse-frame-keyframes 0.25s ease-in-out reverse;
+.ui-collapse__body-transition-leave-active {
+  animation: ui-collapse-frame-keyframes 0.25s ease-in-out reverse;
 }
 
-@keyframes collapse-frame-keyframes {
+@keyframes ui-collapse-frame-keyframes {
   from {
     height: 0;
   }
 
   to {
-    height: var(--collapse-body-height);
+    height: var(--ui-collapse-body-height);
   }
 }
 </style>

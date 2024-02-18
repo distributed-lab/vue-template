@@ -1,6 +1,6 @@
 <template>
-  <select-field
-    class="basic-select-field"
+  <ui-select
+    class="ui-basic-select"
     :model-value="localModelValue"
     @update:model-value="emit('update:modelValue', $event)"
     :label="label"
@@ -9,7 +9,7 @@
     :note="note"
   >
     <template #head>
-      <div class="basic-select-field__head">
+      <div class="ui-basic-select__head">
         {{ selectedOption?.title || '' }}
       </div>
     </template>
@@ -19,9 +19,9 @@
         v-for="(item, idx) in valueOptions"
         :key="idx"
         :class="[
-          'basic-select-field__option',
+          'ui-basic-select__option',
           {
-            'basic-select-field__option--active': item?.value === localModelValue,
+            'ui-basic-select__option--active': item?.value === localModelValue,
           },
         ]"
         @click="selectField?.select(item?.value)"
@@ -29,13 +29,13 @@
         {{ item?.title ?? '' }}
       </button>
     </template>
-  </select-field>
+  </ui-select>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
 
-import SelectField from '@/ui/SelectField.vue'
+import { UiSelect } from '@/ui'
 
 type ValueOption = { title: string; value: string | number }
 
@@ -77,14 +77,14 @@ watch(
 </script>
 
 <style lang="scss" scoped>
-.basic-select-field__head {
+.ui-basic-select__head {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   text-align: left;
 }
 
-.basic-select-field__option {
+.ui-basic-select__option {
   text-align: left;
   padding: var(--field-padding);
   background: var(--background-primary-main);

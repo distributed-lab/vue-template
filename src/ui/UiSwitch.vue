@@ -1,14 +1,14 @@
 <template>
   <label
-    class="switch-field"
+    class="ui-switch"
     :class="{
-      'switch-field--disabled': disabled,
-      'switch-field--checked': modelValue,
+      'ui-switch--disabled': disabled,
+      'ui-switch--checked': modelValue,
     }"
   >
     <input
       v-bind="$attrs"
-      class="switch-field__input"
+      class="ui-switch__input"
       type="checkbox"
       :checked="modelValue"
       :name="($attrs.name as string) || label"
@@ -17,11 +17,11 @@
       @change="onChange"
     />
 
-    <span class="switch-field__frame-wrp" aria-hidden="true">
-      <span class="switch-field__frame" :class="{ 'switch-field__frame--checked': modelValue }" />
+    <span class="ui-switch__frame-wrp" aria-hidden="true">
+      <span class="ui-switch__frame" :class="{ 'ui-switch__frame--checked': modelValue }" />
     </span>
 
-    <span v-if="label" class="switch-field__label">
+    <span v-if="label" class="ui-switch__label">
       {{ label }}
     </span>
   </label>
@@ -54,7 +54,7 @@ const onChange = (event: Event) => {
 </script>
 
 <style lang="scss" scoped>
-.switch-field {
+.ui-switch {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -68,7 +68,7 @@ const onChange = (event: Event) => {
   }
 }
 
-.switch-field__input {
+.ui-switch__input {
   position: absolute;
   width: toRem(1);
   height: toRem(1);
@@ -81,7 +81,7 @@ const onChange = (event: Event) => {
   overflow: hidden;
 }
 
-.switch-field__frame-wrp {
+.ui-switch__frame-wrp {
   position: relative;
   overflow: hidden;
   width: toRem(48);
@@ -91,12 +91,12 @@ const onChange = (event: Event) => {
   border-radius: toRem(50);
   box-shadow: inset 0 0 0 toRem(1) var(--field-border);
 
-  .switch-field--checked & {
+  .ui-switch--checked & {
     background-color: var(--primary-main);
   }
 }
 
-.switch-field__frame {
+.ui-switch__frame {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,12 +112,12 @@ const onChange = (event: Event) => {
   background: var(--primary-light);
   transition: left var(--field-transition-duration) ease-in-out;
 
-  .switch-field--checked & {
+  .ui-switch--checked & {
     left: calc(100% - #{toRem(16 + calc((24 - 16) / 2))});
   }
 }
 
-.switch-field__label {
+.ui-switch__label {
   display: inline-flex;
   user-select: none;
 

@@ -1,12 +1,12 @@
 <template>
   <div :class="selectFieldClasses">
-    <div ref="selectElement" class="select-field__select-wrp">
-      <div class="select-field__select-head-wrp">
-        <button type="button" class="select-field__select-head" @click="toggleDropdown">
+    <div ref="selectElement" class="ui-select__select-wrp">
+      <div class="ui-select__select-head-wrp">
+        <button type="button" class="ui-select__select-head" @click="toggleDropdown">
           <template v-if="$slots.head && !!modelValue">
             <slot
               name="head"
-              :select-field="{
+              :ui-select="{
                 select,
                 isOpen: isDropdownOpen,
                 close: closeDropdown,
@@ -20,30 +20,30 @@
               {{ modelValue }}
             </template>
             <template v-else-if="!label && placeholder">
-              <span class="select-field__placeholder">
+              <span class="ui-select__placeholder">
                 {{ props.placeholder }}
               </span>
             </template>
           </template>
-          <icon
+          <ui-icon
             :class="[
-              'select-field__select-head-indicator',
+              'ui-select__select-head-indicator',
               {
-                'select-field__select-head-indicator--open': isDropdownOpen,
+                'ui-select__select-head-indicator--open': isDropdownOpen,
               },
             ]"
             :name="$icons.ArrowDown"
           />
         </button>
-        <label v-if="label" class="select-field__label" :for="`select-field--${uid}`">
+        <label v-if="label" class="ui-select__label" :for="`ui-select--${uid}`">
           {{ label }}
         </label>
       </div>
-      <transition name="select-field__select-dropdown">
-        <div v-if="isDropdownOpen" class="select-field__select-dropdown">
+      <transition name="ui-select__select-dropdown">
+        <div v-if="isDropdownOpen" class="ui-select__select-dropdown">
           <template v-if="$slots.default">
             <slot
-              :select-field="{
+              :ui-select="{
                 select,
                 isOpen: isDropdownOpen,
                 close: closeDropdown,
@@ -55,9 +55,9 @@
           <template v-else-if="valueOptions?.length">
             <button
               :class="[
-                'select-field__select-dropdown-item',
+                'ui-select__select-dropdown-item',
                 {
-                  'select-field__select-dropdown-item--active': modelValue === option,
+                  'ui-select__select-dropdown-item--active': modelValue === option,
                 },
               ]"
               type="button"
@@ -72,14 +72,14 @@
       </transition>
     </div>
     <transition
-      name="select-field__err-msg-transition"
+      name="ui-select__err-msg-transition"
       @enter="setHeightCSSVar"
       @before-leave="setHeightCSSVar"
     >
-      <span v-if="errorMessage" class="select-field__err-msg">
+      <span v-if="errorMessage" class="ui-select__err-msg">
         {{ errorMessage }}
       </span>
-      <span v-else-if="note" class="select-field__note">
+      <span v-else-if="note" class="ui-select__note">
         {{ note }}
       </span>
     </transition>
@@ -92,7 +92,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { computed, onMounted, ref, useAttrs, watch } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 
-import { Icon } from '@/ui'
+import { UiIcon } from '@/ui'
 
 const props = withDefaults(
   defineProps<{
@@ -141,13 +141,13 @@ const isReadonly = computed(() =>
 const isLabelActive = computed(() => isDropdownOpen.value || !!props.modelValue)
 
 const selectFieldClasses = computed(() => ({
-  'select-field': true,
-  'select-field--error': props.errorMessage,
-  'select-field--open': isDropdownOpen.value,
-  'select-field--disabled': isDisabled.value,
-  'select-field--readonly': isReadonly.value,
-  'select-field--label-active': isLabelActive.value,
-  [`select-field--${props.scheme}`]: true,
+  'ui-select': true,
+  'ui-select--error': props.errorMessage,
+  'ui-select--open': isDropdownOpen.value,
+  'ui-select--disabled': isDisabled.value,
+  'ui-select--readonly': isReadonly.value,
+  'ui-select--label-active': isLabelActive.value,
+  [`ui-select--${props.scheme}`]: true,
 }))
 
 const setHeightCSSVar = (element: Element) => {
@@ -197,7 +197,7 @@ watch(
 <style lang="scss" scoped>
 $z-local-index: 2;
 
-.select-field {
+.ui-select {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -211,7 +211,7 @@ $z-local-index: 2;
   }
 }
 
-.select-field__label {
+.ui-select__label {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -231,35 +231,35 @@ $z-local-index: 2;
 
   transition-property: all;
 
-  .select-field--error & {
+  .ui-select--error & {
     color: var(--field-error);
   }
 
-  .select-field--label-active & {
+  .ui-select--label-active & {
     top: 0;
     font-size: toRem(12);
     line-height: 1.3;
     font-weight: 700;
   }
 
-  .select-field--open & {
+  .ui-select--open & {
     color: var(--primary-main);
   }
 }
 
-.select-field__select-wrp {
+.ui-select__select-wrp {
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-.select-field__select-head-wrp {
+.ui-select__select-head-wrp {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.select-field__select-head {
+.ui-select__select-head {
   background: var(--field-bg-primary);
   padding: var(--field-padding);
   padding-right: calc(var(--field-padding-right) + #{toRem(24)});
@@ -275,7 +275,7 @@ $z-local-index: 2;
 
   transition-property: all;
 
-  & + .select-field__focus-indicator {
+  & + .ui-select__focus-indicator {
     pointer-events: none;
     position: absolute;
     top: 0;
@@ -294,24 +294,24 @@ $z-local-index: 2;
       background: var(--primary-main);
       transition: width calc(var(--field-transition-duration) + 0.3s);
 
-      .select-field--error & {
+      .ui-select--error & {
         background: var(--field-error);
       }
     }
   }
 
-  .select-field--primary & {
+  .ui-select--primary & {
     @include field-border;
   }
 
-  .select-field--error.select-field--primary & {
+  .ui-select--error.ui-select--primary & {
     box-shadow:
       inset 0 0 0 toRem(50) var(--field-bg-primary),
       0 0 0 toRem(1) var(--field-error);
     border-color: var(--field-error);
   }
 
-  .select-field--open.select-field--primary & {
+  .ui-select--open.ui-select--primary & {
     box-shadow:
       inset 0 0 0 toRem(50) var(--field-bg-primary),
       0 0 0 toRem(2) var(--primary-main);
@@ -319,14 +319,14 @@ $z-local-index: 2;
   }
 }
 
-.select-field__placeholder {
+.ui-select__placeholder {
   font: inherit;
   opacity: 0.25;
 
   @include field-placeholder;
 }
 
-.select-field__select-head-indicator {
+.ui-select__select-head-indicator {
   pointer-events: none;
   position: absolute;
   top: 50%;
@@ -342,7 +342,7 @@ $z-local-index: 2;
   }
 }
 
-.select-field__select-dropdown {
+.ui-select__select-dropdown {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -359,11 +359,11 @@ $z-local-index: 2;
   border-radius: toRem(14);
 }
 
-.select-field__select-dropdown-enter-active {
+.ui-select__select-dropdown-enter-active {
   animation: dropdown var(--field-transition-duration);
 }
 
-.select-field__select-dropdown-leave-active {
+.ui-select__select-dropdown-leave-active {
   animation: dropdown var(--field-transition-duration) 0.1s reverse;
 }
 
@@ -381,7 +381,7 @@ $z-local-index: 2;
   }
 }
 
-.select-field__select-dropdown-item {
+.ui-select__select-dropdown-item {
   text-align: left;
   width: 100%;
   padding: toRem(16);
@@ -395,20 +395,20 @@ $z-local-index: 2;
   }
 }
 
-.select-field__err-msg,
-.select-field__note {
+.ui-select__err-msg,
+.ui-select__note {
   @include field-error;
 }
 
-.select-field__note {
+.ui-select__note {
   color: var(--text-primary-light);
 }
 
-.select-field__err-msg-transition-enter-active {
+.ui-select__err-msg-transition-enter-active {
   animation: fade-down var(--field-transition-duration);
 }
 
-.select-field__err-msg-transition-leave-active {
+.ui-select__err-msg-transition-leave-active {
   animation: fade-down var(--field-transition-duration) reverse;
 }
 

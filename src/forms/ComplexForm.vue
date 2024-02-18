@@ -2,7 +2,7 @@
   <div class="complex-form">
     <div class="complex-form__row">
       <div class="complex-form__field">
-        <input-field
+        <ui-input-field
           label="form.field1"
           v-model="form.field1"
           :error-message="getFieldErrorMessage('field1')"
@@ -10,7 +10,7 @@
         />
       </div>
       <div class="complex-form__field">
-        <input-field
+        <ui-input-field
           label="form.nested.field2"
           v-model="form.nested.field2"
           :error-message="getFieldErrorMessage('nested.field2')"
@@ -20,7 +20,7 @@
     </div>
     <div class="complex-form__row">
       <div v-for="(item, idx) in form.array" :key="idx" class="complex-form__field">
-        <input-field
+        <ui-input-field
           label="form.array[idx]"
           v-model="form.array[idx]"
           :error-message="getFieldErrorMessage(`array[${idx}]`)"
@@ -30,7 +30,7 @@
     </div>
     <div class="complex-form__row">
       <div v-for="(item, idx) in form.nested.array" :key="idx" class="complex-form__field">
-        <input-field
+        <ui-input-field
           label="form.nested.array[idx]"
           v-model="form.nested.array[idx]"
           :error-message="getFieldErrorMessage(`nested.array[${idx}]`)"
@@ -40,7 +40,7 @@
     </div>
     <div class="complex-form__row">
       <div v-for="(item, idx) in form.arrayNested" :key="idx" class="complex-form__field">
-        <input-field
+        <ui-input-field
           label="form.arrayNested[idx].field"
           v-model="form.arrayNested[idx].field"
           :error-message="getFieldErrorMessage(`arrayNested[${idx}].field`)"
@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="complex-form__actions">
-      <app-button
+      <ui-button
         class="complex-form__submit-btn"
         type="submit"
         text="Submit"
@@ -64,7 +64,7 @@ import { reactive } from 'vue'
 
 import { useForm, useFormValidation } from '@/composables'
 import { required } from '@/helpers'
-import { AppButton, InputField } from '@/ui'
+import { UiButton, UiInputField } from '@/ui'
 
 const form = reactive({
   field1: '',

@@ -1,13 +1,13 @@
 <template>
   <form class="login-form" @submit.prevent="submit">
-    <input-field
+    <ui-input-field
       v-model="form.login"
       :label="$t('login-form.login-lbl')"
       :error-message="getFieldErrorMessage('login')"
       @blur="touchField('login')"
       :disabled="isFormDisabled"
     />
-    <input-field
+    <ui-input-field
       type="password"
       v-model="form.password"
       :label="$t('login-form.password-lbl')"
@@ -16,7 +16,7 @@
       :disabled="isFormDisabled"
     />
     <div class="login-form__actions">
-      <app-button
+      <ui-button
         class="login-form__submit-btn"
         type="submit"
         :text="$t('login-form.submit-btn')"
@@ -32,8 +32,7 @@ import { useI18n } from 'vue-i18n'
 
 import { useForm, useFormValidation } from '@/composables'
 import { bus, BUS_EVENTS, email, ErrorHandler, required } from '@/helpers'
-import { InputField } from '@/ui'
-import { AppButton } from '@/ui'
+import { UiButton, UiInputField } from '@/ui'
 
 const { t } = useI18n({ useScope: 'global' })
 const form = reactive({

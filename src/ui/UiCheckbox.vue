@@ -1,14 +1,14 @@
 <template>
   <label
-    class="checkbox-field"
+    class="ui-checkbox"
     :class="{
-      'checkbox-field--disabled': disabled,
-      'checkbox-field--checked': modelValue,
+      'ui-checkbox--disabled': disabled,
+      'ui-checkbox--checked': modelValue,
     }"
   >
     <input
       v-bind="$attrs"
-      class="checkbox-field__input"
+      class="ui-checkbox__input"
       type="checkbox"
       :checked="modelValue"
       :name="($attrs.name as string) || label"
@@ -17,20 +17,20 @@
       @change="onChange"
     />
 
-    <span class="checkbox-field__frame-wrp" aria-hidden="true">
-      <span class="checkbox-field__frame" :class="{ 'checkbox-field__frame--checked': modelValue }">
-        <icon v-if="modelValue" class="checkbox-field__frame-icon" :name="$icons.Check" />
+    <span class="ui-checkbox__frame-wrp" aria-hidden="true">
+      <span class="ui-checkbox__frame" :class="{ 'ui-checkbox__frame--checked': modelValue }">
+        <ui-icon v-if="modelValue" class="ui-checkbox__frame-icon" :name="$icons.Check" />
       </span>
     </span>
 
-    <span v-if="label" class="checkbox-field__label">
+    <span v-if="label" class="ui-checkbox__label">
       {{ label }}
     </span>
   </label>
 </template>
 
 <script lang="ts" setup>
-import { Icon } from '@/ui'
+import { UiIcon } from '@/ui'
 
 withDefaults(
   defineProps<{
@@ -58,7 +58,7 @@ const onChange = (event: Event) => {
 </script>
 
 <style lang="scss" scoped>
-.checkbox-field {
+.ui-checkbox {
   cursor: pointer;
   display: grid;
   align-items: center;
@@ -73,7 +73,7 @@ const onChange = (event: Event) => {
   }
 }
 
-.checkbox-field__input {
+.ui-checkbox__input {
   position: absolute;
   width: toRem(1);
   height: toRem(1);
@@ -86,7 +86,7 @@ const onChange = (event: Event) => {
   overflow: hidden;
 }
 
-.checkbox-field__frame-wrp {
+.ui-checkbox__frame-wrp {
   overflow: hidden;
   width: toRem(18);
   height: toRem(18);
@@ -96,7 +96,7 @@ const onChange = (event: Event) => {
   box-shadow: inset 0 0 0 toRem(2) var(--field-border);
 }
 
-.checkbox-field__frame {
+.ui-checkbox__frame {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,17 +104,17 @@ const onChange = (event: Event) => {
   height: 100%;
   color: var(--field-bg-primary);
 
-  .checkbox-field--checked & {
+  .ui-checkbox--checked & {
     background-color: var(--primary-main);
   }
 }
 
-.checkbox-field__frame-icon {
+.ui-checkbox__frame-icon {
   width: toRem(42);
   height: toRem(42);
 }
 
-.checkbox-field__label {
+.ui-checkbox__label {
   display: inline-flex;
   user-select: none;
 

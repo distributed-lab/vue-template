@@ -1,9 +1,9 @@
 <template>
   <div :class="textareaClasses">
-    <div class="textarea-field__textarea-wrp">
+    <div class="ui-textarea__textarea-wrp">
       <textarea
-        class="textarea-field__textarea"
-        :id="`textarea-field--${uid}`"
+        class="ui-textarea__textarea"
+        :id="`ui-textarea--${uid}`"
         v-bind="$attrs"
         v-on="listeners"
         :value="modelValue"
@@ -11,19 +11,19 @@
         :tabindex="isDisabled || isReadonly ? -1 : ($attrs.tabindex as number)"
         :disabled="isDisabled || isReadonly"
       />
-      <label v-if="label" :for="`textarea-field--${uid}`" class="textarea-field__label">
+      <label v-if="label" :for="`ui-textarea--${uid}`" class="ui-textarea__label">
         {{ label }}
       </label>
     </div>
     <transition
-      name="textarea-field__err-msg-transition"
+      name="ui-textarea__err-msg-transition"
       @enter="setHeightCSSVar"
       @before-leave="setHeightCSSVar"
     >
-      <span v-if="errorMessage" class="textarea-field__err-msg">
+      <span v-if="errorMessage" class="ui-textarea__err-msg">
         {{ errorMessage }}
       </span>
-      <span v-else-if="note" class="textarea-field__note">
+      <span v-else-if="note" class="ui-textarea__note">
         {{ note }}
       </span>
     </transition>
@@ -82,11 +82,11 @@ const listeners = computed(() => ({
 
 const textareaClasses = computed(() =>
   [
-    'textarea-field',
-    ...(isDisabled.value ? ['textarea-field--disabled'] : []),
-    ...(isReadonly.value ? ['textarea-field--readonly'] : []),
-    ...(props.errorMessage ? ['textarea-field--error'] : []),
-    `textarea-field--${props.scheme}`,
+    'ui-textarea',
+    ...(isDisabled.value ? ['ui-textarea--disabled'] : []),
+    ...(isReadonly.value ? ['ui-textarea--readonly'] : []),
+    ...(props.errorMessage ? ['ui-textarea--error'] : []),
+    `ui-textarea--${props.scheme}`,
   ].join(' '),
 )
 
@@ -99,7 +99,7 @@ const setHeightCSSVar = (element: Element) => {
 </script>
 
 <style lang="scss" scoped>
-.textarea-field {
+.ui-textarea {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -112,7 +112,7 @@ const setHeightCSSVar = (element: Element) => {
   }
 }
 
-.textarea-field__label {
+.ui-textarea__label {
   pointer-events: none;
   position: absolute;
   padding: toRem(4);
@@ -128,17 +128,17 @@ const setHeightCSSVar = (element: Element) => {
 
   transition-property: all;
 
-  .textarea-field__textarea:not(:placeholder-shown) ~ & {
+  .ui-textarea__textarea:not(:placeholder-shown) ~ & {
     top: 0;
     color: var(--field-text);
     border-color: var(--field-border-hover);
   }
 
-  .textarea-field--error:not(:focus):not(:placeholder-shown) & {
+  .ui-textarea--error:not(:focus):not(:placeholder-shown) & {
     color: var(--field-error);
   }
   /* stylelint-disable-next-line */
-  .textarea-field__textarea:not(:focus):placeholder-shown ~ & {
+  .ui-textarea__textarea:not(:focus):placeholder-shown ~ & {
     top: calc(var(--field-padding-top) + var(--field-text-font-size) + #{toRem(8)});
     color: var(--field-label);
     font-size: toRem(16);
@@ -147,12 +147,12 @@ const setHeightCSSVar = (element: Element) => {
   }
 
   /* stylelint-disable-next-line */
-  .textarea-field__textarea:not([disabled]):focus ~ & {
+  .ui-textarea__textarea:not([disabled]):focus ~ & {
     color: var(--field-label-focus);
     font-weight: 700;
   }
 
-  .textarea-field__textarea:not(:focus):placeholder-shown:-webkit-autofill ~ & {
+  .ui-textarea__textarea:not(:focus):placeholder-shown:-webkit-autofill ~ & {
     top: calc(var(--field-padding-top) + var(--field-text-font-size) - #{toRem(1)});
     color: var(--field-label);
     font-size: toRem(16);
@@ -161,13 +161,13 @@ const setHeightCSSVar = (element: Element) => {
   }
 }
 
-.textarea-field__textarea-wrp {
+.ui-textarea__textarea-wrp {
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-.textarea-field__textarea {
+.ui-textarea__textarea {
   padding: var(--field-padding);
   resize: none;
   min-height: toRem(130);
@@ -176,7 +176,7 @@ const setHeightCSSVar = (element: Element) => {
 
   @include field-text;
 
-  & + .textarea-field__focus-indicator {
+  & + .ui-textarea__focus-indicator {
     pointer-events: none;
     position: absolute;
     top: 0;
@@ -195,13 +195,13 @@ const setHeightCSSVar = (element: Element) => {
       background: var(--primary-main);
       transition: width calc(var(--field-transition-duration) + 0.3s);
 
-      .textarea-field--error & {
+      .ui-textarea--error & {
         background: var(--field-error);
       }
     }
   }
 
-  .textarea-field--primary & {
+  .ui-textarea--primary & {
     @include field-border;
   }
 
@@ -227,7 +227,7 @@ const setHeightCSSVar = (element: Element) => {
     @include field-placeholder;
   }
 
-  .textarea-field--error.textarea-field--primary & {
+  .ui-textarea--error.ui-textarea--primary & {
     border-color: var(--field-error);
     box-shadow:
       inset 0 0 0 toRem(50) var(--field-bg-primary),
@@ -235,7 +235,7 @@ const setHeightCSSVar = (element: Element) => {
   }
 
   &:not([disabled]):focus {
-    .textarea-field--primary & {
+    .ui-textarea--primary & {
       box-sizing: border-box;
       box-shadow:
         inset 0 0 0 toRem(500) var(--field-bg-primary),
@@ -245,26 +245,26 @@ const setHeightCSSVar = (element: Element) => {
   }
 
   &:not([disabled]):not(:focus):hover {
-    .textarea-field--primary & {
+    .ui-textarea--primary & {
       border-color: var(--field-border-hover);
     }
   }
 }
 
-.textarea-field__err-msg,
-.textarea-field__note {
+.ui-textarea__err-msg,
+.ui-textarea__note {
   @include field-error;
 }
 
-.textarea-field__note {
+.ui-textarea__note {
   color: var(--text-primary-light);
 }
 
-.textarea-field__err-msg-transition-enter-active {
+.ui-textarea__err-msg-transition-enter-active {
   animation: fade-down var(--field-transition-duration);
 }
 
-.textarea-field__err-msg-transition-leave-active {
+.ui-textarea__err-msg-transition-leave-active {
   animation: fade-down var(--field-transition-duration) reverse;
 }
 

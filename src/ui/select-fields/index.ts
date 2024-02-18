@@ -1,1 +1,1 @@
-export { default as BasicSelectField } from './BasicSelectField.vue'
+export { default as UiBasicSelect } from './UiBasicSelect.vue'

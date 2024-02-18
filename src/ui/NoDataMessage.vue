@@ -1,6 +1,6 @@
 <template>
   <div class="no-data-message">
-    <icon class="no-data-message__img" :name="iconName" />
+    <ui-icon class="no-data-message__img" :name="iconName" />
     <span v-if="message" class="no-data-message__message">
       {{ message }}
     </span>
@@ -9,14 +9,14 @@
 
 <script lang="ts" setup>
 import { IconNames } from '@/enums'
-import { Icon } from '@/ui'
+import { UiIcon } from '@/ui'
 
 withDefaults(
   defineProps<{
     message?: string
     iconName?: IconNames
   }>(),
-  { message: '', iconName: IconNames.template },
+  { message: '', iconName: IconNames.arrowCircleUp },
 )
 </script>
 

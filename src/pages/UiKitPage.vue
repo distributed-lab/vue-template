@@ -1,106 +1,106 @@
 <template>
   <div class="ui-kit-page">
     <div class="ui-kit-page__buttons">
-      <app-button size="small" :text="'button'" />
-      <app-button size="small" :text="'button'" scheme="flat" />
-      <app-button size="small" :text="'button'" scheme="none" />
+      <ui-button size="small" :text="'button'" />
+      <ui-button size="small" :text="'button'" scheme="flat" />
+      <ui-button size="small" :text="'button'" scheme="none" />
 
-      <app-button size="small" :text="'button'" color="success" />
-      <app-button size="small" :text="'button'" scheme="flat" color="success" />
-      <app-button size="small" :text="'button'" scheme="none" color="success" />
+      <ui-button size="small" :text="'button'" color="success" />
+      <ui-button size="small" :text="'button'" scheme="flat" color="success" />
+      <ui-button size="small" :text="'button'" scheme="none" color="success" />
 
-      <app-button size="small" :text="'button'" color="error" />
-      <app-button size="small" :text="'button'" scheme="flat" color="error" />
-      <app-button size="small" :text="'button'" scheme="none" color="error" />
+      <ui-button size="small" :text="'button'" color="error" />
+      <ui-button size="small" :text="'button'" scheme="flat" color="error" />
+      <ui-button size="small" :text="'button'" scheme="none" color="error" />
 
-      <app-button size="small" :text="'button'" color="warning" />
-      <app-button size="small" :text="'button'" scheme="flat" color="warning" />
-      <app-button size="small" :text="'button'" scheme="none" color="warning" />
+      <ui-button size="small" :text="'button'" color="warning" />
+      <ui-button size="small" :text="'button'" scheme="flat" color="warning" />
+      <ui-button size="small" :text="'button'" scheme="none" color="warning" />
 
-      <app-button size="small" :text="'button'" color="warning" />
-      <app-button size="small" :text="'button'" scheme="flat" color="warning" />
-      <app-button size="small" :text="'button'" scheme="none" color="warning" />
+      <ui-button size="small" :text="'button'" color="warning" />
+      <ui-button size="small" :text="'button'" scheme="flat" color="warning" />
+      <ui-button size="small" :text="'button'" scheme="none" color="warning" />
 
-      <app-button size="small" :text="'button'" color="info" />
-      <app-button size="small" :text="'button'" scheme="flat" color="info" />
-      <app-button size="small" :text="'button'" scheme="none" color="info" />
+      <ui-button size="small" :text="'button'" color="info" />
+      <ui-button size="small" :text="'button'" scheme="flat" color="info" />
+      <ui-button size="small" :text="'button'" scheme="none" color="info" />
     </div>
     <div class="ui-kit-page__buttons">
-      <app-button :text="'button'" />
-      <app-button :text="'button'" scheme="flat" />
-      <app-button :text="'button'" scheme="none" />
+      <ui-button :text="'button'" />
+      <ui-button :text="'button'" scheme="flat" />
+      <ui-button :text="'button'" scheme="none" />
 
-      <app-button :text="'button'" modification="border-circle" />
-      <app-button :text="'button'" scheme="flat" modification="border-circle" />
-      <app-button :text="'button'" scheme="none" modification="border-circle" />
+      <ui-button :text="'button'" modification="border-circle" />
+      <ui-button :text="'button'" scheme="flat" modification="border-circle" />
+      <ui-button :text="'button'" scheme="none" modification="border-circle" />
 
-      <app-button :text="'button'" modification="border-rounded" />
-      <app-button :text="'button'" scheme="flat" modification="border-rounded" />
-      <app-button :text="'button'" scheme="none" modification="border-rounded" />
+      <ui-button :text="'button'" modification="border-rounded" />
+      <ui-button :text="'button'" scheme="flat" modification="border-rounded" />
+      <ui-button :text="'button'" scheme="none" modification="border-rounded" />
 
-      <app-button :text="'button'" modification="none" />
-      <app-button :text="'button'" scheme="flat" modification="none" />
-      <app-button :text="'button'" scheme="none" modification="none" />
+      <ui-button :text="'button'" modification="none" />
+      <ui-button :text="'button'" scheme="flat" modification="none" />
+      <ui-button :text="'button'" scheme="none" modification="none" />
     </div>
     <div class="ui-kit-page__buttons">
-      <app-button size="large" :text="'button'" />
-      <app-button size="large" :text="'button'" scheme="flat" />
-      <app-button size="large" :text="'button'" scheme="none" />
+      <ui-button size="large" :text="'button'" />
+      <ui-button size="large" :text="'button'" scheme="flat" />
+      <ui-button size="large" :text="'button'" scheme="none" />
     </div>
     <div class="ui-kit-page__buttons">
-      <app-button size="small" :icon-right="$icons.Plus" />
-      <app-button size="small" :icon-right="$icons.Plus" scheme="flat" />
-      <app-button size="small" :icon-right="$icons.Plus" scheme="none" />
+      <ui-button size="small" :icon-right="$icons.Plus" />
+      <ui-button size="small" :icon-right="$icons.Plus" scheme="flat" />
+      <ui-button size="small" :icon-right="$icons.Plus" scheme="none" />
 
-      <app-button size="small" :icon-right="$icons.Plus" color="success" />
-      <app-button size="small" :icon-right="$icons.Plus" scheme="flat" color="success" />
-      <app-button size="small" :icon-right="$icons.Plus" scheme="none" color="success" />
+      <ui-button size="small" :icon-right="$icons.Plus" color="success" />
+      <ui-button size="small" :icon-right="$icons.Plus" scheme="flat" color="success" />
+      <ui-button size="small" :icon-right="$icons.Plus" scheme="none" color="success" />
 
-      <app-button size="small" :icon-right="$icons.Plus" color="error" />
-      <app-button size="small" :icon-right="$icons.Plus" scheme="flat" color="error" />
-      <app-button size="small" :icon-right="$icons.Plus" scheme="none" color="error" />
+      <ui-button size="small" :icon-right="$icons.Plus" color="error" />
+      <ui-button size="small" :icon-right="$icons.Plus" scheme="flat" color="error" />
+      <ui-button size="small" :icon-right="$icons.Plus" scheme="none" color="error" />
 
-      <app-button size="small" :icon-right="$icons.Plus" color="warning" />
-      <app-button size="small" :icon-right="$icons.Plus" scheme="flat" color="warning" />
-      <app-button size="small" :icon-right="$icons.Plus" scheme="none" color="warning" />
+      <ui-button size="small" :icon-right="$icons.Plus" color="warning" />
+      <ui-button size="small" :icon-right="$icons.Plus" scheme="flat" color="warning" />
+      <ui-button size="small" :icon-right="$icons.Plus" scheme="none" color="warning" />
 
-      <app-button size="small" :icon-right="$icons.Plus" color="warning" />
-      <app-button size="small" :icon-right="$icons.Plus" scheme="flat" color="warning" />
-      <app-button size="small" :icon-right="$icons.Plus" scheme="none" color="warning" />
+      <ui-button size="small" :icon-right="$icons.Plus" color="warning" />
+      <ui-button size="small" :icon-right="$icons.Plus" scheme="flat" color="warning" />
+      <ui-button size="small" :icon-right="$icons.Plus" scheme="none" color="warning" />
 
-      <app-button size="small" :icon-right="$icons.Plus" color="info" />
-      <app-button size="small" :icon-right="$icons.Plus" scheme="flat" color="info" />
-      <app-button size="small" :icon-right="$icons.Plus" scheme="none" color="info" />
+      <ui-button size="small" :icon-right="$icons.Plus" color="info" />
+      <ui-button size="small" :icon-right="$icons.Plus" scheme="flat" color="info" />
+      <ui-button size="small" :icon-right="$icons.Plus" scheme="none" color="info" />
     </div>
     <div class="ui-kit-page__buttons">
-      <app-button size="small" modification="border-circle" :icon-right="$icons.Plus" />
-      <app-button
+      <ui-button size="small" modification="border-circle" :icon-right="$icons.Plus" />
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
         scheme="flat"
       />
-      <app-button
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
         scheme="none"
       />
 
-      <app-button
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
         color="success"
       />
-      <app-button
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
         scheme="flat"
         color="success"
       />
-      <app-button
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
@@ -108,20 +108,20 @@
         color="success"
       />
 
-      <app-button
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
         color="error"
       />
-      <app-button
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
         scheme="flat"
         color="error"
       />
-      <app-button
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
@@ -129,20 +129,20 @@
         color="error"
       />
 
-      <app-button
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
         color="warning"
       />
-      <app-button
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
         scheme="flat"
         color="warning"
       />
-      <app-button
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
@@ -150,20 +150,20 @@
         color="warning"
       />
 
-      <app-button
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
         color="warning"
       />
-      <app-button
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
         scheme="flat"
         color="warning"
       />
-      <app-button
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
@@ -171,20 +171,15 @@
         color="warning"
       />
 
-      <app-button
-        size="small"
-        modification="border-circle"
-        :icon-right="$icons.Plus"
-        color="info"
-      />
-      <app-button
+      <ui-button size="small" modification="border-circle" :icon-right="$icons.Plus" color="info" />
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
         scheme="flat"
         color="info"
       />
-      <app-button
+      <ui-button
         size="small"
         modification="border-circle"
         :icon-right="$icons.Plus"
@@ -194,32 +189,32 @@
     </div>
 
     <div class="ui-kit-page__buttons">
-      <app-button
+      <ui-button
         size="small"
         :text="'bus.success'"
         color="success"
         @click="() => bus.emit(BUS_EVENTS.success, 'Some success message')"
       />
-      <app-button
+      <ui-button
         size="small"
         :text="'bus.error'"
         color="error"
         @click="() => bus.emit(BUS_EVENTS.error, 'Some error message')"
       />
-      <app-button
+      <ui-button
         size="small"
         :text="'bus.warning'"
         color="warning"
         @click="() => bus.emit(BUS_EVENTS.warning, 'Some warning message')"
       />
-      <app-button
+      <ui-button
         size="small"
         :text="'bus.info'"
         color="info"
         @click="() => bus.emit(BUS_EVENTS.info, 'Some info message')"
       />
 
-      <app-button
+      <ui-button
         size="small"
         :text="'ErrorHandler.process'"
         color="error"
@@ -228,42 +223,42 @@
     </div>
 
     <div class="ui-kit-page__inputs">
-      <input-field v-model="form.input" />
-      <input-field v-model="form.input" :label="'label'" />
-      <input-field v-model="form.input" :label="'label'" :placeholder="'placeholder'" />
-      <input-field
+      <ui-input-field v-model="form.input" />
+      <ui-input-field v-model="form.input" :label="'label'" />
+      <ui-input-field v-model="form.input" :label="'label'" :placeholder="'placeholder'" />
+      <ui-input-field
         v-model="form.input"
         :label="'label'"
         :placeholder="'placeholder'"
         :error-message="'error message'"
       />
-      <input-field v-model="form.input" :label="'label'" :placeholder="'placeholder'">
+      <ui-input-field v-model="form.input" :label="'label'" :placeholder="'placeholder'">
         <template #nodeLeft>
-          <icon class="input__icon" :name="$icons.Search" />
+          <ui-icon class="input__icon" :name="$icons.Search" />
         </template>
-      </input-field>
-      <input-field v-model="form.input" :label="'label'" :placeholder="'placeholder'">
+      </ui-input-field>
+      <ui-input-field v-model="form.input" :label="'label'" :placeholder="'placeholder'">
         <template #nodeLeft>
-          <icon class="input__icon" :name="$icons.Search" />
+          <ui-icon class="input__icon" :name="$icons.Search" />
         </template>
         <template #nodeRight>
-          <icon class="input__icon" :name="$icons.Plus" />
+          <ui-icon class="input__icon" :name="$icons.Plus" />
         </template>
-      </input-field>
-      <input-field
+      </ui-input-field>
+      <ui-input-field
         v-model="form.input"
         :label="'label'"
         :placeholder="'placeholder'"
         :note="'lorem ipsum dolor sit amet concestetur!'"
       >
         <template #nodeLeft>
-          <icon class="input__icon" :name="$icons.Search" />
+          <ui-icon class="input__icon" :name="$icons.Search" />
         </template>
         <template #nodeRight>
-          <icon class="input__icon" :name="$icons.Plus" />
+          <ui-icon class="input__icon" :name="$icons.Plus" />
         </template>
-      </input-field>
-      <input-field
+      </ui-input-field>
+      <ui-input-field
         v-model="form.input"
         :label="'label'"
         :placeholder="'placeholder'"
@@ -271,30 +266,30 @@
         disabled
       >
         <template #nodeLeft>
-          <icon class="input__icon" :name="$icons.Search" />
+          <ui-icon class="input__icon" :name="$icons.Search" />
         </template>
         <template #nodeRight>
-          <icon class="input__icon" :name="$icons.Plus" />
+          <ui-icon class="input__icon" :name="$icons.Plus" />
         </template>
-      </input-field>
+      </ui-input-field>
     </div>
 
     <div class="ui-kit-page__select-fields">
-      <select-field v-model="form.select" :value-options="SELECT_OPTIONS" />
-      <select-field :label="`Label`" v-model="form.select" :value-options="SELECT_OPTIONS" />
-      <select-field
+      <ui-select v-model="form.select" :value-options="SELECT_OPTIONS" />
+      <ui-select :label="`Label`" v-model="form.select" :value-options="SELECT_OPTIONS" />
+      <ui-select
         :label="`Label`"
         v-model="form.select"
         :value-options="SELECT_OPTIONS"
         error-message="error message"
       />
-      <select-field
+      <ui-select
         :label="`Label`"
         v-model="form.select"
         :value-options="SELECT_OPTIONS"
         note="Note message"
       />
-      <basic-select-field
+      <ui-basic-select
         :label="`Label`"
         v-model="form.select"
         :value-options="
@@ -304,13 +299,8 @@
           }))
         "
       />
-      <select-field
-        :label="`Label`"
-        v-model="form.select"
-        :value-options="SELECT_OPTIONS"
-        disabled
-      />
-      <basic-select-field
+      <ui-select :label="`Label`" v-model="form.select" :value-options="SELECT_OPTIONS" disabled />
+      <ui-basic-select
         :label="`Label`"
         v-model="form.select"
         :value-options="
@@ -322,17 +312,17 @@
         disabled
       />
 
-      <textarea-field v-model="form.textarea" />
-      <textarea-field v-model="form.textarea" :label="`Label`" />
-      <textarea-field v-model="form.textarea" :label="`Label`" error-message="Error message" />
+      <ui-textarea v-model="form.textarea" />
+      <ui-textarea v-model="form.textarea" :label="`Label`" />
+      <ui-textarea v-model="form.textarea" :label="`Label`" error-message="Error message" />
 
-      <checkbox-field v-model="form.checkbox" />
-      <checkbox-field v-model="form.checkbox" :label="`Label`" />
-      <checkbox-field v-model="form.checkbox" :label="`Label`" disabled />
+      <ui-checkbox v-model="form.checkbox" />
+      <ui-checkbox v-model="form.checkbox" :label="`Label`" />
+      <ui-checkbox v-model="form.checkbox" :label="`Label`" disabled />
 
-      <switch-field v-model="form.switch" :value="String(form.switch)" />
-      <switch-field v-model="form.switch" :value="String(form.switch)" :label="`Label`" />
-      <switch-field v-model="form.switch" :value="String(form.switch)" disabled />
+      <ui-switch v-model="form.switch" :value="String(form.switch)" />
+      <ui-switch v-model="form.switch" :value="String(form.switch)" :label="`Label`" />
+      <ui-switch v-model="form.switch" :value="String(form.switch)" disabled />
     </div>
 
     <section class="ui-kit-page__form">
@@ -342,32 +332,32 @@
     <section class="ui-kit-page__common">
       <error-message :message="$t('ui-kit-page.loading-error-msg')" />
       <no-data-message :message="$t('ui-kit-page.no-data-msg')" />
-      <loader />
-      <loader class="ui-kit-page__loader-skeleton" scheme="skeleton" />
-      <accordion class="ui-kit-page__collapse">
-        <template #head="{ accordion }">
-          <app-button
+      <ui-loader />
+      <ui-loader class="ui-kit-page__loader-skeleton" scheme="skeleton" />
+      <ui-accordion class="ui-kit-page__collapse">
+        <template #head="{ toggle }">
+          <ui-button
             class="ui-kit-page__accordion-btn"
             scheme="flat"
             :text="$t('ui-kit-page.accordion-btn')"
-            @click="accordion.toggle"
+            @click="toggle"
           >
-          </app-button>
+          </ui-button>
         </template>
         <div class="ui-kit-page__accordion-body">
           {{ $t('ui-kit-page.collapse-text') }}
         </div>
-      </accordion>
+      </ui-accordion>
       <div class="ui-kit-page__collapse-wrp">
-        <app-button text="Toggle collapse" @click="() => (isCollapseShown = !isCollapseShown)" />
-        <collapse :is-shown="isCollapseShown">
+        <ui-button text="Toggle collapse" @click="() => (isCollapseShown = !isCollapseShown)" />
+        <ui-collapse :is-shown="isCollapseShown">
           <div class="ui-kit-page__collapse-body">
             {{ $t('ui-kit-page.collapse-text') }}
           </div>
-        </collapse>
+        </ui-collapse>
       </div>
-      <app-button :text="$t('ui-kit-page.modal-btn')" @click="isModalShown = true" />
-      <basic-modal
+      <ui-button :text="$t('ui-kit-page.modal-btn')" @click="isModalShown = true" />
+      <ui-basic-modal
         class="ui-kit-page__basic-modal"
         v-model:is-shown="isModalShown"
         :title="`Modal Title`"
@@ -376,26 +366,26 @@
         <div class="ui-kit-page__modal-body">
           {{ $t('ui-kit-page.collapse-text') }}
         </div>
-      </basic-modal>
+      </ui-basic-modal>
       <div class="ui-kit-page__icons">
-        <app-tooltip>
+        <ui-tooltip>
           <template #trigger>
-            <icon class="ui-kit-page__icons-item" :name="$icons.AcademicCap" />
+            <ui-icon class="ui-kit-page__icons-item" :name="$icons.AcademicCap" />
           </template>
           <template #default>
-            <icon class="ui-kit-page__icons-item" :name="$icons.AcademicCap" />
+            <ui-icon class="ui-kit-page__icons-item" :name="$icons.AcademicCap" />
           </template>
-        </app-tooltip>
-        <icon class="ui-kit-page__icons-item" :name="$icons.AcademicCap" />
-        <icon class="ui-kit-page__icons-item" :name="$icons.Adjustments" />
-        <icon class="ui-kit-page__icons-item" :name="$icons.Annotation" />
-        <icon class="ui-kit-page__icons-item" :name="$icons.Archive" />
-        <icon class="ui-kit-page__icons-item" :name="$icons.ArrowCircleDown" />
-        <icon class="ui-kit-page__icons-item" :name="$icons.ArrowCircleLeft" />
-        <icon class="ui-kit-page__icons-item" :name="$icons.ArrowCircleRight" />
-        <icon class="ui-kit-page__icons-item" :name="$icons.arrowCircleUp" />
-        <icon class="ui-kit-page__icons-item" :name="$icons.ArrowDown" />
-        <icon class="ui-kit-page__icons-item" :name="$icons.ArrowLeft" />
+        </ui-tooltip>
+        <ui-icon class="ui-kit-page__icons-item" :name="$icons.AcademicCap" />
+        <ui-icon class="ui-kit-page__icons-item" :name="$icons.Adjustments" />
+        <ui-icon class="ui-kit-page__icons-item" :name="$icons.Annotation" />
+        <ui-icon class="ui-kit-page__icons-item" :name="$icons.Archive" />
+        <ui-icon class="ui-kit-page__icons-item" :name="$icons.ArrowCircleDown" />
+        <ui-icon class="ui-kit-page__icons-item" :name="$icons.ArrowCircleLeft" />
+        <ui-icon class="ui-kit-page__icons-item" :name="$icons.ArrowCircleRight" />
+        <ui-icon class="ui-kit-page__icons-item" :name="$icons.arrowCircleUp" />
+        <ui-icon class="ui-kit-page__icons-item" :name="$icons.ArrowDown" />
+        <ui-icon class="ui-kit-page__icons-item" :name="$icons.ArrowLeft" />
       </div>
     </section>
   </div>
@@ -407,21 +397,21 @@ import { reactive, ref } from 'vue'
 import LoginForm from '@/forms/LoginForm.vue'
 import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
 import {
-  Accordion,
-  AppButton,
-  AppTooltip,
-  BasicModal,
-  BasicSelectField,
-  CheckboxField,
-  Collapse,
   ErrorMessage,
-  Icon,
-  InputField,
-  Loader,
   NoDataMessage,
-  SelectField,
-  SwitchField,
-  TextareaField,
+  UiAccordion,
+  UiBasicModal,
+  UiBasicSelect,
+  UiButton,
+  UiCheckbox,
+  UiCollapse,
+  UiIcon,
+  UiInputField,
+  UiLoader,
+  UiSelect,
+  UiSwitch,
+  UiTextarea,
+  UiTooltip,
 } from '@/ui'
 
 const isModalShown = ref(false)

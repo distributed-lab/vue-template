@@ -1,5 +1,5 @@
 <template>
-  <svg class="icon" aria-hidden="true">
+  <svg class="ui-icon" aria-hidden="true">
     <use :href="`#${name}-icon`" />
   </svg>
 </template>
@@ -13,7 +13,7 @@ defineProps<{
 </script>
 
 <style lang="scss" scoped>
-.icon {
+.ui-icon {
   display: flex;
   justify-content: center;
   align-items: center;

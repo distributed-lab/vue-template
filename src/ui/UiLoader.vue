@@ -1,5 +1,5 @@
 <template>
-  <div class="loader">
+  <div class="ui-loader">
     <template v-if="scheme === 'spinner'">
       <spinner />
     </template>
@@ -24,7 +24,7 @@ withDefaults(
 </script>
 
 <style lang="scss" scoped>
-.loader {
+.ui-loader {
   overflow: hidden;
   display: grid;
   place-items: center;

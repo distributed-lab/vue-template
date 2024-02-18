@@ -1,6 +1,6 @@
 <template>
   <div class="error-message">
-    <icon class="error-message__img" :name="iconName" />
+    <ui-icon class="error-message__img" :name="iconName" />
     <h3 v-if="title" class="error-message__title">
       {{ title }}
     </h3>
@@ -12,7 +12,7 @@
 
 <script lang="ts" setup>
 import { IconNames } from '@/enums'
-import { Icon } from '@/ui'
+import { UiIcon } from '@/ui'
 
 withDefaults(
   defineProps<{

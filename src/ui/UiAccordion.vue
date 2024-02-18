@@ -1,29 +1,25 @@
 <template>
-  <div class="accordion" ref="rootEl">
-    <div class="accordion__head">
+  <div class="ui-accordion" ref="rootEl">
+    <div class="ui-accordion__head">
       <slot
         name="head"
-        :accordion="{
-          isOpen: isAccordionOpen,
-          toggle: toggleAccordion,
-          open: openAccordion,
-          close: closeAccordion,
-        }"
+        :is-open="isAccordionOpen"
+        :toggle="toggleAccordion"
+        :open="openAccordion"
+        :close="closeAccordion"
       />
     </div>
     <transition
-      name="accordion__body-transition"
+      name="ui-accordion__body-transition"
       @enter="setHeightCSSVar"
       @before-leave="setHeightCSSVar"
     >
-      <div v-show="isAccordionOpen" class="accordion__body">
+      <div v-show="isAccordionOpen" class="ui-accordion__body">
         <slot
-          :accordion="{
-            isOpen: isAccordionOpen,
-            toggle: toggleAccordion,
-            open: openAccordion,
-            close: closeAccordion,
-          }"
+          :is-open="isAccordionOpen"
+          :toggle="toggleAccordion"
+          :open="openAccordion"
+          :close="closeAccordion"
         />
       </div>
     </transition>
@@ -76,32 +72,32 @@ const openAccordion = () => {
 
 const setHeightCSSVar = (element: Element) => {
   ;(element as HTMLElement).style.setProperty(
-    '--accordion-body-height',
+    '--ui-accordion-body-height',
     `${element.scrollHeight}px`,
   )
 }
 </script>
 
 <style lang="scss" scoped>
-.accordion__body {
+.ui-accordion__body {
   overflow: hidden;
 }
 
-.accordion__body-transition-enter-active {
-  animation: accordion-frame-keyframes 0.25s ease-in-out;
+.ui-accordion__body-transition-enter-active {
+  animation: ui-accordion-frame-keyframes 0.25s ease-in-out;
 }
 
-.accordion__body-transition-leave-active {
-  animation: accordion-frame-keyframes 0.25s ease-in-out reverse;
+.ui-accordion__body-transition-leave-active {
+  animation: ui-accordion-frame-keyframes 0.25s ease-in-out reverse;
 }
 
-@keyframes accordion-frame-keyframes {
+@keyframes ui-accordion-frame-keyframes {
   from {
     height: 0;
   }
 
   to {
-    height: var(--accordion-body-height);
+    height: var(--ui-accordion-body-height);
   }
 }
 </style>
