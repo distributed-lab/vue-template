@@ -2,24 +2,26 @@
   <label
     class="ui-checkbox"
     :class="{
-      'ui-checkbox--disabled': disabled,
-      'ui-checkbox--checked': modelValue,
+      'ui-checkbox--disabled': isDisabled,
+      'ui-checkbox--readonly': isReadonly,
+      'ui-checkbox--checked': model,
     }"
   >
     <input
-      v-bind="$attrs"
       class="ui-checkbox__input"
       type="checkbox"
-      :checked="modelValue"
-      :name="($attrs.name as string) || label"
+      v-bind="$attrs"
       :value="value"
-      :disabled="disabled"
+      :checked="model"
+      :name="($attrs.name as string) || label"
+      :tabindex="isDisabled || isReadonly ? -1 : ($attrs.tabindex as number)"
+      :disabled="isDisabled"
       @change="onChange"
     />
 
     <span class="ui-checkbox__frame-wrp" aria-hidden="true">
-      <span class="ui-checkbox__frame" :class="{ 'ui-checkbox__frame--checked': modelValue }">
-        <ui-icon v-if="modelValue" class="ui-checkbox__frame-icon" :name="$icons.Check" />
+      <span class="ui-checkbox__frame" :class="{ 'ui-checkbox__frame--checked': model }">
+        <ui-icon v-if="model" class="ui-checkbox__frame-icon" :name="$icons.Check" />
       </span>
     </span>
 
@@ -30,30 +32,39 @@
 </template>
 
 <script lang="ts" setup>
+import { computed, useAttrs } from 'vue'
+
 import { UiIcon } from '@/ui'
+
+const model = defineModel<boolean>({
+  default: false,
+})
 
 withDefaults(
   defineProps<{
-    modelValue: boolean
     value?: string | number
     label?: string
-    disabled?: boolean
   }>(),
   {
     value: '',
     label: '',
-    disabled: false,
   },
 )
 
-const emit = defineEmits<{
-  (e: 'update:model-value', v: boolean): void
-}>()
+const attrs = useAttrs()
+
+const isDisabled = computed(() =>
+  ['', 'disabled', true].includes(attrs.disabled as string | boolean),
+)
+
+const isReadonly = computed(() =>
+  ['', 'readonly', true].includes(attrs.readonly as string | boolean),
+)
 
 const onChange = (event: Event) => {
   const target = event.target as HTMLInputElement
 
-  emit('update:model-value', target.checked)
+  model.value = target.checked
 }
 </script>
 
@@ -68,8 +79,14 @@ const onChange = (event: Event) => {
 
   &--disabled {
     cursor: not-allowed;
+    pointer-events: none;
     filter: grayscale(50);
     opacity: 0.5;
+  }
+
+  &--readonly {
+    cursor: not-allowed;
+    pointer-events: none;
   }
 }
 

@@ -12,13 +12,8 @@
     <h2>{{ `Textareas` }}</h2>
     <ui-kit-textareas />
 
-    <!--    <ui-checkbox />-->
-    <!--    <ui-checkbox :label="`Label`" />-->
-    <!--    <ui-checkbox :label="`Label`" disabled />-->
-
-    <ui-switch v-model="form.switch" :value="String(form.switch)" />
-    <ui-switch v-model="form.switch" :value="String(form.switch)" :label="`Label`" />
-    <ui-switch v-model="form.switch" :value="String(form.switch)" disabled />
+    <h2>{{ `Checks` }}</h2>
+    <ui-kit-checks />
 
     <section class="ui-kit-page__form">
       <login-form />
@@ -170,7 +165,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 
 import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
 import { UiKitSelects, UiKitTextareas } from '@/pages/UiKit/components'
@@ -184,22 +179,13 @@ import {
   UiNoDataView,
   UiSkeleton,
   UiSpinner,
-  UiSwitch,
   UiTooltip,
 } from '@/ui'
 
-import { ComplexForm, LoginForm, UiKitButtons, UiKitTextInputs } from './components'
+import { ComplexForm, LoginForm, UiKitButtons, UiKitChecks, UiKitTextInputs } from './components'
 
 const isModalShown = ref(false)
 const isCollapseShown = ref(false)
-
-const form = reactive({
-  input: '',
-  select: '',
-  textarea: '',
-  checkbox: false,
-  switch: false,
-})
 
 const handleProcessError = () => {
   ErrorHandler.process(new Error('some error message'))

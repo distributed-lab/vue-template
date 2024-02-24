@@ -10,7 +10,7 @@
         :id="`ui-input-field--${uid}`"
         v-bind="$attrs"
         v-on="listeners"
-        :value="modelValue"
+        :value="model"
         :placeholder="!label ? placeholder : ' '"
         :tabindex="isDisabled || isReadonly ? -1 : ($attrs.tabindex as number)"
         :type="inputType"

@@ -2,23 +2,25 @@
   <label
     class="ui-switch"
     :class="{
-      'ui-switch--disabled': disabled,
-      'ui-switch--checked': modelValue,
+      'ui-switch--disabled': isDisabled,
+      'ui-switch--readonly': isReadonly,
+      'ui-switch--checked': model,
     }"
   >
     <input
-      v-bind="$attrs"
       class="ui-switch__input"
       type="checkbox"
-      :checked="modelValue"
-      :name="($attrs.name as string) || label"
+      v-bind="$attrs"
       :value="value"
-      :disabled="disabled"
+      :checked="model"
+      :name="($attrs.name as string) || label"
+      :tabindex="isDisabled || isReadonly ? -1 : ($attrs.tabindex as number)"
+      :disabled="isDisabled"
       @change="onChange"
     />
 
     <span class="ui-switch__frame-wrp" aria-hidden="true">
-      <span class="ui-switch__frame" :class="{ 'ui-switch__frame--checked': modelValue }" />
+      <span class="ui-switch__frame" :class="{ 'ui-switch__frame--checked': model }" />
     </span>
 
     <span v-if="label" class="ui-switch__label">
@@ -28,28 +30,37 @@
 </template>
 
 <script lang="ts" setup>
+import { computed, useAttrs } from 'vue'
+
+const model = defineModel<boolean>({
+  default: false,
+})
+
 withDefaults(
   defineProps<{
-    modelValue: boolean
     value?: string | number
     label?: string
-    disabled?: boolean
   }>(),
   {
     value: '',
     label: '',
-    disabled: false,
   },
 )
 
-const emit = defineEmits<{
-  (e: 'update:model-value', value: boolean): void
-}>()
+const attrs = useAttrs()
+
+const isDisabled = computed(() =>
+  ['', 'disabled', true].includes(attrs.disabled as string | boolean),
+)
+
+const isReadonly = computed(() =>
+  ['', 'readonly', true].includes(attrs.readonly as string | boolean),
+)
 
 const onChange = (event: Event) => {
   const target = event.target as HTMLInputElement
 
-  emit('update:model-value', target.checked)
+  model.value = target.checked
 }
 </script>
 
@@ -63,8 +74,14 @@ const onChange = (event: Event) => {
 
   &--disabled {
     cursor: not-allowed;
+    pointer-events: none;
     filter: grayscale(50);
     opacity: 0.5;
+  }
+
+  &--readonly {
+    cursor: not-allowed;
+    pointer-events: none;
   }
 }
 
