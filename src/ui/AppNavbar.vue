@@ -5,15 +5,15 @@
     <ui-button
       class="app-navbar__link"
       :scheme="'flat'"
-      :text="$routes.uiKit"
-      :route="{ name: $routes.uiKit }"
+      :text="$routes.UiKit"
+      :route="{ name: $routes.UiKit }"
     />
 
     <ui-button
       class="app-navbar__link"
       :scheme="'flat'"
-      :text="$routes.complexForm"
-      :route="{ name: $routes.complexForm }"
+      :text="$routes.ComplexForm"
+      :route="{ name: $routes.ComplexForm }"
     />
   </div>
 </template>
@@ -27,7 +27,7 @@ import { AppLogo, UiButton } from '@/ui'
   display: flex;
   align-items: center;
   gap: toRem(24);
-  padding: toRem(24) var(--app-padding-right) toRem(24) var(--app-padding-left);
+  padding: toRem(24) 0;
   background: var(--background-primary-main);
   border-bottom: var(--border-primary-main);
 

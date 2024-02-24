@@ -1,5 +1,5 @@
 export enum RouteNames {
-  app = 'app',
-  uiKit = 'ui-kit',
-  complexForm = 'complex-form',
+  App = 'App',
+  UiKit = 'ui-kit',
+  ComplexForm = 'complex-form',
 }

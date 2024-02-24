@@ -6,7 +6,9 @@ import { i18n } from '@/localization'
 export class ErrorHandler {
   static process(error: Error | unknown, errorMessage = ''): void {
     const msgTranslation = errorMessage || ErrorHandler._getErrorMessage(error)
-    bus.emit(BUS_EVENTS.error, msgTranslation)
+    bus.emit(BUS_EVENTS.error, {
+      message: msgTranslation,
+    })
 
     ErrorHandler.processWithoutFeedback(error)
   }

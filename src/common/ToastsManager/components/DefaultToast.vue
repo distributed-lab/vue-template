@@ -1,7 +1,7 @@
 <template>
   <div class="toast__body">
     <div class="toast__icon-wrp">
-      <ui-icon v-if="toastIcon" class="toast__icon" :name="toastIcon" />
+      <ui-icon class="toast__icon" :name="iconName || IconNames.CheckCircle" />
     </div>
     <div class="toast__details">
       <h4 class="toast__title">
@@ -15,12 +15,10 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-
 import { IconNames } from '@/enums'
 import { UiIcon } from '@/ui'
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     title?: string
     message: string
@@ -31,8 +29,6 @@ const props = withDefaults(
     iconName: undefined,
   },
 )
-
-const toastIcon = computed(() => props.iconName || IconNames.CheckCircle)
 </script>
 
 <style lang="scss">

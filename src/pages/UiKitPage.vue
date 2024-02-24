@@ -193,25 +193,70 @@
         size="small"
         :text="'bus.success'"
         color="success"
-        @click="() => bus.emit(BUS_EVENTS.success, 'Some success message')"
+        @click="
+          () =>
+            bus.emit(BUS_EVENTS.success, {
+              message: 'Some success message',
+            })
+        "
       />
       <ui-button
         size="small"
         :text="'bus.error'"
         color="error"
-        @click="() => bus.emit(BUS_EVENTS.error, 'Some error message')"
+        @click="
+          () =>
+            bus.emit(BUS_EVENTS.error, {
+              message: 'Some error message',
+            })
+        "
       />
       <ui-button
         size="small"
         :text="'bus.warning'"
         color="warning"
-        @click="() => bus.emit(BUS_EVENTS.warning, 'Some warning message')"
+        @click="
+          () =>
+            bus.emit(BUS_EVENTS.warning, {
+              message: 'Some warning message',
+            })
+        "
       />
       <ui-button
         size="small"
         :text="'bus.info'"
         color="info"
-        @click="() => bus.emit(BUS_EVENTS.info, 'Some info message')"
+        @click="
+          () =>
+            bus.emit(BUS_EVENTS.info, {
+              message: 'Some info message',
+            })
+        "
+      />
+      <ui-button
+        size="small"
+        :text="'bus.info'"
+        color="info"
+        @click="
+          () =>
+            bus.emit(BUS_EVENTS.success, {
+              message: 'Some success message',
+            })
+        "
+      />
+      <ui-button
+        size="small"
+        :text="'custom'"
+        color="info"
+        @click="
+          () =>
+            bus.emit(BUS_EVENTS.success, {
+              component: ErrorMessage,
+              props: {
+                message: 'Some custom message',
+              },
+            })
+        "
       />
 
       <ui-button
@@ -437,7 +482,7 @@ const handleProcessError = () => {
   display: flex;
   flex-direction: column;
   gap: toRem(24);
-  padding: toRem(24) var(--app-padding-right) toRem(24) var(--app-padding-left);
+  padding: toRem(24) 0;
 }
 
 .ui-kit-page__buttons {
