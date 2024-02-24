@@ -16,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/ui-kit',
         name: RouteNames.UiKit,
-        component: () => import('@/pages/UiKitPage.vue'),
+        component: () => import('@/pages/UiKit'),
       },
       {
         path: '/complex-form',

@@ -62,7 +62,7 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 
-import { useForm, useFormValidation } from '@/composables'
+import { useForm } from '@/composables'
 import { required } from '@/helpers'
 import { UiButton, UiInputField } from '@/ui'
 
@@ -76,8 +76,7 @@ const form = reactive({
   arrayNested: [{ field: '' }, { field: '' }],
 })
 
-const { isFormDisabled } = useForm()
-const { getFieldErrorMessage, touchField } = useFormValidation(form, {
+const { isFormDisabled, getFieldErrorMessage, touchField } = useForm(form, {
   field1: { required },
   nested: {
     field2: { required },

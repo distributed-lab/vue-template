@@ -30,7 +30,7 @@
 import { reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useForm, useFormValidation } from '@/composables'
+import { useForm } from '@/composables'
 import { bus, BUS_EVENTS, email, ErrorHandler, required } from '@/helpers'
 import { UiButton, UiInputField } from '@/ui'
 
@@ -40,12 +40,11 @@ const form = reactive({
   password: '',
 })
 
-const { isFormDisabled, disableForm, enableForm } = useForm()
-
-const { isFormValid, getFieldErrorMessage, touchField } = useFormValidation(form, {
-  login: { email, required },
-  password: { required },
-})
+const { isFormDisabled, disableForm, enableForm, isFormValid, getFieldErrorMessage, touchField } =
+  useForm(form, {
+    login: { email, required },
+    password: { required },
+  })
 
 const submit = async () => {
   if (!isFormValid()) return
