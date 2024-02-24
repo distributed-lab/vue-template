@@ -1,11 +1,13 @@
 <template>
   <div class="error-message">
     <ui-icon class="error-message__img" :name="iconName" />
-    <h3 v-if="title" class="error-message__title">
-      {{ title }}
+
+    <h3 class="error-message__title">
+      {{ title || $t('error-message.default-title') }}
     </h3>
+
     <p class="error-message__message">
-      {{ message }}
+      {{ message || $t('error-message.default-message') }}
     </p>
   </div>
 </template>
@@ -18,13 +20,11 @@ withDefaults(
   defineProps<{
     title?: string
     message?: string
-    schema?: 'large' | 'small'
     iconName?: IconNames
   }>(),
   {
     title: '',
     message: '',
-    schema: 'large',
     iconName: IconNames.ExclamationCircle,
   },
 )

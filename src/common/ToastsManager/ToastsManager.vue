@@ -1,5 +1,9 @@
+<template>
+  <slot />
+</template>
+
 <script setup lang="ts">
-import { EventHandler } from '@distributedlab/tools'
+import type { EventHandler } from '@distributedlab/tools'
 import { onUnmounted } from 'vue'
 
 import { ToastPayload, useToasts } from '@/common/ToastsManager/composables'

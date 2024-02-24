@@ -13,7 +13,7 @@ export type ToastPayload =
     }
   | { component: Component; props: unknown }
 
-const AUTO_HIDE_DURATION = 30 * 1000
+const AUTO_HIDE_DURATION = 330 * 1000
 
 export const useToasts = () => {
   const toast = useToast()
