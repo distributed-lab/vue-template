@@ -36,10 +36,13 @@ import { computed, useAttrs } from 'vue'
 
 type SCHEMES = 'primary'
 
+const model = defineModel<string>({
+  default: '',
+})
+
 const props = withDefaults(
   defineProps<{
     scheme?: SCHEMES
-    modelValue: string | number
     label?: string
     placeholder?: string
     errorMessage?: string
@@ -53,10 +56,6 @@ const props = withDefaults(
     note: '',
   },
 )
-
-const emit = defineEmits<{
-  (event: 'update:model-value', value: string | number): void
-}>()
 
 const attrs = useAttrs()
 
@@ -74,9 +73,9 @@ const listeners = computed(() => ({
   input: (event: Event) => {
     const eventTarget = event.target as HTMLTextAreaElement
 
-    if (props.modelValue === eventTarget.value) return
+    if (model.value === eventTarget.value) return
 
-    emit('update:model-value', eventTarget.value)
+    model.value = eventTarget.value
   },
 }))
 
@@ -106,9 +105,13 @@ const setHeightCSSVar = (element: Element) => {
   width: 100%;
   flex: 1;
 
-  &--disabled,
-  &--readonly {
+  &--disabled {
+    pointer-events: none;
     opacity: 0.5;
+  }
+
+  &--readonly {
+    pointer-events: none;
   }
 }
 

@@ -4,10 +4,29 @@
     <ui-kit-buttons />
 
     <h2>{{ `Inputs` }}</h2>
-    <ui-kit-fields />
+    <ui-kit-text-inputs />
 
     <h2>{{ `Selects` }}</h2>
     <ui-kit-selects />
+
+    <h2>{{ `Textareas` }}</h2>
+    <ui-kit-textareas />
+
+    <!--    <ui-checkbox />-->
+    <!--    <ui-checkbox :label="`Label`" />-->
+    <!--    <ui-checkbox :label="`Label`" disabled />-->
+
+    <ui-switch v-model="form.switch" :value="String(form.switch)" />
+    <ui-switch v-model="form.switch" :value="String(form.switch)" :label="`Label`" />
+    <ui-switch v-model="form.switch" :value="String(form.switch)" disabled />
+
+    <section class="ui-kit-page__form">
+      <login-form />
+    </section>
+
+    <section class="ui-kit-page__form">
+      <complex-form />
+    </section>
 
     <div class="ui-kit-page__buttons">
       <ui-button
@@ -88,28 +107,6 @@
       />
     </div>
 
-    <div class="ui-kit-page__select-fields">
-      <ui-textarea v-model="form.textarea" />
-      <ui-textarea v-model="form.textarea" :label="`Label`" />
-      <ui-textarea v-model="form.textarea" :label="`Label`" error-message="Error message" />
-
-      <ui-checkbox v-model="form.checkbox" />
-      <ui-checkbox v-model="form.checkbox" :label="`Label`" />
-      <ui-checkbox v-model="form.checkbox" :label="`Label`" disabled />
-
-      <ui-switch v-model="form.switch" :value="String(form.switch)" />
-      <ui-switch v-model="form.switch" :value="String(form.switch)" :label="`Label`" />
-      <ui-switch v-model="form.switch" :value="String(form.switch)" disabled />
-    </div>
-
-    <section class="ui-kit-page__form">
-      <login-form />
-    </section>
-
-    <section class="ui-kit-page__form">
-      <complex-form />
-    </section>
-
     <section class="ui-kit-page__common">
       <ui-error-view :message="$t('ui-kit-page.loading-error-msg')" />
       <ui-no-data-view :message="$t('ui-kit-page.no-data-msg')" />
@@ -176,12 +173,11 @@
 import { reactive, ref } from 'vue'
 
 import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
-import { UiKitSelects } from '@/pages/UiKit/components'
+import { UiKitSelects, UiKitTextareas } from '@/pages/UiKit/components'
 import {
   UiAccordion,
   UiBasicModal,
   UiButton,
-  UiCheckbox,
   UiCollapse,
   UiErrorView,
   UiIcon,
@@ -189,11 +185,10 @@ import {
   UiSkeleton,
   UiSpinner,
   UiSwitch,
-  UiTextarea,
   UiTooltip,
 } from '@/ui'
 
-import { ComplexForm, LoginForm, UiKitButtons, UiKitFields } from './components'
+import { ComplexForm, LoginForm, UiKitButtons, UiKitTextInputs } from './components'
 
 const isModalShown = ref(false)
 const isCollapseShown = ref(false)

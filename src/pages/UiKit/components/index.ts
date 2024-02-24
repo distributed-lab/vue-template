@@ -1,5 +1,6 @@
 export { default as ComplexForm } from './ComplexForm.vue'
 export { default as LoginForm } from './LoginForm.vue'
 export { default as UiKitButtons } from './UiKitButtons.vue'
-export { default as UiKitFields } from './UiKitFields.vue'
 export { default as UiKitSelects } from './UiKitSelects.vue'
+export { default as UiKitTextareas } from './UiKitTextareas.vue'
+export { default as UiKitTextInputs } from './UiKitTextInputs.vue'
