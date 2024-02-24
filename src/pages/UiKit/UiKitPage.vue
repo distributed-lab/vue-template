@@ -251,7 +251,7 @@
         @click="
           () =>
             bus.emit(BUS_EVENTS.success, {
-              component: ErrorMessage,
+              component: UiErrorView,
               props: {
                 message: 'Some custom message',
               },
@@ -379,10 +379,10 @@
     </section>
 
     <section class="ui-kit-page__common">
-      <error-message :message="$t('ui-kit-page.loading-error-msg')" />
-      <no-data-message :message="$t('ui-kit-page.no-data-msg')" />
-      <ui-loader />
-      <ui-loader class="ui-kit-page__loader-skeleton" scheme="skeleton" />
+      <ui-error-view :message="$t('ui-kit-page.loading-error-msg')" />
+      <ui-no-data-view :message="$t('ui-kit-page.no-data-msg')" />
+      <ui-spinner />
+      <ui-skeleton class="ui-kit-page__loader-skeleton" />
       <ui-accordion class="ui-kit-page__collapse">
         <template #head="{ toggle }">
           <ui-button
@@ -445,18 +445,19 @@ import { reactive, ref } from 'vue'
 
 import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
 import {
-  ErrorMessage,
-  NoDataMessage,
   UiAccordion,
   UiBasicModal,
   UiBasicSelect,
   UiButton,
   UiCheckbox,
   UiCollapse,
+  UiErrorView,
   UiIcon,
   UiInputField,
-  UiLoader,
+  UiNoDataView,
   UiSelect,
+  UiSkeleton,
+  UiSpinner,
   UiSwitch,
   UiTextarea,
   UiTooltip,

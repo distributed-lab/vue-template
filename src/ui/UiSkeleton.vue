@@ -1,5 +1,5 @@
 <template>
-  <div :class="['skeleton', `skeleton--${scheme}`]" v-bind="$attrs" />
+  <div :class="['ui-skeleton', `ui-skeleton--${scheme}`]" v-bind="$attrs" />
 </template>
 
 <script lang="ts" setup>
@@ -14,7 +14,7 @@ withDefaults(
 </script>
 
 <style lang="scss" scoped>
-.skeleton {
+.ui-skeleton {
   overflow: hidden;
   position: relative;
   background: var(--background-secondary-light);

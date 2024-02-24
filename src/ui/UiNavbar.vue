@@ -1,11 +1,11 @@
 <template>
   <div class="app-navbar">
-    <app-logo class="app-navbar__logo" />
+    <ui-logo class="app-navbar__logo" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { AppLogo } from '@/ui'
+import { UiLogo } from '@/ui'
 </script>
 
 <style lang="scss" scoped>

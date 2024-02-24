@@ -1,17 +1,17 @@
 <template>
-  <div class="spinner" />
+  <div class="ui-spinner" />
 </template>
 
 <script lang="ts" setup></script>
 
 <style lang="scss" scoped>
-.spinner {
+.ui-spinner {
   display: inline-block;
   width: toRem(80);
   height: toRem(80);
 }
 
-.spinner:after {
+.ui-spinner:after {
   content: ' ';
   display: block;
   width: toRem(64);
@@ -20,10 +20,10 @@
   border-radius: 50%;
   border: toRem(6) solid var(--border-primary-main);
   border-color: var(--border-primary-main) transparent var(--border-primary-main) transparent;
-  animation: spinner 1.2s linear infinite;
+  animation: rotate 1.2s linear infinite;
 }
 
-@keyframes spinner {
+@keyframes rotate {
   0% {
     transform: rotate(0deg);
   }

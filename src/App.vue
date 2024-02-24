@@ -10,7 +10,7 @@
       <toasts-manager />
     </template>
     <template v-else>
-      <error-message />
+      <ui-error-view />
     </template>
   </div>
 </template>
@@ -21,7 +21,7 @@ import { ref } from 'vue'
 
 import { ToastsManager } from '@/common/ToastsManager'
 import { ErrorHandler } from '@/helpers'
-import { ErrorMessage } from '@/ui'
+import { UiErrorView } from '@/ui'
 
 const isAppInitialized = ref(false)
 

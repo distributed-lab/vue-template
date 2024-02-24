@@ -1,8 +1,8 @@
 <template>
-  <div class="no-data-message">
-    <ui-icon class="no-data-message__img" :name="iconName" />
-    <span v-if="message" class="no-data-message__message">
-      {{ message }}
+  <div class="ui-no-data-message">
+    <ui-icon class="ui-no-data-message__img" :name="iconName" />
+    <span class="ui-no-data-message__message">
+      {{ message || $t('ui-no-data-message.default-msg') }}
     </span>
   </div>
 </template>
@@ -21,19 +21,19 @@ withDefaults(
 </script>
 
 <style lang="scss" scoped>
-.no-data-message {
+.ui-no-data-message {
   display: grid;
   place-items: center;
   text-align: center;
   grid-gap: toRem(12);
 }
 
-.no-data-message__img {
+.ui-no-data-message__img {
   width: 100%;
   height: auto;
 }
 
-.no-data-message__message {
+.ui-no-data-message__message {
   font-size: toRem(18);
 }
 </style>
