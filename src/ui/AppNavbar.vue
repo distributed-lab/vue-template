@@ -1,25 +1,11 @@
 <template>
   <div class="app-navbar">
     <app-logo class="app-navbar__logo" />
-
-    <ui-button
-      class="app-navbar__link"
-      :scheme="'flat'"
-      :text="$routes.UiKit"
-      :route="{ name: $routes.UiKit }"
-    />
-
-    <ui-button
-      class="app-navbar__link"
-      :scheme="'flat'"
-      :text="$routes.ComplexForm"
-      :route="{ name: $routes.ComplexForm }"
-    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { AppLogo, UiButton } from '@/ui'
+import { AppLogo } from '@/ui'
 </script>
 
 <style lang="scss" scoped>

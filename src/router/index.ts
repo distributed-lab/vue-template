@@ -18,11 +18,6 @@ const routes: Array<RouteRecordRaw> = [
         name: RouteNames.UiKit,
         component: () => import('@/pages/UiKit'),
       },
-      {
-        path: '/complex-form',
-        name: RouteNames.ComplexForm,
-        component: () => import('@/forms/ComplexForm.vue'),
-      },
     ],
   },
 ]

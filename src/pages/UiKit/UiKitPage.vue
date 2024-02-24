@@ -374,6 +374,10 @@
       <login-form />
     </section>
 
+    <section class="ui-kit-page__form">
+      <complex-form />
+    </section>
+
     <section class="ui-kit-page__common">
       <error-message :message="$t('ui-kit-page.loading-error-msg')" />
       <no-data-message :message="$t('ui-kit-page.no-data-msg')" />
@@ -439,7 +443,6 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 
-import LoginForm from '@/forms/LoginForm.vue'
 import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
 import {
   ErrorMessage,
@@ -458,6 +461,8 @@ import {
   UiTextarea,
   UiTooltip,
 } from '@/ui'
+
+import { ComplexForm, LoginForm } from './components'
 
 const isModalShown = ref(false)
 const isCollapseShown = ref(false)
