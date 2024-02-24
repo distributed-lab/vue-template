@@ -6,13 +6,11 @@
           <template v-if="$slots.head && !!modelValue">
             <slot
               name="head"
-              :ui-select="{
-                select,
-                isOpen: isDropdownOpen,
-                close: closeDropdown,
-                open: openDropdown,
-                toggle: toggleDropdown,
-              }"
+              :select="select"
+              :is-open="isDropdownOpen"
+              :close="closeDropdown"
+              :open="openDropdown"
+              :toggle="toggleDropdown"
             />
           </template>
           <template v-else>
@@ -43,13 +41,11 @@
         <div v-if="isDropdownOpen" class="ui-select__select-dropdown">
           <template v-if="$slots.default">
             <slot
-              :ui-select="{
-                select,
-                isOpen: isDropdownOpen,
-                close: closeDropdown,
-                open: openDropdown,
-                toggle: toggleDropdown,
-              }"
+              :select="select"
+              :is-open="isDropdownOpen"
+              :close="closeDropdown"
+              :open="openDropdown"
+              :toggle="toggleDropdown"
             />
           </template>
           <template v-else-if="valueOptions?.length">
@@ -94,30 +90,28 @@ import { onBeforeRouteUpdate } from 'vue-router'
 
 import { UiIcon } from '@/ui'
 
-const props = withDefaults(
-  defineProps<{
-    scheme?: 'primary'
-    modelValue: string | number
-    valueOptions?: string[] | number[]
-    label?: string
-    placeholder?: string
-    errorMessage?: string
-    note?: string
-  }>(),
-  {
-    scheme: 'primary',
-    valueOptions: () => [],
-    type: 'text',
-    label: '',
-    placeholder: ' ',
-    errorMessage: '',
-    note: '',
-  },
-)
+const model = defineModel<string>({
+  default: '',
+})
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: number | string): void
-}>()
+export type Props = {
+  scheme?: 'primary'
+  valueOptions?: string[]
+  label?: string
+  placeholder?: string
+  errorMessage?: string
+  note?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  scheme: 'primary',
+  valueOptions: () => [],
+  type: 'text',
+  label: '',
+  placeholder: ' ',
+  errorMessage: '',
+  note: '',
+})
 
 const attrs = useAttrs()
 
@@ -138,7 +132,7 @@ const isReadonly = computed(() =>
   ['', 'readonly', true].includes(attrs.readonly as string | boolean),
 )
 
-const isLabelActive = computed(() => isDropdownOpen.value || !!props.modelValue)
+const isLabelActive = computed(() => isDropdownOpen.value || !!model.value)
 
 const selectFieldClasses = computed(() => ({
   'ui-select': true,
@@ -171,10 +165,11 @@ const closeDropdown = () => {
   isDropdownOpen.value = false
 }
 
-const select = (value: string | number) => {
+const select = (value: string) => {
   if (isDisabled.value || isReadonly.value) return
 
-  emit('update:modelValue', value)
+  model.value = value
+
   closeDropdown()
 }
 
@@ -187,7 +182,7 @@ onMounted(() => {
 })
 
 watch(
-  () => props.modelValue,
+  () => model,
   () => {
     closeDropdown()
   },
@@ -204,9 +199,12 @@ $z-local-index: 2;
   width: 100%;
   flex: 1;
 
-  &--disabled,
-  &--readonly {
+  &--disabled {
     opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &--readonly {
     pointer-events: none;
   }
 }

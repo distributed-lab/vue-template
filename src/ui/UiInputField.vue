@@ -44,7 +44,7 @@
         />
       </div>
     </div>
-    <ui-collapse :is-shown="errorMessage || note">
+    <ui-collapse :is-shown="Boolean(errorMessage || note)">
       <span v-if="errorMessage" class="ui-input-field__err-msg">
         {{ errorMessage }}
       </span>

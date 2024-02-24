@@ -3,8 +3,11 @@
     <h2>{{ `Buttons` }}</h2>
     <ui-kit-buttons />
 
-    <h2>{{ `Fields` }}</h2>
+    <h2>{{ `Inputs` }}</h2>
     <ui-kit-fields />
+
+    <h2>{{ `Selects` }}</h2>
+    <ui-kit-selects />
 
     <div class="ui-kit-page__buttons">
       <ui-button
@@ -85,46 +88,7 @@
       />
     </div>
 
-    <div class="ui-kit-page__inputs"></div>
-
     <div class="ui-kit-page__select-fields">
-      <ui-select v-model="form.select" :value-options="SELECT_OPTIONS" />
-      <ui-select :label="`Label`" v-model="form.select" :value-options="SELECT_OPTIONS" />
-      <ui-select
-        :label="`Label`"
-        v-model="form.select"
-        :value-options="SELECT_OPTIONS"
-        error-message="error message"
-      />
-      <ui-select
-        :label="`Label`"
-        v-model="form.select"
-        :value-options="SELECT_OPTIONS"
-        note="Note message"
-      />
-      <ui-basic-select
-        :label="`Label`"
-        v-model="form.select"
-        :value-options="
-          SELECT_OPTIONS.map(el => ({
-            title: String(el).concat('++'),
-            value: el,
-          }))
-        "
-      />
-      <ui-select :label="`Label`" v-model="form.select" :value-options="SELECT_OPTIONS" disabled />
-      <ui-basic-select
-        :label="`Label`"
-        v-model="form.select"
-        :value-options="
-          SELECT_OPTIONS.map(el => ({
-            title: String(el).concat('++'),
-            value: el,
-          }))
-        "
-        disabled
-      />
-
       <ui-textarea v-model="form.textarea" />
       <ui-textarea v-model="form.textarea" :label="`Label`" />
       <ui-textarea v-model="form.textarea" :label="`Label`" error-message="Error message" />
@@ -212,17 +176,16 @@
 import { reactive, ref } from 'vue'
 
 import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
+import { UiKitSelects } from '@/pages/UiKit/components'
 import {
   UiAccordion,
   UiBasicModal,
-  UiBasicSelect,
   UiButton,
   UiCheckbox,
   UiCollapse,
   UiErrorView,
   UiIcon,
   UiNoDataView,
-  UiSelect,
   UiSkeleton,
   UiSpinner,
   UiSwitch,
@@ -234,8 +197,6 @@ import { ComplexForm, LoginForm, UiKitButtons, UiKitFields } from './components'
 
 const isModalShown = ref(false)
 const isCollapseShown = ref(false)
-
-const SELECT_OPTIONS = [1, 2, 3, 4, 5]
 
 const form = reactive({
   input: '',

@@ -1,19 +1,16 @@
 <template>
   <ui-select
     class="ui-basic-select"
-    :model-value="localModelValue"
-    @update:model-value="emit('update:modelValue', $event)"
-    :label="label"
-    :placeholder="placeholder"
-    :error-message="errorMessage"
-    :note="note"
+    :model-value="model"
+    @update:model-value="updateModelValue"
+    v-bind="$attrs"
   >
     <template #head>
       <div class="ui-basic-select__head">
         {{ selectedOption?.title || '' }}
       </div>
     </template>
-    <template v-if="valueOptions?.length" #default="{ selectField }">
+    <template v-if="valueOptions?.length" #default="{ select }">
       <button
         type="button"
         v-for="(item, idx) in valueOptions"
@@ -21,10 +18,10 @@
         :class="[
           'ui-basic-select__option',
           {
-            'ui-basic-select__option--active': item?.value === localModelValue,
+            'ui-basic-select__option--active': item?.value === model,
           },
         ]"
-        @click="selectField?.select(item?.value)"
+        @click="select(item?.value)"
       >
         {{ item?.title ?? '' }}
       </button>
@@ -33,47 +30,31 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue'
+import { computed } from 'vue'
 
-import { UiSelect } from '@/ui'
+import { default as UiSelect, type Props as UiSelectProps } from '@/ui/UiSelect.vue'
 
-type ValueOption = { title: string; value: string | number }
+type ValueOption = { title: string; value: string }
 
-const props = withDefaults(
-  defineProps<{
-    modelValue: string | number
-    valueOptions?: ValueOption[]
-    label?: string
-    placeholder?: string
-    errorMessage?: string
-    note?: string
-  }>(),
-  {
-    valueOptions: () => [],
-    label: '',
-    placeholder: ' ',
-    errorMessage: '',
-    note: '',
-  },
-)
+export type Props = Partial<Omit<UiSelectProps, 'valueOptions'>> & {
+  valueOptions?: ValueOption[]
+}
 
-const emit = defineEmits<{
-  (event: 'update:modelValue', value: string | number): void
-}>()
-
-// eslint-disable-next-line vue/no-setup-props-destructure
-const localModelValue = ref(props.modelValue)
-
-const selectedOption = computed(() => {
-  return props.valueOptions?.find(el => el.value === localModelValue.value)
+const model = defineModel<string>({
+  default: '',
 })
 
-watch(
-  () => props.modelValue,
-  value => {
-    localModelValue.value = value
-  },
-)
+const props = withDefaults(defineProps<Props>(), {
+  valueOptions: () => [],
+})
+
+const selectedOption = computed(() => {
+  return props.valueOptions?.find(el => el.value === model.value)
+})
+
+const updateModelValue = (value: string) => {
+  model.value = value
+}
 </script>
 
 <style lang="scss" scoped>
