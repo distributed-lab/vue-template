@@ -1,5 +1,5 @@
 <template>
-  <div class="ui-input-field" :class="inputClasses">
+  <div ref="rootEl" class="ui-input-field" :class="inputClasses">
     <div class="ui-input-field__input-wrp">
       <div v-if="$slots.nodeLeft" ref="nodeLeftWrp" class="ui-input-field__node-left-wrp">
         <slot name="nodeLeft" />
@@ -44,32 +44,31 @@
         />
       </div>
     </div>
-    <transition
-      name="ui-input-field__err-msg-transition"
-      @enter="setHeightCSSVar"
-      @before-leave="setHeightCSSVar"
-    >
+    <ui-collapse :is-shown="errorMessage || note">
       <span v-if="errorMessage" class="ui-input-field__err-msg">
         {{ errorMessage }}
       </span>
       <span v-else-if="note" class="ui-input-field__note-msg">
         {{ note }}
       </span>
-    </transition>
+    </ui-collapse>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { BN, DECIMALS } from '@distributedlab/tools'
 import { v4 as uuidv4 } from 'uuid'
 import { computed, onMounted, ref, useAttrs, useSlots } from 'vue'
 
 import { UiIcon } from '@/ui'
+import UiCollapse from '@/ui/UiCollapse.vue'
+
+const model = defineModel<string>({
+  default: '',
+})
 
 const props = withDefaults(
   defineProps<{
     scheme?: 'primary'
-    modelValue: string | number
     label?: string
     placeholder?: string
     type?: 'text' | 'number' | 'password'
@@ -86,16 +85,13 @@ const props = withDefaults(
   },
 )
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: number | string): void
-}>()
-
 const attrs = useAttrs()
 
 const slots = useSlots()
 
 const uid = uuidv4()
 
+const rootEl = ref<HTMLDivElement>()
 const inputEl = ref<HTMLInputElement>()
 const nodeLeftWrp = ref<HTMLDivElement>()
 const nodeRightWrp = ref<HTMLDivElement>()
@@ -127,9 +123,10 @@ const listeners = computed(() => ({
     if (isNumberType.value) {
       eventTarget.value = normalizeRange(normalizeNumber(eventTarget.value))
     }
-    if (props.modelValue === eventTarget.value) return
 
-    emit('update:modelValue', eventTarget.value)
+    if (model.value === eventTarget.value) return
+
+    model.value = eventTarget.value
   },
 }))
 
@@ -150,6 +147,7 @@ const inputType = computed(() => {
   if (isPasswordType.value) {
     return isPasswordShown.value ? 'text' : 'password'
   }
+
   return 'text'
 })
 
@@ -157,47 +155,29 @@ onMounted(() => {
   if (!inputEl.value) return
 
   if (slots?.nodeLeft && nodeLeftWrp.value) {
-    inputEl.value?.style.setProperty(
-      'padding-left',
-      `calc(${nodeLeftWrp.value?.offsetWidth || 0}px + var(--field-padding-left) * 2)`,
-    )
+    const offsetLeft = `calc(${nodeLeftWrp.value?.offsetWidth || 0}px + var(--field-padding-left) * 2)`
+
+    inputEl.value?.style.setProperty('padding-left', offsetLeft)
+    rootEl.value?.style.setProperty('--input-field-label-left', offsetLeft)
   }
 
   if (slots?.nodeRight && nodeRightWrp.value) {
-    inputEl.value?.style.setProperty(
-      'padding-right',
-      `calc(${nodeRightWrp.value?.offsetWidth || 0}px + var(--field-padding-right) * 2)`,
-    )
+    const offsetRight = `calc(${nodeRightWrp.value?.offsetWidth || 0}px + var(--field-padding-right) * 2)`
+
+    inputEl.value?.style.setProperty('padding-right', offsetRight)
   }
 })
 
 const normalizeNumber = (value: string) => {
-  return isNaN(Number(value)) ? props.modelValue : value
+  return isNaN(Number(value)) ? model.value : value
 }
 
-const normalizeRange = (value: string | number): string => {
-  let result = value
+const normalizeRange = (value: string): string => {
+  if (Number(value) && Number(value) < Number(min.value)) return min.value
 
-  if (
-    String(min.value) &&
-    BN.fromRaw(value, DECIMALS.WEI).lt(BN.fromRaw(min.value, DECIMALS.WEI))
-  ) {
-    result = min.value
-  } else if (
-    String(max.value) &&
-    BN.fromRaw(value, DECIMALS.WEI).gt(BN.fromRaw(max.value, DECIMALS.WEI))
-  ) {
-    result = max.value
-  }
+  if (Number(max.value) && Number(value) > Number(max.value)) return max.value
 
-  return result as string
-}
-
-const setHeightCSSVar = (element: Element) => {
-  ;(element as HTMLElement).style.setProperty(
-    '--field-error-msg-height',
-    `${element.scrollHeight}px`,
-  )
+  return value
 }
 </script>
 
@@ -211,8 +191,7 @@ $z-index-side-nodes: 1;
   width: 100%;
   flex: 1;
 
-  &--disabled,
-  &--readonly {
+  &--disabled {
     opacity: 0.5;
   }
 }
@@ -243,7 +222,7 @@ $z-index-side-nodes: 1;
     @include field-label;
 
     .ui-input-field--node-left & {
-      left: calc(var(--field-padding-left) * 3);
+      left: var(--input-field-label-left);
     }
   }
 
@@ -265,7 +244,7 @@ $z-index-side-nodes: 1;
     line-height: 1.3;
 
     .ui-input-field--node-left & {
-      left: calc(var(--field-padding-left) * 3);
+      left: var(--input-field-label-left);
     }
   }
 }
