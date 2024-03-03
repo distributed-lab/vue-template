@@ -15,13 +15,8 @@
     <h2>{{ `Checks` }}</h2>
     <ui-kit-checks />
 
-    <section class="ui-kit-page__form">
-      <login-form />
-    </section>
-
-    <section class="ui-kit-page__form">
-      <complex-form />
-    </section>
+    <h2>{{ `Forms` }}</h2>
+    <ui-kit-forms />
 
     <div class="ui-kit-page__buttons">
       <ui-button
@@ -168,7 +163,7 @@
 import { ref } from 'vue'
 
 import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
-import { UiKitSelects, UiKitTextareas } from '@/pages/UiKit/components'
+import { UiKitForms, UiKitSelects, UiKitTextareas } from '@/pages/UiKit/components'
 import {
   UiAccordion,
   UiBasicModal,
@@ -182,7 +177,7 @@ import {
   UiTooltip,
 } from '@/ui'
 
-import { ComplexForm, LoginForm, UiKitButtons, UiKitChecks, UiKitTextInputs } from './components'
+import { UiKitButtons, UiKitChecks, UiKitTextInputs } from './components'
 
 const isModalShown = ref(false)
 const isCollapseShown = ref(false)
