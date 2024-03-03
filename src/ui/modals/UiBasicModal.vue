@@ -1,7 +1,7 @@
 <template>
   <ui-modal v-model:is-shown="isModalShown" :is-close-by-click-outside="isCloseByClickOutside">
     <template #default="{ close }">
-      <div class="ui-basic-modal__pane">
+      <div v-bind="$attrs" class="ui-basic-modal__pane">
         <div class="ui-basic-modal__header">
           <div class="ui-basic-modal__header-titles">
             <h5 v-if="title" class="ui-basic-modal__title">
@@ -28,20 +28,20 @@
 import { ref, watch } from 'vue'
 
 import { UiButton, UiModal } from '@/ui'
+import { type Props as ModalProps } from '@/ui/UiModal.vue'
 
-const props = withDefaults(
-  defineProps<{
-    isShown: boolean
-    isCloseByClickOutside?: boolean
-    title?: string
-    subtitle?: string
-  }>(),
-  {
-    title: '',
-    subtitle: '',
-    isCloseByClickOutside: true,
-  },
-)
+type Props = ModalProps & {
+  title?: string
+  subtitle?: string
+  width?: number
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  title: '',
+  subtitle: '',
+  width: 400,
+  isCloseByClickOutside: true,
+})
 
 const emit = defineEmits<{
   (e: 'update:is-shown', v: boolean): void
@@ -69,6 +69,7 @@ watch(isModalShown, value => {
   padding: toRem(24);
   border-radius: toRem(28);
   max-width: var(--ui-basic-modal-max-width);
+  width: 100%;
 }
 
 .ui-basic-modal__header {

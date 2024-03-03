@@ -1,13 +1,13 @@
 <template>
-  <div class="error-message">
-    <ui-icon class="error-message__icon" :name="iconName" size="200" />
+  <div class="ui-error-view">
+    <ui-icon class="ui-error-view__icon" :name="iconName" :size="200" />
 
-    <h3 class="error-message__title">
-      {{ title || $t('error-message.default-title') }}
+    <h3 class="ui-error-view__title">
+      {{ title || $t('ui-error-view.title') }}
     </h3>
 
-    <p class="error-message__message">
-      {{ message || $t('error-message.default-message') }}
+    <p class="ui-error-view__message">
+      {{ message || $t('ui-error-view.message') }}
     </p>
   </div>
 </template>
@@ -31,7 +31,7 @@ withDefaults(
 </script>
 
 <style lang="scss" scoped>
-.error-message {
+.ui-error-view {
   display: grid;
   place-items: center;
   text-align: center;
@@ -39,11 +39,11 @@ withDefaults(
   color: var(--text-primary-main);
 }
 
-.error-message__title {
+.ui-error-view__title {
   font-size: toRem(24);
 }
 
-.error-message__message {
+.ui-error-view__message {
   font-size: toRem(18);
 }
 </style>

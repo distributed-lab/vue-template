@@ -21,11 +21,35 @@
     <h2>{{ `Toasts` }}</h2>
     <ui-kit-toast />
 
+    <h2>{{ `Tooltips` }}</h2>
+    <div style="display: flex; flex-direction: column; gap: 1.5rem; align-items: flex-start">
+      <ui-tooltip>
+        <template #trigger>
+          {{ `Lorem Ipsum` }}
+        </template>
+        <template #default>
+          {{ `Dolor sit amet conccestetur` }}
+        </template>
+      </ui-tooltip>
+
+      <ui-tooltip>
+        <template #trigger>
+          <ui-icon class="ui-kit-page__icons-item" :name="$icons.AcademicCap" />
+        </template>
+        <template #default>
+          <ui-icon class="ui-kit-page__icons-item" :name="$icons.AcademicCap" />
+        </template>
+      </ui-tooltip>
+    </div>
+
+    <h2>{{ `Common` }}</h2>
     <section class="ui-kit-page__common">
-      <ui-error-view :message="$t('ui-kit-page.loading-error-msg')" />
+      <ui-error-view />
       <ui-no-data-view :message="$t('ui-kit-page.no-data-msg')" />
+
       <ui-spinner />
       <ui-skeleton class="ui-kit-page__loader-skeleton" />
+
       <ui-accordion class="ui-kit-page__collapse">
         <template #head="{ toggle }">
           <ui-button
@@ -48,26 +72,21 @@
           </div>
         </ui-collapse>
       </div>
+
       <ui-button :text="$t('ui-kit-page.modal-btn')" @click="isModalShown = true" />
       <ui-basic-modal
         class="ui-kit-page__basic-modal"
         v-model:is-shown="isModalShown"
         :title="`Modal Title`"
         :subtitle="`Lorem ipsum dolor sit amet, consectetur adipisicing elit.`"
+        :width="500"
       >
         <div class="ui-kit-page__modal-body">
           {{ $t('ui-kit-page.collapse-text') }}
         </div>
       </ui-basic-modal>
+
       <div class="ui-kit-page__icons">
-        <ui-tooltip>
-          <template #trigger>
-            <ui-icon class="ui-kit-page__icons-item" :name="$icons.AcademicCap" />
-          </template>
-          <template #default>
-            <ui-icon class="ui-kit-page__icons-item" :name="$icons.AcademicCap" />
-          </template>
-        </ui-tooltip>
         <ui-icon class="ui-kit-page__icons-item" :name="$icons.AcademicCap" />
         <ui-icon class="ui-kit-page__icons-item" :name="$icons.Adjustments" />
         <ui-icon class="ui-kit-page__icons-item" :name="$icons.Annotation" />
@@ -195,8 +214,8 @@ const isCollapseShown = ref(false)
 }
 
 .ui-kit-page__basic-modal {
-  &::v-global(.basic-modal__pane) {
-    --basic-modal-max-width: #{toRem(452)};
+  &::v-global(.ui-basic-modal__pane) {
+    --ui-basic-modal-max-width: #{toRem(700)};
   }
 }
 </style>

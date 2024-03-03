@@ -1,10 +1,8 @@
 <template>
   <teleport to="#modal">
     <transition name="ui-modal">
-      <div v-show="isShown" class="ui-modal" v-bind="$attrs">
-        <div class="ui-modal__pane" ref="modalPane">
-          <slot :close="closeModal" :key="String(isShown)" />
-        </div>
+      <div v-show="isShown" class="ui-modal">
+        <slot :close="closeModal" class="ui-modal__pane" ref="modalPane" :key="String(isShown)" />
       </div>
     </transition>
   </teleport>
@@ -14,16 +12,19 @@
 import { onClickOutside } from '@vueuse/core'
 import { onMounted, ref } from 'vue'
 
-const props = withDefaults(
-  defineProps<{
-    isShown?: boolean
-    isCloseByClickOutside?: boolean
-  }>(),
-  {
-    isShown: false,
-    isCloseByClickOutside: true,
-  },
-)
+defineOptions({
+  inheritAttrs: false,
+})
+
+export type Props = {
+  isShown?: boolean
+  isCloseByClickOutside?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  isShown: false,
+  isCloseByClickOutside: true,
+})
 
 const emit = defineEmits<{
   (e: 'update:is-shown', value: boolean): void
@@ -50,8 +51,6 @@ const closeModal = () => {
 $z-index-local: 100;
 
 .ui-modal {
-  --max-width: #{toRem(600)};
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,7 +69,6 @@ $z-index-local: 100;
   justify-content: center;
   position: relative;
   height: auto;
-  max-width: var(--max-width);
 }
 
 .ui-modal-enter-active,

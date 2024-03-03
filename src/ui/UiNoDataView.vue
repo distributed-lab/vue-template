@@ -1,6 +1,6 @@
 <template>
   <div class="ui-no-data-message">
-    <ui-icon class="ui-no-data-message__img" :name="iconName" />
+    <ui-icon class="ui-no-data-message__img" :name="iconName" :size="200" />
     <span class="ui-no-data-message__message">
       {{ message || $t('ui-no-data-message.default-msg') }}
     </span>
@@ -26,11 +26,6 @@ withDefaults(
   place-items: center;
   text-align: center;
   grid-gap: toRem(12);
-}
-
-.ui-no-data-message__img {
-  width: 100%;
-  height: auto;
 }
 
 .ui-no-data-message__message {

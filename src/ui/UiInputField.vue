@@ -44,12 +44,17 @@
         />
       </div>
     </div>
-    <ui-collapse :is-shown="Boolean(errorMessage || note)">
-      <span v-if="errorMessage" class="ui-input-field__err-msg">
-        {{ errorMessage }}
-      </span>
-      <span v-else-if="note" class="ui-input-field__note-msg">
+    <ui-collapse :is-shown="Boolean(note)">
+      <span class="ui-input-field__note-msg">
         {{ note }}
+      </span>
+    </ui-collapse>
+
+    <!-- TODO: animation is not smooth because of errorMessage binding -->
+    <!--    if errorMessage === '', component will collapse to 0 x 0-->
+    <ui-collapse :is-shown="Boolean(errorMessage)">
+      <span class="ui-input-field__err-msg">
+        {{ errorMessage }}
       </span>
     </ui-collapse>
   </div>
