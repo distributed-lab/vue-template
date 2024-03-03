@@ -1,6 +1,6 @@
 <template>
   <div class="error-message">
-    <ui-icon class="error-message__img" :name="iconName" />
+    <ui-icon class="error-message__icon" :name="iconName" size="200" />
 
     <h3 class="error-message__title">
       {{ title || $t('error-message.default-title') }}
@@ -36,11 +36,7 @@ withDefaults(
   place-items: center;
   text-align: center;
   grid-gap: toRem(12);
-}
-
-.error-message__img {
-  width: 100%;
-  height: auto;
+  color: var(--text-primary-main);
 }
 
 .error-message__title {

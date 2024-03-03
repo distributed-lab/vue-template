@@ -29,7 +29,9 @@ const initApp = async () => {
   try {
     log.setDefaultLevel(config.LOG_LEVEL)
 
-    app.use(router).use(store).use(i18n).use(VueToastificationPlugin)
+    app.use(router).use(store).use(i18n).use(VueToastificationPlugin, {
+      shareAppContext: true,
+    })
 
     app.config.globalProperties.$routes = RouteNames
     app.config.globalProperties.$config = config

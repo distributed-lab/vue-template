@@ -1,7 +1,7 @@
 <template>
   <div class="toast__body">
     <div class="toast__icon-wrp">
-      <ui-icon class="toast__icon" :name="iconName || IconNames.CheckCircle" />
+      <ui-icon class="toast__icon" :name="iconName" />
     </div>
     <div class="toast__details">
       <h4 class="toast__title">
@@ -26,7 +26,7 @@ withDefaults(
   }>(),
   {
     title: '',
-    iconName: undefined,
+    iconName: IconNames.CheckCircle,
   },
 )
 </script>

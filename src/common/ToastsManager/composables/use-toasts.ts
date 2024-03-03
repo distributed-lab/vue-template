@@ -66,6 +66,9 @@ export const useToasts = () => {
       closeOnClick: false,
     }
 
+    /**
+     * Make sure your component has more prioritized styles than VueToastification's
+     */
     if ('component' in payload) {
       return toast(payload, options)
     }
@@ -93,5 +96,3 @@ export const useToasts = () => {
 
   return { showToast, removeToast }
 }
-
-export * from 'vue-toastification'

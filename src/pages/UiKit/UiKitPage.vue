@@ -18,84 +18,8 @@
     <h2>{{ `Forms` }}</h2>
     <ui-kit-forms />
 
-    <div class="ui-kit-page__buttons">
-      <ui-button
-        size="small"
-        :text="'bus.success'"
-        color="success"
-        @click="
-          () =>
-            bus.emit(BUS_EVENTS.success, {
-              message: 'Some success message',
-            })
-        "
-      />
-      <ui-button
-        size="small"
-        :text="'bus.error'"
-        color="error"
-        @click="
-          () =>
-            bus.emit(BUS_EVENTS.error, {
-              message: 'Some error message',
-            })
-        "
-      />
-      <ui-button
-        size="small"
-        :text="'bus.warning'"
-        color="warning"
-        @click="
-          () =>
-            bus.emit(BUS_EVENTS.warning, {
-              message: 'Some warning message',
-            })
-        "
-      />
-      <ui-button
-        size="small"
-        :text="'bus.info'"
-        color="info"
-        @click="
-          () =>
-            bus.emit(BUS_EVENTS.info, {
-              message: 'Some info message',
-            })
-        "
-      />
-      <ui-button
-        size="small"
-        :text="'bus.info'"
-        color="info"
-        @click="
-          () =>
-            bus.emit(BUS_EVENTS.success, {
-              message: 'Some success message',
-            })
-        "
-      />
-      <ui-button
-        size="small"
-        :text="'custom'"
-        color="info"
-        @click="
-          () =>
-            bus.emit(BUS_EVENTS.success, {
-              component: UiErrorView,
-              props: {
-                message: 'Some custom message',
-              },
-            })
-        "
-      />
-
-      <ui-button
-        size="small"
-        :text="'ErrorHandler.process'"
-        color="error"
-        @click="handleProcessError"
-      />
-    </div>
+    <h2>{{ `Toasts` }}</h2>
+    <ui-kit-toast />
 
     <section class="ui-kit-page__common">
       <ui-error-view :message="$t('ui-kit-page.loading-error-msg')" />
@@ -162,8 +86,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
-import { UiKitForms, UiKitSelects, UiKitTextareas } from '@/pages/UiKit/components'
+import { UiKitForms, UiKitSelects, UiKitTextareas, UiKitToast } from '@/pages/UiKit/components'
 import {
   UiAccordion,
   UiBasicModal,
@@ -181,10 +104,6 @@ import { UiKitButtons, UiKitChecks, UiKitTextInputs } from './components'
 
 const isModalShown = ref(false)
 const isCollapseShown = ref(false)
-
-const handleProcessError = () => {
-  ErrorHandler.process(new Error('some error message'))
-}
 </script>
 
 <style lang="scss" scoped>
