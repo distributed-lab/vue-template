@@ -1,15 +1,15 @@
 import '@/styles/app.scss'
 import 'virtual:svg-icons-register'
 
-import App from '@/App.vue'
+import { config } from '@config'
 import log from 'loglevel'
-
-import VueToastificationPlugin from 'vue-toastification'
-import { ICON_NAMES, ROUTE_NAMES } from '@/enums'
 import { createApp, getCurrentInstance, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import VueToastificationPlugin from 'vue-toastification'
+
+import App from '@/App.vue'
+import { IconNames, RouteNames } from '@/enums'
 import { i18n } from '@/localization'
-import { config } from '@config'
 import { router } from '@/router'
 import { store } from '@/store'
 
@@ -29,11 +29,13 @@ const initApp = async () => {
   try {
     log.setDefaultLevel(config.LOG_LEVEL)
 
-    app.use(router).use(store).use(i18n).use(VueToastificationPlugin)
+    app.use(router).use(store).use(i18n).use(VueToastificationPlugin, {
+      shareAppContext: true,
+    })
 
-    app.config.globalProperties.$routes = ROUTE_NAMES
+    app.config.globalProperties.$routes = RouteNames
     app.config.globalProperties.$config = config
-    app.config.globalProperties.$icons = ICON_NAMES
+    app.config.globalProperties.$icons = IconNames
 
     app.config.errorHandler = function (error, instance, info) {
       log.error(error)

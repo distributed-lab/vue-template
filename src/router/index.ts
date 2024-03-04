@@ -1,27 +1,24 @@
-import {
-  createRouter,
-  createWebHistory,
-  RouteRecordRaw,
-  useRoute,
-  useRouter,
-} from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw, useRoute, useRouter } from 'vue-router'
 
-import { ROUTE_NAMES } from '@/enums'
+import { RouteNames } from '@/enums'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/:catchAll(.*)',
-    redirect: { name: ROUTE_NAMES.uiKit },
+    redirect: { name: RouteNames.App },
   },
   {
-    path: '/ui-kit',
-    name: ROUTE_NAMES.uiKit,
-    component: () => import('@/pages/UiKitPage.vue'),
-  },
-  {
-    path: '/complex-form',
-    name: ROUTE_NAMES.complexForm,
-    component: () => import('@/forms/ComplexForm.vue'),
+    path: '/',
+    name: RouteNames.App,
+    component: () => import('@/layouts/MainLayout.vue'),
+    redirect: { name: RouteNames.UiKit },
+    children: [
+      {
+        path: '/ui-kit',
+        name: RouteNames.UiKit,
+        component: () => import('@/pages/UiKit'),
+      },
+    ],
   },
 ]
 
@@ -31,4 +28,4 @@ const router = createRouter({
   scrollBehavior: () => ({ top: 0, left: 0 }),
 })
 
-export { router, useRouter, useRoute }
+export { router, useRoute, useRouter }

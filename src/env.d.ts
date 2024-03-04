@@ -1,12 +1,13 @@
 /// <reference types="vite/client" />
 import { config } from '@config'
-import { ICON_NAMES, ROUTE_NAMES } from '@/enums'
 import { WritableComputedRef } from 'vue'
+
+import { IconNames, RouteNames } from '@/enums'
 
 declare module '@vue/runtime-core' {
   export interface ComponentCustomProperties {
-    $routes: typeof ROUTE_NAMES
-    $icons: typeof ICON_NAMES
+    $routes: typeof RouteNames
+    $icons: typeof IconNames
     $config: typeof config
     $locale: WritableComputedRef
   }

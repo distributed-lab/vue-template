@@ -3,15 +3,11 @@
 module.exports = {
   plugins: ['stylelint-scss', 'stylelint-declaration-strict-value'],
   // css also is a valid scss, so we don't need to use both - scss is enough
-  extends: [
-    'stylelint-config-standard-scss',
-    'stylelint-config-recommended-vue',
-  ],
+  extends: ['stylelint-config-standard-scss', 'stylelint-config-recommended-vue'],
   rules: {
     /* disable unnecessary rules from recommended extends */
     'function-no-unknown': null,
     'at-rule-no-unknown': null,
-    'no-empty-first-line': null,
     'selector-class-pattern': null,
     'function-name-case': null,
     'selector-no-vendor-prefix': null,
@@ -22,20 +18,13 @@ module.exports = {
     'scss/at-if-closing-brace-newline-after': null,
     'scss/at-else-closing-brace-newline-after': null,
     'scss/at-else-closing-brace-space-after': null,
-    'declaration-colon-newline-after': null,
     'scss/at-function-pattern': null,
 
     'color-no-invalid-hex': [true, { severity: 'warning' }],
     'font-family-no-duplicate-names': [true, { severity: 'warning' }],
-    'font-family-no-missing-generic-family-keyword': [
-      true,
-      { severity: 'warning' },
-    ],
+    'font-family-no-missing-generic-family-keyword': [true, { severity: 'warning' }],
     'function-calc-no-unspaced-operator': [true, { severity: 'warning' }],
-    'function-linear-gradient-no-nonstandard-direction': [
-      true,
-      { severity: 'warning' },
-    ],
+    'function-linear-gradient-no-nonstandard-direction': [true, { severity: 'warning' }],
     'string-no-newline': [true, { severity: 'warning' }],
     'unit-no-unknown': [true, { severity: 'warning' }],
     'property-no-unknown': [
@@ -46,14 +35,8 @@ module.exports = {
       },
     ],
     'keyframe-declaration-no-important': [true, { severity: 'warning' }],
-    'declaration-block-no-duplicate-properties': [
-      true,
-      { severity: 'warning' },
-    ],
-    'declaration-block-no-shorthand-property-overrides': [
-      true,
-      { severity: 'warning' },
-    ],
+    'declaration-block-no-duplicate-properties': [true, { severity: 'warning' }],
+    'declaration-block-no-shorthand-property-overrides': [true, { severity: 'warning' }],
     'block-no-empty': [true, { severity: 'warning' }],
     'selector-type-no-unknown': [true, { severity: 'warning' }],
     'media-feature-name-no-unknown': [true, { severity: 'warning' }],
@@ -108,31 +91,19 @@ module.exports = {
         ],
       },
     ],
-    'declaration-block-no-redundant-longhand-properties': [
-      true,
-      { severity: 'warning' },
-    ],
+    'declaration-block-no-redundant-longhand-properties': [true, { severity: 'warning' }],
     'declaration-no-important': [true, { severity: 'warning' }],
-    'declaration-block-single-line-max-declarations': [
-      1,
-      { severity: 'warning' },
-    ],
+    'declaration-block-single-line-max-declarations': [1, { severity: 'warning' }],
     'at-rule-no-vendor-prefix': [true, { severity: 'warning' }],
     'no-unknown-animations': [true, { severity: 'warning' }],
     'color-hex-length': ['long', { severity: 'warning' }],
-    'font-family-name-quotes': [
-      'always-unless-keyword',
-      { severity: 'warning' },
-    ],
+    'font-family-name-quotes': ['always-unless-keyword', { severity: 'warning' }],
     'font-weight-notation': ['numeric', { severity: 'warning' }],
     'function-url-quotes': ['always', { severity: 'warning' }],
     'length-zero-no-unit': [true, { severity: 'warning' }],
     'value-keyword-case': ['lower', { severity: 'warning' }],
     'selector-attribute-quotes': ['always', { severity: 'warning' }],
-    'selector-pseudo-element-colon-notation': [
-      'single',
-      { severity: 'warning' },
-    ],
+    'selector-pseudo-element-colon-notation': ['single', { severity: 'warning' }],
     'selector-type-case': ['lower', { severity: 'warning' }],
     'rule-empty-line-before': [
       'always-multi-line',

@@ -1,6 +1,6 @@
-import resources from '@/localization/resources'
-
 import { createI18n } from 'vue-i18n'
+
+import resources from '@/localization/resources'
 
 const STORAGE_KEY = 'locale'
 const DEFAULT_LOCALE = 'en'
