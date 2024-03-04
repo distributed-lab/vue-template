@@ -34,6 +34,8 @@
 import { v4 as uuidv4 } from 'uuid'
 import { computed, useAttrs } from 'vue'
 
+import { DISABLED_FIELD_TUPLE, READONLY_FIELD_TUPLE } from '@/consts'
+
 type SCHEMES = 'primary'
 
 const model = defineModel<string>({
@@ -61,13 +63,9 @@ const attrs = useAttrs()
 
 const uid = uuidv4()
 
-const isDisabled = computed(() =>
-  ['', 'disabled', true].includes(attrs.disabled as string | boolean),
-)
+const isDisabled = computed(() => DISABLED_FIELD_TUPLE.includes(attrs.disabled as string | boolean))
 
-const isReadonly = computed(() =>
-  ['', 'readonly', true].includes(attrs.readonly as string | boolean),
-)
+const isReadonly = computed(() => READONLY_FIELD_TUPLE.includes(attrs.readonly as string | boolean))
 
 const listeners = computed(() => ({
   input: (event: Event) => {

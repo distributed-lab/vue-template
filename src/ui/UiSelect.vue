@@ -88,6 +88,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { computed, onMounted, ref, useAttrs, watch } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 
+import { DISABLED_FIELD_TUPLE, READONLY_FIELD_TUPLE } from '@/consts'
 import { UiIcon } from '@/ui'
 
 const model = defineModel<string>({
@@ -124,13 +125,9 @@ onBeforeRouteUpdate(() => {
   closeDropdown()
 })
 
-const isDisabled = computed(() =>
-  ['', 'disabled', true].includes(attrs.disabled as string | boolean),
-)
+const isDisabled = computed(() => DISABLED_FIELD_TUPLE.includes(attrs.disabled as string | boolean))
 
-const isReadonly = computed(() =>
-  ['', 'readonly', true].includes(attrs.readonly as string | boolean),
-)
+const isReadonly = computed(() => READONLY_FIELD_TUPLE.includes(attrs.readonly as string | boolean))
 
 const isLabelActive = computed(() => isDropdownOpen.value || !!model.value)
 

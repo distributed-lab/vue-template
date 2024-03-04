@@ -32,6 +32,8 @@
 <script lang="ts" setup>
 import { computed, useAttrs } from 'vue'
 
+import { DISABLED_FIELD_TUPLE, READONLY_FIELD_TUPLE } from '@/consts'
+
 const model = defineModel<boolean>({
   default: false,
 })
@@ -49,13 +51,9 @@ withDefaults(
 
 const attrs = useAttrs()
 
-const isDisabled = computed(() =>
-  ['', 'disabled', true].includes(attrs.disabled as string | boolean),
-)
+const isDisabled = computed(() => DISABLED_FIELD_TUPLE.includes(attrs.disabled as string | boolean))
 
-const isReadonly = computed(() =>
-  ['', 'readonly', true].includes(attrs.readonly as string | boolean),
-)
+const isReadonly = computed(() => READONLY_FIELD_TUPLE.includes(attrs.readonly as string | boolean))
 
 const onChange = (event: Event) => {
   const target = event.target as HTMLInputElement

@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 
 import { IconNames } from '@/enums'
 
@@ -22,18 +22,13 @@ const props = withDefaults(
 const rootEl = ref()
 
 watch(
-  () => props.size,
-  value => {
-    if (value) {
-      setIconSize(value)
+  () => [props.size, rootEl.value],
+  () => {
+    if (props.size) {
+      setIconSize(props.size)
     }
   },
 )
-onMounted(() => {
-  if (props.size) {
-    setIconSize(props.size)
-  }
-})
 
 const setIconSize = (value: number) => {
   rootEl.value?.style.setProperty('--size', `${value / 16}rem`)

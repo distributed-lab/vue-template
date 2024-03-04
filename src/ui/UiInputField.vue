@@ -64,8 +64,8 @@
 import { v4 as uuidv4 } from 'uuid'
 import { computed, onMounted, ref, useAttrs, useSlots } from 'vue'
 
-import { UiIcon } from '@/ui'
-import UiCollapse from '@/ui/UiCollapse.vue'
+import { DISABLED_FIELD_TUPLE, READONLY_FIELD_TUPLE } from '@/consts'
+import { UiCollapse, UiIcon } from '@/ui'
 
 const model = defineModel<string>({
   default: '',
@@ -113,13 +113,9 @@ const max = computed((): string =>
   !isNaN(Number(attrs?.max)) && attrs?.max !== '' ? (attrs.max as string) : '',
 )
 
-const isDisabled = computed(() =>
-  ['', 'disabled', true].includes(attrs.disabled as string | boolean),
-)
+const isDisabled = computed(() => DISABLED_FIELD_TUPLE.includes(attrs.disabled as string | boolean))
 
-const isReadonly = computed(() =>
-  ['', 'readonly', true].includes(attrs.readonly as string | boolean),
-)
+const isReadonly = computed(() => READONLY_FIELD_TUPLE.includes(attrs.readonly as string | boolean))
 
 const listeners = computed(() => ({
   input: (event: Event) => {
