@@ -2,7 +2,9 @@
   <teleport to="#modal">
     <transition name="ui-modal">
       <div v-show="isShown" class="ui-modal">
-        <slot :close="closeModal" class="ui-modal__pane" ref="modalPane" :key="String(isShown)" />
+        <div class="ui-modal__pane-wrp" ref="modalPaneWrp">
+          <slot :close="closeModal" class="ui-modal__pane" :key="String(isShown)" />
+        </div>
       </div>
     </transition>
   </teleport>
@@ -30,12 +32,12 @@ const emit = defineEmits<{
   (e: 'update:is-shown', value: boolean): void
 }>()
 
-const modalPane = ref<HTMLElement | undefined>()
+const modalPaneWrp = ref<HTMLElement | undefined>()
 
 onMounted(() => {
-  if (modalPane.value) {
+  if (modalPaneWrp.value) {
     if (props.isCloseByClickOutside) {
-      onClickOutside(modalPane, () => {
+      onClickOutside(modalPaneWrp, () => {
         closeModal()
       })
     }
