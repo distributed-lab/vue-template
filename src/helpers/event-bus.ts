@@ -1,5 +1,7 @@
 import { EventEmitter } from '@distributedlab/tools'
 
+import { ToastPayload } from '@/common/ToastsManager'
+
 export enum BUS_EVENTS {
   error = 'error',
   warning = 'warning',
@@ -8,10 +10,10 @@ export enum BUS_EVENTS {
 }
 
 export type DefaultBusEventMap = {
-  [BUS_EVENTS.success]: unknown
-  [BUS_EVENTS.error]: unknown
-  [BUS_EVENTS.warning]: unknown
-  [BUS_EVENTS.info]: unknown
+  [BUS_EVENTS.success]: ToastPayload
+  [BUS_EVENTS.error]: ToastPayload
+  [BUS_EVENTS.warning]: ToastPayload
+  [BUS_EVENTS.info]: ToastPayload
 }
 
 export const bus = new EventEmitter<DefaultBusEventMap>()

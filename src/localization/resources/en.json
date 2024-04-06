@@ -18,6 +18,10 @@
     "default-message-info": "Something is happening. Just want you to know that",
     "default-message-default": "Just a message"
   },
+  "ui-error-view": {
+    "title": "Oops, something went wrong",
+    "message": "Please try again later"
+  },
   "login-form": {
     "login-lbl": "Login",
     "password-lbl": "Password",

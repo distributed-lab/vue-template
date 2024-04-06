@@ -23,10 +23,17 @@ deprecated
 *.sln
 *.local
 stats.html
-.yarn
-.yarnrc.yml
 
-.env
+# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 .env.production
+.env.development
 .env.analyze
 tsconfig.tsbuildinfo
