@@ -10,7 +10,7 @@
     "start": "dotenv -e .env vite",
     "analyze": "vite build --mode analyze",
     "lint": "yarn lint:styles || true && yarn lint:scripts || true",
-    "lint:styles": "stylelint \"src/**/*.{vue,scss,css}\"",
+    "lint:styles": "stylelint \"src/**/*.{vue,sass,scss,css}\"",
     "lint:scripts": "eslint \"{src,config}/**/*.{vue,js,ts}\" --cache --fix && tsc --noEmit",
     "preview": "vite preview",
     "rsc": "node scripts/release-sanity-check.mjs"
