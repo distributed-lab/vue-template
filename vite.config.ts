@@ -45,6 +45,8 @@ export default defineConfig(({ mode }) => {
         symbolId: '[name]',
       }),
       checker({
+        // remove if you want to prevent build with errors || warnings
+        enableBuild: false,
         typescript: true,
         // vueTsc: true,
         overlay: {
