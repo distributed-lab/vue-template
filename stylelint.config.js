@@ -1,5 +1,6 @@
 // https://stylelint.io/user-guide/rules/
 
+/** @type {import('stylelint').Config} */
 module.exports = {
   plugins: ['stylelint-scss', 'stylelint-declaration-strict-value'],
   // css also is a valid scss, so we don't need to use both - scss is enough
@@ -148,7 +149,7 @@ module.exports = {
     'selector-not-notation': 'simple',
 
     // FIXME: deprecated
-    /* eslint-disable max-len */
+
     // 'at-rule-name-case': ['lower', { severity: 'warning' }],
     // 'at-rule-semicolon-space-before': ['never', { severity: 'warning' }],
     // 'at-rule-name-space-after': ['always', { severity: 'warning' }],
@@ -294,6 +295,5 @@ module.exports = {
     //     ignore: ['param'],
     //   },
     // ],
-    /* eslint-enable max-len */
   },
 }

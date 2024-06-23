@@ -45,13 +45,17 @@ export default defineConfig(({ mode }) => {
         symbolId: '[name]',
       }),
       checker({
+        typescript: true,
+        // vueTsc: true,
         overlay: {
           initialIsOpen: false,
         },
-        typescript: true,
+        stylelint: {
+          lintCommand: 'stylelint "src/**/*.{vue,sass,scss,css}" --max-warnings=0',
+        },
         eslint: {
-          lintCommand:
-            'eslint "{src,config}/**/*.{vue,js,ts}" --cache --max-warnings=0',
+          useFlatConfig: true,
+          lintCommand: 'eslint "{src,config}/**/*.{vue,js,ts}" --cache --max-warnings=0',
         },
       }),
       ...(isAnalyze
