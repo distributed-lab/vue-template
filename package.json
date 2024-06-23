@@ -9,7 +9,7 @@
     "build": "dotenv -e .env vite build",
     "start": "dotenv -e .env vite",
     "analyze": "vite build --mode analyze",
-    "lint": "yarn lint:styles || true && yarn lint:scripts || true",
+    "lint": "yarn lint:styles && yarn lint:scripts",
     "lint:styles": "stylelint \"src/**/*.{vue,sass,scss,css}\"",
     "lint:scripts": "eslint \"{src,config}/**/*.{vue,js,ts}\" --cache --fix && tsc --noEmit",
     "preview": "vite preview",
