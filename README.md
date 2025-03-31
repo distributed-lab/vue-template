@@ -1,5 +1,8 @@
 # Distributed Lab vue started template
 
+## Soft deprecation notice
+This repo is softly deprecated and will not be mainained anymore
+
 
 | command                      | description                             |
 |------------------------------|-----------------------------------------|
